@@ -1,10 +1,17 @@
 import {Platform} from 'react-native';
-import {BorderRadius, Color, FontSize, Spacing} from '../interface/theme';
+import {
+  BorderRadius,
+  Color,
+  FontFamily,
+  FontSize,
+  Spacing,
+} from '../interface/theme';
 
 export const COLORS: Color = {
   primaryWhiteHex: '#ffffff',
   primaryOrangeHex: '#FF5B2C',
   secondaryOrangeHex: '#ED4D2D',
+  primaryBlackHex: '#3E4958',
 };
 export const SPACING: Spacing = {
   space_2: 2,
@@ -46,9 +53,21 @@ export const OS = {
   isAndroid: Platform.OS === 'android',
   isIOS: Platform.OS === 'ios',
 };
+export const FONT_FAMILY: FontFamily = {
+  montserrat_black: 'Montserrat-Black',
+  montserrat_bold: 'Montserrat-Bold',
+  montserrat_extrabold: 'Montserrat-ExtraBold',
+  montserrat_extralight: 'Montserrat-ExtraLight',
+  montserrat_light: 'Montserrat-Light',
+  montserrat_medium: 'Montserrat-Medium',
+  montserrat_regular: 'Montserrat-Regular',
+  montserrat_semibold: 'Montserrat-SemiBold',
+  montserrat_thin: 'Montserrat-Thin',
+};
 const theme = {
   COLORS,
   OS,
   SPACING,
+  FONT_FAMILY,
 };
 export default theme;

@@ -1,5 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {BORDER_RADIUS, FONTSIZE, SPACING} from '../constants';
+import {
+  BORDER_RADIUS,
+  COLORS,
+  FONT_FAMILY,
+  FONTSIZE,
+  SPACING,
+} from '../constants';
 
 export const globalStyles = StyleSheet.create({
   center: {
@@ -37,7 +43,8 @@ export const globalStyles = StyleSheet.create({
   },
   text: {
     fontSize: FONTSIZE.size_16,
-    fontWeight: 'bold',
+    fontFamily: FONT_FAMILY.montserrat_bold,
+    color: COLORS.primaryBlackHex,
   },
   section: {
     paddingHorizontal: SPACING.space_36,

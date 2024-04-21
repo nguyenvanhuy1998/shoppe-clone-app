@@ -19,6 +19,7 @@ export interface Color {
   primaryWhiteHex: string;
   primaryOrangeHex: string;
   secondaryOrangeHex: string;
+  primaryBlackHex: string;
 }
 export interface FontSize {
   size_8: number;
@@ -39,4 +40,15 @@ export interface BorderRadius {
   radius_14: number;
   radius_20: number;
   radius_25: number;
+}
+export interface FontFamily {
+  montserrat_black: string;
+  montserrat_bold: string;
+  montserrat_extrabold: string;
+  montserrat_extralight: string;
+  montserrat_light: string;
+  montserrat_medium: string;
+  montserrat_regular: string;
+  montserrat_semibold: string;
+  montserrat_thin: string;
 }
