@@ -1,11 +1,12 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {Text} from 'react-native';
+import {ContainerComponent} from '../../components';
 
 const SignUpScreen = () => {
   return (
-    <View>
+    <ContainerComponent type="input">
       <Text>SignUpScreen</Text>
-    </View>
+    </ContainerComponent>
   );
 };
 

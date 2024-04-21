@@ -1,3 +1,4 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ButtonComponent,
@@ -8,7 +9,6 @@ import {
 } from '../components';
 import {COLORS, images} from '../constants';
 import {globalStyles} from '../styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackNavigatorParamList} from '../types/auth';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'Splash'>;

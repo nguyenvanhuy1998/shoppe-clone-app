@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   ColorValue,
+  ScrollView,
   StatusBarStyle,
   StyleProp,
   View,
@@ -11,11 +12,12 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {globalStyles} from '../styles';
 import FocusAwareStatusBar from './FocusAwareStatusBar';
 import {COLORS} from '../constants';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 interface Props {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
-  type?: 'linear' | 'primary';
+  type?: 'linear' | 'primary' | 'input';
   barStyle?: StatusBarStyle;
   backgroundColorBarStyle?: ColorValue;
 }
@@ -23,7 +25,7 @@ const ContainerComponent = ({
   children,
   style,
   type,
-  barStyle,
+  barStyle = 'dark-content',
   backgroundColorBarStyle,
 }: Props) => {
   const insets = useSafeAreaInsets();
@@ -53,7 +55,21 @@ const ContainerComponent = ({
   ) : (
     <View style={styleGeneral}>
       {renderBarStyle()}
-      {children}
+      {type === 'input' ? (
+        <KeyboardAwareScrollView
+          showsVerticalScrollIndicator={false}
+          alwaysBounceVertical={false}
+          contentContainerStyle={globalStyles.flexGrowOne}>
+          {children}
+        </KeyboardAwareScrollView>
+      ) : (
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          alwaysBounceVertical={false}
+          contentContainerStyle={globalStyles.flexGrowOne}>
+          {children}
+        </ScrollView>
+      )}
     </View>
   );
 };

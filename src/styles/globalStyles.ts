@@ -18,6 +18,9 @@ export const globalStyles = StyleSheet.create({
   flexOne: {
     flex: 1,
   },
+  flexGrowOne: {
+    flexGrow: 1,
+  },
   containerCenter: {
     flex: 1,
     alignItems: 'center',
