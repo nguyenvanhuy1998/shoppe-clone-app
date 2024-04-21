@@ -1,8 +1,8 @@
 import React from 'react';
-import {SplashScreen} from '../screens';
+import AuthStackNavigator from './AuthStackNavigator';
 
 const RootStackNavigator = () => {
-  return <SplashScreen />;
+  return <AuthStackNavigator />;
 };
 
 export default RootStackNavigator;

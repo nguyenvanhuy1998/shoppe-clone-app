@@ -8,8 +8,17 @@ import {
 } from '../components';
 import {COLORS, images} from '../constants';
 import {globalStyles} from '../styles';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {AuthStackNavigatorParamList} from '../types/auth';
 
-const SplashScreen = () => {
+type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'Splash'>;
+const SplashScreen = ({navigation}: Props) => {
+  const handleSignIn = () => {
+    navigation.navigate('SignIn');
+  };
+  const handleSignUp = () => {
+    navigation.navigate('SignUp');
+  };
   return (
     <ContainerComponent
       type="linear"
@@ -19,11 +28,11 @@ const SplashScreen = () => {
         <ImageComponent source={images.logo} width={100} height={142} />
       </SectionComponent>
       <SectionComponent>
-        <ButtonComponent text="Đăng ký" onPress={() => {}} />
+        <ButtonComponent text="Đăng ký" onPress={handleSignUp} />
         <SpaceComponent height={20} />
         <ButtonComponent
           style={globalStyles.selfCenter}
-          onPress={() => {}}
+          onPress={handleSignIn}
           text="Đăng nhập"
           type="text"
           color={COLORS.primaryWhiteHex}
