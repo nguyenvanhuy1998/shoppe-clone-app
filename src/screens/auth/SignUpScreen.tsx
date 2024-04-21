@@ -1,11 +1,11 @@
 import React from 'react';
-import {Text} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ContainerComponent} from '../../components';
-
+import {COLORS} from '../../constants';
 const SignUpScreen = () => {
   return (
     <ContainerComponent type="input">
-      <Text>SignUpScreen</Text>
+      <Ionicons name="arrow-back" size={24} color={COLORS.primaryBlackHex} />
     </ContainerComponent>
   );
 };
