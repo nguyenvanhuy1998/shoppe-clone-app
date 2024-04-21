@@ -2,13 +2,13 @@ import React from 'react';
 import {
   ColorValue,
   StyleProp,
-  Text,
   TextStyle,
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import {COLORS} from '../constants';
+import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
 import {globalStyles} from '../styles';
+import TextComponent from './TextComponent';
 
 interface Props {
   text: string;
@@ -18,15 +18,18 @@ interface Props {
   type?: 'primary' | 'text';
   backgroundColor?: ColorValue;
   color?: ColorValue;
+  fontSize?: number;
+  fontFamily?: string;
 }
 const ButtonComponent = ({
   text,
   onPress,
   style,
   type,
-  textStyle,
   backgroundColor = COLORS.primaryWhiteHex,
   color = COLORS.primaryOrangeHex,
+  fontSize = FONTSIZE.size_16,
+  fontFamily = FONT_FAMILY.montserrat_bold,
 }: Props) => {
   return (
     <TouchableOpacity
@@ -38,16 +41,12 @@ const ButtonComponent = ({
         style,
       ]}
       onPress={onPress}>
-      <Text
-        style={[
-          globalStyles.text,
-          {
-            color,
-          },
-          textStyle,
-        ]}>
-        {text}
-      </Text>
+      <TextComponent
+        text={text}
+        color={color}
+        fontSize={fontSize}
+        fontFamily={fontFamily}
+      />
     </TouchableOpacity>
   );
 };

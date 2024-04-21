@@ -22,10 +22,10 @@ const SplashScreen = () => {
         <ButtonComponent text="Đăng ký" onPress={() => {}} />
         <SpaceComponent height={20} />
         <ButtonComponent
+          style={globalStyles.selfCenter}
           onPress={() => {}}
           text="Đăng nhập"
           type="text"
-          style={globalStyles.selfCenter}
           color={COLORS.primaryWhiteHex}
           backgroundColor={'transparent'}
         />

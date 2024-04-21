@@ -4,6 +4,7 @@ import ButtonComponent from './ButtonComponent';
 import SectionComponent from './SectionComponent';
 import FocusAwareStatusBar from './FocusAwareStatusBar';
 import SpaceComponent from './SpaceComponent';
+import TextComponent from './TextComponent';
 
 export {
   ContainerComponent,
@@ -12,4 +13,5 @@ export {
   SectionComponent,
   FocusAwareStatusBar,
   SpaceComponent,
+  TextComponent,
 };

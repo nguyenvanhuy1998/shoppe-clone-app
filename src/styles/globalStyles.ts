@@ -42,8 +42,8 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    fontSize: FONTSIZE.size_16,
-    fontFamily: FONT_FAMILY.montserrat_bold,
+    fontSize: FONTSIZE.size_14,
+    fontFamily: FONT_FAMILY.montserrat_regular,
     color: COLORS.primaryBlackHex,
   },
   section: {
