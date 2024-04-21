@@ -1,12 +1,8 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {SplashScreen} from '../screens';
 
 const RootStackNavigator = () => {
-  return (
-    <View>
-      <Text>RootStackNavigator</Text>
-    </View>
-  );
+  return <SplashScreen />;
 };
 
 export default RootStackNavigator;
