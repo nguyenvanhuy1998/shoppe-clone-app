@@ -36,7 +36,7 @@ const ContainerComponent = ({
     />
   );
   const styleGeneral = [
-    globalStyles.flexOne,
+    globalStyles.container,
     {
       paddingTop: insets.top,
       paddingBottom: insets.bottom,

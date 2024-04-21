@@ -21,6 +21,10 @@ export const globalStyles = StyleSheet.create({
   flexGrowOne: {
     flexGrow: 1,
   },
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.primaryWhiteHex,
+  },
   containerCenter: {
     flex: 1,
     alignItems: 'center',
