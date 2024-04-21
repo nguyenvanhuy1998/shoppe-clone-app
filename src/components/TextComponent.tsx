@@ -1,6 +1,6 @@
 import React from 'react';
 import {ColorValue, StyleProp, Text, TextStyle} from 'react-native';
-import {globalStyles} from '../styles';
+import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
 
 interface Props {
   text: string;
@@ -9,11 +9,16 @@ interface Props {
   fontSize?: number;
   fontFamily?: string;
 }
-const TextComponent = ({text, color, style, fontSize, fontFamily}: Props) => {
+const TextComponent = ({
+  text,
+  color = COLORS.primaryBlackHex,
+  style,
+  fontSize = FONTSIZE.size_14,
+  fontFamily = FONT_FAMILY.montserrat_regular,
+}: Props) => {
   return (
     <Text
       style={[
-        globalStyles.text,
         {
           color,
           fontSize,

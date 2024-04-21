@@ -5,6 +5,9 @@ import SectionComponent from './SectionComponent';
 import FocusAwareStatusBar from './FocusAwareStatusBar';
 import SpaceComponent from './SpaceComponent';
 import TextComponent from './TextComponent';
+import MaterialIcons from './MaterialIcons';
+import HeaderComponent from './HeaderComponent';
+import RowComponent from './RowComponent';
 
 export {
   ContainerComponent,
@@ -14,4 +17,7 @@ export {
   FocusAwareStatusBar,
   SpaceComponent,
   TextComponent,
+  MaterialIcons,
+  HeaderComponent,
+  RowComponent,
 };

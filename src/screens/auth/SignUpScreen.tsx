@@ -1,11 +1,20 @@
 import React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {ContainerComponent} from '../../components';
-import {COLORS} from '../../constants';
+import {
+  ContainerComponent,
+  HeaderComponent,
+  SectionComponent,
+} from '../../components';
+import {FONT_FAMILY, FONTSIZE} from '../../constants';
 const SignUpScreen = () => {
   return (
     <ContainerComponent type="input">
-      <Ionicons name="arrow-back" size={24} color={COLORS.primaryBlackHex} />
+      <SectionComponent>
+        <HeaderComponent
+          text="Đăng ký"
+          fontSize={FONTSIZE.size_26}
+          fontFamily={FONT_FAMILY.montserrat_semibold}
+        />
+      </SectionComponent>
     </ContainerComponent>
   );
 };

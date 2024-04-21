@@ -46,6 +46,7 @@ export const FONTSIZE: FontSize = {
   size_18: 18,
   size_20: 20,
   size_24: 24,
+  size_26: 26,
   size_28: 28,
   size_30: 30,
 };

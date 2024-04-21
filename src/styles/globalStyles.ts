@@ -36,6 +36,7 @@ export const globalStyles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   button: {
     minHeight: SPACING.space_10 * 6,
@@ -55,5 +56,6 @@ export const globalStyles = StyleSheet.create({
   },
   section: {
     paddingHorizontal: SPACING.space_36,
+    paddingVertical: SPACING.space_20,
   },
 });

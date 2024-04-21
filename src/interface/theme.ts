@@ -30,6 +30,7 @@ export interface FontSize {
   size_18: number;
   size_20: number;
   size_24: number;
+  size_26: number;
   size_28: number;
   size_30: number;
 }
