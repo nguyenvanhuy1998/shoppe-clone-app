@@ -28,12 +28,12 @@ const SplashScreen = ({navigation}: Props) => {
         <ImageComponent source={images.logo} width={100} height={142} />
       </SectionComponent>
       <SectionComponent>
-        <ButtonComponent text="Đăng ký" onPress={handleSignUp} />
+        <ButtonComponent text="Sign Up" onPress={handleSignUp} />
         <SpaceComponent height={20} />
         <ButtonComponent
           style={globalStyles.selfCenter}
           onPress={handleSignIn}
-          text="Đăng nhập"
+          text="Sign In"
           type="text"
           color={COLORS.primaryWhiteHex}
           backgroundColor={'transparent'}

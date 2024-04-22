@@ -27,18 +27,18 @@ const SignUpScreen = ({navigation}: Props) => {
       {/* Header */}
       <SectionComponent>
         <HeaderComponent
-          text="Đăng ký"
+          text="Sign Up"
           fontSize={FONTSIZE.size_26}
           fontFamily={FONT_FAMILY.montserrat_semibold}
         />
       </SectionComponent>
-      <SpaceComponent height={SPACING.space_12} />
+      <SpaceComponent height={SPACING.space_4} />
       {/* Body */}
       <SectionComponent style={globalStyles.flexOne}>
         {/* Email */}
         <InputComponent
           allowClear
-          placeholder="Nhập email"
+          placeholder="Enter email"
           value={email}
           onChangeText={val => setEmail(val)}
           label="Email"
@@ -47,20 +47,20 @@ const SignUpScreen = ({navigation}: Props) => {
         {/* Password */}
         <InputComponent
           allowClear
-          placeholder="Nhập mật khẩu"
+          placeholder="Enter password"
           value={password}
           onChangeText={val => setPassword(val)}
-          label="Mật khẩu"
+          label="Password"
           isPassword
         />
         <SpaceComponent height={SPACING.space_20} />
         {/* ConfirmPassword */}
         <InputComponent
           allowClear
-          placeholder="Nhập mật khẩu"
+          placeholder="Enter confirm password"
           value={confirmPassword}
           onChangeText={val => setConfirmPassword(val)}
-          label="Xác nhận mật khẩu"
+          label="Confirm password"
           isPassword
         />
         <SpaceComponent height={SPACING.space_10 * 4} />

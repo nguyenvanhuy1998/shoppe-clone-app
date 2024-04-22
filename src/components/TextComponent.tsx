@@ -8,6 +8,7 @@ interface Props {
   style?: StyleProp<TextStyle>;
   fontSize?: number;
   fontFamily?: string;
+  lineHeight?: number;
 }
 const TextComponent = ({
   text,
@@ -15,6 +16,7 @@ const TextComponent = ({
   style,
   fontSize = FONTSIZE.size_14,
   fontFamily = FONT_FAMILY.montserrat_regular,
+  lineHeight,
 }: Props) => {
   return (
     <Text
@@ -23,6 +25,7 @@ const TextComponent = ({
           color,
           fontSize,
           fontFamily,
+          lineHeight,
         },
         style,
       ]}>

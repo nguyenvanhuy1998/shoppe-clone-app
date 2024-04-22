@@ -65,7 +65,12 @@ const InputComponent = ({
       <RowComponent style={[globalStyles.inputContainer, styleInputContainer]}>
         {iconLeft && iconLeft}
         <TextInput
-          style={[globalStyles.text, globalStyles.flexOne, styleInput]}
+          style={[
+            globalStyles.text,
+            globalStyles.flexOne,
+            styles.input,
+            styleInput,
+          ]}
           placeholder={placeholder}
           value={value}
           onChangeText={val => handleChangeText(val)}
@@ -108,6 +113,9 @@ const InputComponent = ({
 
 export default InputComponent;
 const styles = StyleSheet.create({
+  input: {
+    height: '100%',
+  },
   labelSpacing: {
     marginBottom: SPACING.space_8,
   },

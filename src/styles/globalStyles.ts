@@ -15,6 +15,9 @@ export const globalStyles = StyleSheet.create({
   selfCenter: {
     alignSelf: 'center',
   },
+  selfEnd: {
+    alignSelf: 'flex-end',
+  },
   jusCenter: {
     justifyContent: 'center',
   },
