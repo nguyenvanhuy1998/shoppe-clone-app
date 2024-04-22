@@ -15,6 +15,9 @@ export const globalStyles = StyleSheet.create({
   selfCenter: {
     alignSelf: 'center',
   },
+  jusCenter: {
+    justifyContent: 'center',
+  },
   flexOne: {
     flex: 1,
   },

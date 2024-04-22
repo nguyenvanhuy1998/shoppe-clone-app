@@ -1,18 +1,30 @@
 import React, {useState} from 'react';
 import {
+  ButtonComponent,
   ContainerComponent,
   HeaderComponent,
   InputComponent,
+  RowComponent,
   SectionComponent,
   SpaceComponent,
+  TextComponent,
 } from '../../components';
-import {FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
-const SignUpScreen = () => {
+import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
+import {globalStyles} from '../../styles';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {AuthStackNavigatorParamList} from '../../types/auth';
+type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
+const SignUpScreen = ({navigation}: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const handleSignUp = () => {};
+  const handleSignIn = () => {
+    navigation.navigate('SignIn');
+  };
   return (
     <ContainerComponent type="input">
+      {/* Header */}
       <SectionComponent>
         <HeaderComponent
           text="Đăng ký"
@@ -21,7 +33,9 @@ const SignUpScreen = () => {
         />
       </SectionComponent>
       <SpaceComponent height={SPACING.space_12} />
-      <SectionComponent>
+      {/* Body */}
+      <SectionComponent style={globalStyles.flexOne}>
+        {/* Email */}
         <InputComponent
           allowClear
           placeholder="Nhập email"
@@ -30,6 +44,7 @@ const SignUpScreen = () => {
           label="Email"
         />
         <SpaceComponent height={SPACING.space_20} />
+        {/* Password */}
         <InputComponent
           allowClear
           placeholder="Nhập mật khẩu"
@@ -39,6 +54,7 @@ const SignUpScreen = () => {
           isPassword
         />
         <SpaceComponent height={SPACING.space_20} />
+        {/* ConfirmPassword */}
         <InputComponent
           allowClear
           placeholder="Nhập mật khẩu"
@@ -47,6 +63,64 @@ const SignUpScreen = () => {
           label="Xác nhận mật khẩu"
           isPassword
         />
+        <SpaceComponent height={SPACING.space_10 * 4} />
+        {/* SignUp */}
+        <ButtonComponent
+          onPress={handleSignUp}
+          text="Sign Up"
+          backgroundColor={COLORS.primaryOrangeHex}
+          color={COLORS.primaryWhiteHex}
+        />
+        <SpaceComponent height={SPACING.space_10 * 5} />
+        <RowComponent>
+          <SpaceComponent
+            style={globalStyles.flexOne}
+            height={1}
+            backgroundColor={COLORS.primaryGreyHex}
+          />
+          <TextComponent
+            fontFamily={FONT_FAMILY.montserrat_semibold}
+            text="Or sign up with"
+          />
+          <SpaceComponent
+            style={globalStyles.flexOne}
+            height={1}
+            backgroundColor={COLORS.primaryGreyHex}
+          />
+        </RowComponent>
+        <SpaceComponent height={SPACING.space_10 * 3} />
+        <RowComponent>
+          <ButtonComponent
+            icon="facebook"
+            iconSize={SPACING.space_24}
+            iconColor={COLORS.primaryWhiteHex}
+            backgroundColor={COLORS.primaryGreyHex}
+            color={COLORS.primaryWhiteHex}
+            style={globalStyles.flexOne}
+          />
+          <SpaceComponent width={SPACING.space_20} />
+          <ButtonComponent
+            icon="google"
+            iconSize={SPACING.space_24}
+            iconColor={COLORS.primaryWhiteHex}
+            backgroundColor={COLORS.primaryGreyHex}
+            color={COLORS.primaryWhiteHex}
+            style={globalStyles.flexOne}
+          />
+        </RowComponent>
+      </SectionComponent>
+      {/* Footer */}
+      <SpaceComponent height={SPACING.space_4} />
+      <SectionComponent>
+        <RowComponent style={globalStyles.jusCenter}>
+          <TextComponent text="Already have an account? " />
+          <ButtonComponent
+            onPress={handleSignIn}
+            type="text"
+            text="Sign In"
+            backgroundColor={'transparent'}
+          />
+        </RowComponent>
       </SectionComponent>
     </ContainerComponent>
   );

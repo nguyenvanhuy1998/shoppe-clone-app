@@ -1,4 +1,5 @@
 import React from 'react';
+import {ColorValue} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 export const IconSizes = {
   small: 14,
@@ -6,13 +7,13 @@ export const IconSizes = {
   large: 24,
   extraLarge: 28,
 };
-type IconSizeProps = {
+export type IconSizeProps = {
   iconSizes: keyof typeof IconSizes;
 };
 interface Props {
   name: string;
   size: IconSizeProps['iconSizes'];
-  color: string;
+  color: ColorValue;
   onPress?: () => void;
 }
 const MaterialIcons = ({name, size, color, onPress}: Props) => {
