@@ -28,6 +28,7 @@ const SignInScreen = ({navigation}: Props) => {
       {/* Header */}
       <SectionComponent>
         <HeaderComponent
+          isHideIconLeft
           text="Sign In"
           desc="Please fill E-mail & password to login your
           Shopee application account."

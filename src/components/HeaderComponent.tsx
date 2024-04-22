@@ -13,6 +13,7 @@ interface Props {
   color?: ColorValue;
   fontFamily?: string;
   desc?: string;
+  isHideIconLeft?: boolean;
 }
 const HeaderComponent = ({
   text,
@@ -20,6 +21,7 @@ const HeaderComponent = ({
   color,
   fontFamily,
   desc = '',
+  isHideIconLeft,
 }: Props) => {
   const navigation = useNavigation();
   const handleBack = () => {
@@ -28,13 +30,15 @@ const HeaderComponent = ({
   return (
     <>
       <RowComponent>
-        <MaterialIcons
-          name="arrow-back"
-          size={'extraLarge'}
-          color={COLORS.primaryBlackHex}
-          onPress={handleBack}
-        />
-        <SpaceComponent width={SPACING.space_8} />
+        {!isHideIconLeft && (
+          <MaterialIcons
+            name="arrow-back"
+            size={'extraLarge'}
+            color={COLORS.primaryBlackHex}
+            onPress={handleBack}
+          />
+        )}
+        {!isHideIconLeft && <SpaceComponent width={SPACING.space_8} />}
         <TextComponent
           text={text}
           fontFamily={fontFamily}
