@@ -9,9 +9,12 @@ import {
 
 export const COLORS: Color = {
   primaryWhiteHex: '#ffffff',
+  secondaryWhiteHex: '#F7F8F9',
   primaryOrangeHex: '#FF5B2C',
   secondaryOrangeHex: '#ED4D2D',
   primaryBlackHex: '#3E4958',
+  primaryGreyHex: '#D5DDE0',
+  primaryDangerousHex: '#ff0505',
 };
 export const SPACING: Spacing = {
   space_2: 2,

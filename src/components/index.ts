@@ -8,6 +8,7 @@ import TextComponent from './TextComponent';
 import MaterialIcons from './MaterialIcons';
 import HeaderComponent from './HeaderComponent';
 import RowComponent from './RowComponent';
+import InputComponent from './InputComponent';
 
 export {
   ContainerComponent,
@@ -20,4 +21,5 @@ export {
   MaterialIcons,
   HeaderComponent,
   RowComponent,
+  InputComponent,
 };

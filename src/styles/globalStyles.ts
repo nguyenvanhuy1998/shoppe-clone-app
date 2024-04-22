@@ -58,4 +58,14 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: SPACING.space_36,
     paddingVertical: SPACING.space_20,
   },
+  wrapperInput: {},
+  inputContainer: {
+    borderWidth: 0.5,
+    borderColor: COLORS.primaryGreyHex,
+    borderRadius: BORDER_RADIUS.radius_14,
+    backgroundColor: COLORS.secondaryWhiteHex,
+    minHeight: 60,
+    paddingHorizontal: SPACING.space_16,
+  },
+  input: {},
 });

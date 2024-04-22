@@ -20,6 +20,9 @@ export interface Color {
   primaryOrangeHex: string;
   secondaryOrangeHex: string;
   primaryBlackHex: string;
+  primaryGreyHex: string;
+  secondaryWhiteHex: string;
+  primaryDangerousHex: string;
 }
 export interface FontSize {
   size_8: number;
