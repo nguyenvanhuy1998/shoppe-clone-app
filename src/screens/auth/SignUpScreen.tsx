@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React from 'react';
 import {
   ButtonComponent,
   ContainerComponent,
   HeaderComponent,
-  InputComponent,
   RowComponent,
   SectionComponent,
   SpaceComponent,
@@ -11,14 +11,35 @@ import {
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackNavigatorParamList} from '../../types/auth';
+import {Controller, useForm} from 'react-hook-form';
+import {TextInput} from 'react-native';
+import {rules} from '../../utils';
+
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
+
+interface FormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 const SignUpScreen = ({navigation}: Props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const handleSignUp = () => {};
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<FormData>({
+    defaultValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
+  });
+
+  console.log('errors', errors);
+  const onSubmit = data => {
+    console.log(data);
+  };
   const handleSignIn = () => {
     navigation.navigate('SignIn');
   };
@@ -36,37 +57,87 @@ const SignUpScreen = ({navigation}: Props) => {
       {/* Body */}
       <SectionComponent style={globalStyles.flexOne}>
         {/* Email */}
-        <InputComponent
+        <Controller
+          rules={rules.email}
+          control={control}
+          name="email"
+          render={({field: {onChange, onBlur, value}}) => {
+            return (
+              <TextInput
+                placeholder="Email"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+              />
+            );
+          }}
+        />
+        <TextComponent text={errors.email?.message} />
+        {/* <InputComponent
           allowClear
           placeholder="Enter email"
           value={email}
           onChangeText={val => setEmail(val)}
           label="Email"
-        />
+        /> */}
+
         <SpaceComponent height={SPACING.space_20} />
         {/* Password */}
-        <InputComponent
+        <Controller
+          control={control}
+          rules={rules.password}
+          name="password"
+          render={({field: {onChange, onBlur, value}}) => {
+            return (
+              <TextInput
+                placeholder="Password"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+              />
+            );
+          }}
+        />
+        <TextComponent text={errors.password?.message} />
+
+        {/* <InputComponent
           allowClear
           placeholder="Enter password"
           value={password}
           onChangeText={val => setPassword(val)}
           label="Password"
           isPassword
-        />
+        /> */}
         <SpaceComponent height={SPACING.space_20} />
         {/* ConfirmPassword */}
-        <InputComponent
+        <Controller
+          control={control}
+          rules={rules.confirmPassword}
+          name="confirmPassword"
+          render={({field: {onChange, onBlur, value}}) => {
+            return (
+              <TextInput
+                placeholder="Confirm Password"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+              />
+            );
+          }}
+        />
+        <TextComponent text={errors.confirmPassword?.message} />
+        {/* <InputComponent
           allowClear
           placeholder="Enter confirm password"
           value={confirmPassword}
           onChangeText={val => setConfirmPassword(val)}
           label="Confirm password"
           isPassword
-        />
+        /> */}
         <SpaceComponent height={SPACING.space_10 * 4} />
         {/* SignUp */}
         <ButtonComponent
-          onPress={handleSignUp}
+          onPress={handleSubmit(onSubmit)}
           text="Sign Up"
           backgroundColor={COLORS.primaryOrangeHex}
           color={COLORS.primaryWhiteHex}

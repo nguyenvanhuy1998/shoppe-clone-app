@@ -15,6 +15,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackNavigatorParamList} from '../../types/auth';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignIn'>;
+
 const SignInScreen = ({navigation}: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

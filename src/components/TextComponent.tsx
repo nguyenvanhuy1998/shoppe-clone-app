@@ -3,7 +3,7 @@ import {ColorValue, StyleProp, Text, TextStyle} from 'react-native';
 import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
 
 interface Props {
-  text: string;
+  text?: string;
   color?: ColorValue;
   style?: StyleProp<TextStyle>;
   fontSize?: number;
@@ -11,7 +11,7 @@ interface Props {
   lineHeight?: number;
 }
 const TextComponent = ({
-  text,
+  text = '',
   color = COLORS.primaryBlackHex,
   style,
   fontSize = FONTSIZE.size_14,
