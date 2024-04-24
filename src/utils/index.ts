@@ -1,3 +1,3 @@
-import {rules} from './rules';
+import {getRules} from './rules';
 
-export {rules};
+export {getRules};

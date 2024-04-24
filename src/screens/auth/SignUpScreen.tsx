@@ -14,11 +14,11 @@ import {globalStyles} from '../../styles';
 import {AuthStackNavigatorParamList} from '../../types/auth';
 import {Controller, useForm} from 'react-hook-form';
 import {TextInput} from 'react-native';
-import {rules} from '../../utils';
+import {getRules} from '../../utils';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
 
-interface FormData {
+export interface FormData {
   email: string;
   password: string;
   confirmPassword: string;
@@ -27,6 +27,7 @@ const SignUpScreen = ({navigation}: Props) => {
   const {
     control,
     handleSubmit,
+    getValues,
     formState: {errors},
   } = useForm<FormData>({
     defaultValues: {
@@ -35,11 +36,12 @@ const SignUpScreen = ({navigation}: Props) => {
       confirmPassword: '',
     },
   });
+  const rules = getRules(getValues);
 
-  console.log('errors', errors);
-  const onSubmit = data => {
-    console.log(data);
-  };
+  const onSubmit = handleSubmit(
+    data => {},
+    error => {},
+  );
   const handleSignIn = () => {
     navigation.navigate('SignIn');
   };
@@ -112,7 +114,9 @@ const SignUpScreen = ({navigation}: Props) => {
         {/* ConfirmPassword */}
         <Controller
           control={control}
-          rules={rules.confirmPassword}
+          rules={{
+            ...rules.confirmPassword,
+          }}
           name="confirmPassword"
           render={({field: {onChange, onBlur, value}}) => {
             return (
@@ -137,7 +141,7 @@ const SignUpScreen = ({navigation}: Props) => {
         <SpaceComponent height={SPACING.space_10 * 4} />
         {/* SignUp */}
         <ButtonComponent
-          onPress={handleSubmit(onSubmit)}
+          onPress={onSubmit}
           text="Sign Up"
           backgroundColor={COLORS.primaryOrangeHex}
           color={COLORS.primaryWhiteHex}
