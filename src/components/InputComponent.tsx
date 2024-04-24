@@ -5,100 +5,108 @@ import {
   StyleSheet,
   TextInput,
   TextStyle,
+  TouchableOpacity,
   View,
   ViewStyle,
 } from 'react-native';
-import TextComponent from './TextComponent';
-import RowComponent from './RowComponent';
-import {globalStyles} from '../styles';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../constants';
-import {TouchableOpacity} from 'react-native';
-import MaterialIcons from './MaterialIcons';
+import {globalStyles} from '../styles';
+import TextComponent from './TextComponent';
+import {Control, Controller, RegisterOptions} from 'react-hook-form';
+import RowComponent from './RowComponent';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from './MaterialIcons';
 
 interface Props {
   style?: StyleProp<ViewStyle>;
   label?: string;
-  iconLeft?: ReactNode;
-  styleInputContainer?: StyleProp<ViewStyle>;
-  iconRight?: ReactNode;
-  value: string;
-  styleInput?: StyleProp<TextStyle>;
-  onChangeText: (value: string) => void;
+  rules?: RegisterOptions;
+  control: Control<any>;
+  name: string;
   placeholder?: string;
+  styleInputContainer?: StyleProp<ViewStyle>;
+  iconLeft?: ReactNode;
+  styleInput?: StyleProp<TextStyle>;
   keyboardType?: KeyboardType;
   isPassword?: boolean;
+  iconRight?: ReactNode;
   allowClear?: boolean;
   error?: string;
 }
 const InputComponent = ({
-  style,
   label,
-  iconLeft,
-  iconRight,
-  styleInputContainer,
-  value,
-  styleInput,
-  onChangeText,
+  style,
+  rules,
+  control,
+  name,
   placeholder,
+  styleInputContainer,
+  iconLeft,
+  styleInput,
   keyboardType = 'default',
-  isPassword = false,
+  isPassword,
+  iconRight,
   allowClear,
   error,
 }: Props) => {
   const [isShowPass, setIsShowPass] = useState(isPassword);
-  const handleChangeText = (val: string) => {
-    onChangeText && onChangeText(val);
-  };
-  const handleShowPassAndClearText = () => {
-    isPassword ? setIsShowPass(!isShowPass) : onChangeText('');
-  };
+
   return (
-    <View style={[globalStyles.wrapperInput, style]}>
+    <View style={[styles.container, style]}>
       {label && (
         <TextComponent
           fontFamily={FONT_FAMILY.montserrat_medium}
           text={label}
-          style={styles.labelSpacing}
+          style={styles.label}
         />
       )}
-      <RowComponent style={[globalStyles.inputContainer, styleInputContainer]}>
-        {iconLeft && iconLeft}
-        <TextInput
-          style={[
-            globalStyles.text,
-            globalStyles.flexOne,
-            styles.input,
-            styleInput,
-          ]}
-          placeholder={placeholder}
-          value={value}
-          onChangeText={val => handleChangeText(val)}
-          keyboardType={keyboardType}
-          secureTextEntry={isShowPass}
-          autoCapitalize="none"
-        />
-        {iconRight && iconRight}
-        <TouchableOpacity onPress={handleShowPassAndClearText}>
-          {isPassword ? (
-            <Ionicons
-              name={isShowPass ? 'eye-off-outline' : 'eye-outline'}
-              size={SPACING.space_18}
-              color={COLORS.primaryGreyHex}
-            />
-          ) : (
-            value &&
-            value.length > 0 &&
-            allowClear && (
-              <MaterialIcons
-                name="close"
-                size="medium"
-                color={COLORS.primaryGreyHex}
+      <Controller
+        rules={rules}
+        control={control}
+        name={name}
+        render={({field: {onChange, onBlur, value}}) => {
+          return (
+            <RowComponent
+              style={[globalStyles.inputContainer, styleInputContainer]}>
+              {iconLeft && iconLeft}
+              <TextInput
+                style={[globalStyles.text, globalStyles.flexOne, styleInput]}
+                placeholder={placeholder}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                keyboardType={keyboardType}
+                secureTextEntry={isShowPass}
+                autoCapitalize="none"
               />
-            )
-          )}
-        </TouchableOpacity>
-      </RowComponent>
+              {iconRight && iconRight}
+              <TouchableOpacity
+                style={[globalStyles.buttonIcon, globalStyles.center]}
+                onPress={() =>
+                  isPassword ? setIsShowPass(!isShowPass) : onChange('')
+                }>
+                {isPassword ? (
+                  <Ionicons
+                    name={isShowPass ? 'eye-off-outline' : 'eye-outline'}
+                    size={SPACING.space_18}
+                    color={COLORS.primaryGreyHex}
+                  />
+                ) : (
+                  value &&
+                  value.length > 0 &&
+                  allowClear && (
+                    <MaterialIcons
+                      name="close"
+                      size="medium"
+                      color={COLORS.primaryBlackHex}
+                    />
+                  )
+                )}
+              </TouchableOpacity>
+            </RowComponent>
+          );
+        }}
+      />
       {error && (
         <TextComponent
           style={styles.error}
@@ -113,10 +121,13 @@ const InputComponent = ({
 
 export default InputComponent;
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: SPACING.space_20,
+  },
   input: {
     height: '100%',
   },
-  labelSpacing: {
+  label: {
     marginBottom: SPACING.space_8,
   },
   error: {

@@ -1,9 +1,11 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
+import {useForm} from 'react-hook-form';
 import {
   ButtonComponent,
   ContainerComponent,
   HeaderComponent,
+  InputComponent,
   RowComponent,
   SectionComponent,
   SpaceComponent,
@@ -12,24 +14,17 @@ import {
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
 import {AuthStackNavigatorParamList} from '../../types/auth';
-import {Controller, useForm} from 'react-hook-form';
-import {TextInput} from 'react-native';
-import {getRules} from '../../utils';
+import {createSpacing, getRules} from '../../utils';
+import {FormAuth} from '../../interface/auth';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
-
-export interface FormData {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
 const SignUpScreen = ({navigation}: Props) => {
   const {
     control,
     handleSubmit,
     getValues,
     formState: {errors},
-  } = useForm<FormData>({
+  } = useForm<FormAuth>({
     defaultValues: {
       email: '',
       password: '',
@@ -55,99 +50,49 @@ const SignUpScreen = ({navigation}: Props) => {
           fontFamily={FONT_FAMILY.montserrat_semibold}
         />
       </SectionComponent>
-      <SpaceComponent height={SPACING.space_4} />
       {/* Body */}
       <SectionComponent style={globalStyles.flexOne}>
         {/* Email */}
-        <Controller
-          rules={rules.email}
+        <InputComponent
+          label="Email"
           control={control}
           name="email"
-          render={({field: {onChange, onBlur, value}}) => {
-            return (
-              <TextInput
-                placeholder="Email"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-              />
-            );
-          }}
-        />
-        <TextComponent text={errors.email?.message} />
-        {/* <InputComponent
+          placeholder="Enter email..."
+          rules={rules.email}
           allowClear
-          placeholder="Enter email"
-          value={email}
-          onChangeText={val => setEmail(val)}
-          label="Email"
-        /> */}
-
-        <SpaceComponent height={SPACING.space_20} />
+          error={errors.email?.message}
+          keyboardType="email-address"
+        />
         {/* Password */}
-        <Controller
-          control={control}
-          rules={rules.password}
-          name="password"
-          render={({field: {onChange, onBlur, value}}) => {
-            return (
-              <TextInput
-                placeholder="Password"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-              />
-            );
-          }}
-        />
-        <TextComponent text={errors.password?.message} />
-
-        {/* <InputComponent
-          allowClear
-          placeholder="Enter password"
-          value={password}
-          onChangeText={val => setPassword(val)}
+        <InputComponent
           label="Password"
-          isPassword
-        /> */}
-        <SpaceComponent height={SPACING.space_20} />
-        {/* ConfirmPassword */}
-        <Controller
           control={control}
-          rules={{
-            ...rules.confirmPassword,
-          }}
-          name="confirmPassword"
-          render={({field: {onChange, onBlur, value}}) => {
-            return (
-              <TextInput
-                placeholder="Confirm Password"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-              />
-            );
-          }}
-        />
-        <TextComponent text={errors.confirmPassword?.message} />
-        {/* <InputComponent
-          allowClear
-          placeholder="Enter confirm password"
-          value={confirmPassword}
-          onChangeText={val => setConfirmPassword(val)}
-          label="Confirm password"
+          name="password"
+          placeholder="Enter password..."
+          rules={rules.password}
           isPassword
-        /> */}
-        <SpaceComponent height={SPACING.space_10 * 4} />
+          error={errors.password?.message}
+        />
+        {/* Confirm Password */}
+        <InputComponent
+          label="Confirm password"
+          control={control}
+          name="confirmPassword"
+          placeholder="Enter confirm password..."
+          rules={rules.confirmPassword}
+          isPassword
+          error={errors.confirmPassword?.message}
+        />
         {/* SignUp */}
         <ButtonComponent
+          style={createSpacing(2)}
           onPress={onSubmit}
           text="Sign Up"
           backgroundColor={COLORS.primaryOrangeHex}
           color={COLORS.primaryWhiteHex}
         />
-        <SpaceComponent height={SPACING.space_10 * 5} />
-        <RowComponent>
+        {/* Other */}
+        <RowComponent style={createSpacing(5)}>
           <SpaceComponent
             style={globalStyles.flexOne}
             height={1}
@@ -163,8 +108,8 @@ const SignUpScreen = ({navigation}: Props) => {
             backgroundColor={COLORS.primaryGreyHex}
           />
         </RowComponent>
-        <SpaceComponent height={SPACING.space_10 * 3} />
-        <RowComponent>
+        {/* Login with Google && Facebook */}
+        <RowComponent style={createSpacing(3)}>
           <ButtonComponent
             icon="facebook"
             iconSize={SPACING.space_24}
@@ -185,7 +130,6 @@ const SignUpScreen = ({navigation}: Props) => {
         </RowComponent>
       </SectionComponent>
       {/* Footer */}
-      <SpaceComponent height={SPACING.space_4} />
       <SectionComponent>
         <RowComponent style={globalStyles.jusCenter}>
           <TextComponent text="Already have an account? " />

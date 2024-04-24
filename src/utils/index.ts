@@ -1,3 +1,3 @@
 import {getRules} from './rules';
-
-export {getRules};
+import {createSpacing, createButtonStyle} from './spacing';
+export {getRules, createSpacing, createButtonStyle};

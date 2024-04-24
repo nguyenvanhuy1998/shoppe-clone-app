@@ -6,6 +6,7 @@ import {
   FONTSIZE,
   SPACING,
 } from '../constants';
+import {createButtonStyle} from '../utils';
 
 export const globalStyles = StyleSheet.create({
   center: {
@@ -44,17 +45,8 @@ export const globalStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  button: {
-    minHeight: SPACING.space_10 * 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: BORDER_RADIUS.radius_14,
-  },
-  buttonText: {
-    minHeight: SPACING.space_20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  button: createButtonStyle(SPACING.space_10 * 6, 'center', 'center'),
+  buttonText: createButtonStyle(SPACING.space_20, 'center', 'center'),
   text: {
     fontSize: FONTSIZE.size_14,
     fontFamily: FONT_FAMILY.montserrat_regular,
@@ -64,7 +56,7 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: SPACING.space_36,
     paddingVertical: SPACING.space_20,
   },
-  wrapperInput: {},
+
   inputContainer: {
     borderWidth: 0.5,
     borderColor: COLORS.primaryGreyHex,
@@ -73,5 +65,8 @@ export const globalStyles = StyleSheet.create({
     minHeight: 60,
     paddingHorizontal: SPACING.space_16,
   },
-  input: {},
+  buttonIcon: {
+    width: SPACING.space_24,
+    height: SPACING.space_24,
+  },
 });

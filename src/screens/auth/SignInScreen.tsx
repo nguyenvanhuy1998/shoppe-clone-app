@@ -3,7 +3,7 @@ import {
   ButtonComponent,
   ContainerComponent,
   HeaderComponent,
-  InputComponent,
+  InputOldComponent,
   RowComponent,
   SectionComponent,
   SpaceComponent,
@@ -41,7 +41,7 @@ const SignInScreen = ({navigation}: Props) => {
       {/* Body */}
       <SectionComponent style={globalStyles.flexOne}>
         {/* Email */}
-        <InputComponent
+        <InputOldComponent
           allowClear
           placeholder="Nhập email"
           value={email}
@@ -50,7 +50,7 @@ const SignInScreen = ({navigation}: Props) => {
         />
         <SpaceComponent height={SPACING.space_20} />
         {/* Password */}
-        <InputComponent
+        <InputOldComponent
           allowClear
           placeholder="Nhập mật khẩu"
           value={password}
