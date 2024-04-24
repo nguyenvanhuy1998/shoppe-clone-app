@@ -1,57 +1,21 @@
-import {type RegisterOptions, UseFormGetValues} from 'react-hook-form';
+import * as yup from 'yup';
 
-type Rules = {
-  [key in 'email' | 'password' | 'confirmPassword']?: RegisterOptions;
-};
-export const getRules = (getValues?: UseFormGetValues<any>): Rules => ({
-  email: {
-    required: {
-      value: true,
-      message: 'Email is required',
-    },
-    pattern: {
-      value: /^\S+@\S+\.\S+$/,
-      message: 'Invalid email address',
-    },
-    minLength: {
-      value: 5,
-      message: 'Length from 5-160 characters',
-    },
-    maxLength: {
-      value: 160,
-      message: 'Length from 5-160 characters',
-    },
-  },
-  password: {
-    required: {
-      value: true,
-      message: 'Password is required',
-    },
-    minLength: {
-      value: 6,
-      message: 'Length from 6-160 characters',
-    },
-    maxLength: {
-      value: 160,
-      message: 'Length from 6-160 characters',
-    },
-  },
-  confirmPassword: {
-    required: {
-      value: true,
-      message: 'Confirm password is required',
-    },
-    minLength: {
-      value: 6,
-      message: 'Length from 6-160 characters',
-    },
-    maxLength: {
-      value: 160,
-      message: 'Length from 6-160 characters',
-    },
-    validate:
-      typeof getValues === 'function'
-        ? value => value === getValues('password') || 'Password does not match'
-        : undefined,
-  },
+export const schema = yup.object({
+  email: yup
+    .string()
+    .required('Email is required')
+    .email('Invalid email address')
+    .min(5, 'Length from 5-160 characters')
+    .max(160, 'Length from 5-160 characters'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(6, 'Length from 6-160 characters')
+    .max(160, 'Length from 6-160 characters'),
+  confirmPassword: yup
+    .string()
+    .required('Password is required')
+    .min(6, 'Length from 6-160 characters')
+    .max(160, 'Length from 6-160 characters')
+    .oneOf([yup.ref('password')], 'Password does not match'),
 });

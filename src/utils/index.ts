@@ -1,3 +1,3 @@
-import {getRules} from './rules';
+import {schema} from './rules';
 import {createSpacing, createButtonStyle} from './spacing';
-export {getRules, createSpacing, createButtonStyle};
+export {createSpacing, createButtonStyle, schema};

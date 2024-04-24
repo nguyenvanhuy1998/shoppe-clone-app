@@ -1,4 +1,5 @@
 import React, {ReactNode, useState} from 'react';
+import {Control, Controller} from 'react-hook-form';
 import {
   KeyboardType,
   StyleProp,
@@ -9,18 +10,16 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../constants';
 import {globalStyles} from '../styles';
-import TextComponent from './TextComponent';
-import {Control, Controller, RegisterOptions} from 'react-hook-form';
-import RowComponent from './RowComponent';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from './MaterialIcons';
+import RowComponent from './RowComponent';
+import TextComponent from './TextComponent';
 
 interface Props {
   style?: StyleProp<ViewStyle>;
   label?: string;
-  rules?: RegisterOptions;
   control: Control<any>;
   name: string;
   placeholder?: string;
@@ -36,7 +35,6 @@ interface Props {
 const InputComponent = ({
   label,
   style,
-  rules,
   control,
   name,
   placeholder,
@@ -61,7 +59,6 @@ const InputComponent = ({
         />
       )}
       <Controller
-        rules={rules}
         control={control}
         name={name}
         render={({field: {onChange, onBlur, value}}) => {

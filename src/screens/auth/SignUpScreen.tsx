@@ -1,3 +1,4 @@
+import {yupResolver} from '@hookform/resolvers/yup';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {useForm} from 'react-hook-form';
@@ -13,25 +14,23 @@ import {
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
-import {AuthStackNavigatorParamList} from '../../types/auth';
-import {createSpacing, getRules} from '../../utils';
-import {FormAuth} from '../../interface/auth';
+import {AuthSchema, AuthStackNavigatorParamList} from '../../types/auth';
+import {createSpacing, schema} from '../../utils';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
 const SignUpScreen = ({navigation}: Props) => {
   const {
     control,
     handleSubmit,
-    getValues,
     formState: {errors},
-  } = useForm<FormAuth>({
+  } = useForm<AuthSchema>({
     defaultValues: {
       email: '',
       password: '',
       confirmPassword: '',
     },
+    resolver: yupResolver(schema),
   });
-  const rules = getRules(getValues);
 
   const onSubmit = handleSubmit(
     data => {},
@@ -58,7 +57,6 @@ const SignUpScreen = ({navigation}: Props) => {
           control={control}
           name="email"
           placeholder="Enter email..."
-          rules={rules.email}
           allowClear
           error={errors.email?.message}
           keyboardType="email-address"
@@ -69,7 +67,6 @@ const SignUpScreen = ({navigation}: Props) => {
           control={control}
           name="password"
           placeholder="Enter password..."
-          rules={rules.password}
           isPassword
           error={errors.password?.message}
         />
@@ -79,7 +76,6 @@ const SignUpScreen = ({navigation}: Props) => {
           control={control}
           name="confirmPassword"
           placeholder="Enter confirm password..."
-          rules={rules.confirmPassword}
           isPassword
           error={errors.confirmPassword?.message}
         />
