@@ -19,3 +19,4 @@ export const schema = yup.object({
     .max(160, 'Length from 6-160 characters')
     .oneOf([yup.ref('password')], 'Password does not match'),
 });
+export type AuthSchema = yup.InferType<typeof schema>;

@@ -12,7 +12,7 @@ import {
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AuthStackNavigatorParamList} from '../../types/auth';
+import {AuthStackNavigatorParamList} from '../../navigator/AuthStackNavigator';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignIn'>;
 

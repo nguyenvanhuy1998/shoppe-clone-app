@@ -14,8 +14,9 @@ import {
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
-import {AuthSchema, AuthStackNavigatorParamList} from '../../types/auth';
 import {createSpacing, schema} from '../../utils';
+import {AuthStackNavigatorParamList} from '../../navigator/AuthStackNavigator';
+import {AuthSchema} from '../../utils/rules';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
 const SignUpScreen = ({navigation}: Props) => {
