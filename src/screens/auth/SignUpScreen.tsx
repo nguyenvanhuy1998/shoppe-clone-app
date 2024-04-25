@@ -14,12 +14,13 @@ import {
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
-import {createSpacing} from '../../utils';
+import {createSpacing, isAxiosUnprocessableEntityError} from '../../utils';
 import {AuthStackNavigatorParamList} from '../../navigator/AuthStackNavigator';
 import {AuthSchema, schema} from '../../utils/rules';
 import {useMutation} from '@tanstack/react-query';
 import {registerAccount} from '../../apis/auth.api';
 import {omit} from 'lodash';
+import {ResponseApi} from '../../types/utils.type';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
 type FormData = AuthSchema;
@@ -28,6 +29,7 @@ const SignUpScreen = ({navigation}: Props) => {
     control,
     handleSubmit,
     formState: {errors},
+    setError,
   } = useForm<FormData>({
     defaultValues: {
       email: '',
@@ -43,10 +45,28 @@ const SignUpScreen = ({navigation}: Props) => {
   });
 
   const onSubmit = handleSubmit(data => {
-    console.log(data);
     const body = omit(data, ['confirmPassword']);
     registerAccountMutation.mutate(body, {
       onSuccess: res => console.log(res),
+      onError: error => {
+        // Kiểm tra nếu nó là lỗi 422
+        if (
+          isAxiosUnprocessableEntityError<
+            ResponseApi<Omit<FormData, 'confirmPassword'>>
+          >(error)
+        ) {
+          const formError = error.response?.data.data;
+          if (formError) {
+            Object.keys(formError).forEach(key => {
+              setError(key as keyof Omit<FormData, 'confirmPassword'>, {
+                message:
+                  formError[key as keyof Omit<FormData, 'confirmPassword'>],
+                type: 'Server',
+              });
+            });
+          }
+        }
+      },
     });
   });
   const handleSignIn = () => {
