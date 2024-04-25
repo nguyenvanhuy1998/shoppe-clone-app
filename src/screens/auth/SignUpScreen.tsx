@@ -14,17 +14,21 @@ import {
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
-import {createSpacing, schema} from '../../utils';
+import {createSpacing} from '../../utils';
 import {AuthStackNavigatorParamList} from '../../navigator/AuthStackNavigator';
-import {AuthSchema} from '../../utils/rules';
+import {AuthSchema, schema} from '../../utils/rules';
+import {useMutation} from '@tanstack/react-query';
+import {registerAccount} from '../../apis/auth.api';
+import {omit} from 'lodash';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
+type FormData = AuthSchema;
 const SignUpScreen = ({navigation}: Props) => {
   const {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<AuthSchema>({
+  } = useForm<FormData>({
     defaultValues: {
       email: '',
       password: '',
@@ -33,10 +37,18 @@ const SignUpScreen = ({navigation}: Props) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = handleSubmit(
-    data => {},
-    error => {},
-  );
+  const registerAccountMutation = useMutation({
+    mutationFn: (body: Omit<FormData, 'confirmPassword'>) =>
+      registerAccount(body),
+  });
+
+  const onSubmit = handleSubmit(data => {
+    console.log(data);
+    const body = omit(data, ['confirmPassword']);
+    registerAccountMutation.mutate(body, {
+      onSuccess: res => console.log(res),
+    });
+  });
   const handleSignIn = () => {
     navigation.navigate('SignIn');
   };

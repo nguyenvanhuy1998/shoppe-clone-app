@@ -1,3 +1,4 @@
+import http from './http';
 import {schema} from './rules';
-import {createSpacing, createButtonStyle} from './spacing';
-export {createSpacing, createButtonStyle, schema};
+import {createButtonStyle, createSpacing} from './spacing';
+export {createButtonStyle, createSpacing, http, schema};
