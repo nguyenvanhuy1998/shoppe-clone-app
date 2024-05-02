@@ -21,7 +21,6 @@ import {useMutation} from '@tanstack/react-query';
 import {registerAccount} from '../../apis/auth.api';
 import {omit} from 'lodash';
 import {ResponseApi} from '../../types/utils.type';
-import Toast from 'react-native-toast-message';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
 type FormData = AuthSchema;

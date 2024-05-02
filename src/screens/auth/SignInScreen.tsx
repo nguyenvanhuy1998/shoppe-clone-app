@@ -1,29 +1,71 @@
-import React, {useState} from 'react';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useMutation} from '@tanstack/react-query';
+import React from 'react';
+import {useForm} from 'react-hook-form';
+import {login} from '../../apis/auth.api';
 import {
   ButtonComponent,
   ContainerComponent,
   HeaderComponent,
-  InputOldComponent,
+  InputComponent,
   RowComponent,
   SectionComponent,
   SpaceComponent,
   TextComponent,
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
-import {globalStyles} from '../../styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackNavigatorParamList} from '../../navigator/AuthStackNavigator';
+import {globalStyles} from '../../styles';
+import {ResponseApi} from '../../types/utils.type';
+import {createSpacing, isAxiosUnprocessableEntityError} from '../../utils';
+import {AuthSchema, schema} from '../../utils/rules';
 
 type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignIn'>;
 
+type FormData = Omit<AuthSchema, 'confirmPassword'>;
+const loginSchema = schema.omit(['confirmPassword']);
 const SignInScreen = ({navigation}: Props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const handleForgotPassword = () => {};
-  const handleSignIn = () => {};
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+    setError,
+  } = useForm<FormData>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    resolver: yupResolver(loginSchema),
+  });
+
+  const loginMutation = useMutation({
+    mutationFn: (body: FormData) => login(body),
+  });
+
+  const onSubmit = handleSubmit(data => {
+    loginMutation.mutate(data, {
+      onSuccess: res => console.log(res),
+      onError: error => {
+        // Kiểm tra nếu nó là lỗi 422
+        if (isAxiosUnprocessableEntityError<ResponseApi<FormData>>(error)) {
+          const formError = error.response?.data.data;
+          if (formError) {
+            Object.keys(formError).forEach(key => {
+              setError(key as keyof FormData, {
+                message: formError[key as keyof FormData],
+                type: 'Server',
+              });
+            });
+          }
+        }
+      },
+    });
+  });
   const handleSignUp = () => {
     navigation.navigate('SignUp');
   };
+  const handleForgotPassword = () => {};
   return (
     <ContainerComponent type="input">
       {/* Header */}
@@ -37,28 +79,27 @@ const SignInScreen = ({navigation}: Props) => {
           fontFamily={FONT_FAMILY.montserrat_semibold}
         />
       </SectionComponent>
-      <SpaceComponent height={SPACING.space_4} />
       {/* Body */}
       <SectionComponent style={globalStyles.flexOne}>
         {/* Email */}
-        <InputOldComponent
-          allowClear
-          placeholder="Nhập email"
-          value={email}
-          onChangeText={val => setEmail(val)}
+        <InputComponent
           label="Email"
-        />
-        <SpaceComponent height={SPACING.space_20} />
-        {/* Password */}
-        <InputOldComponent
+          control={control}
+          name="email"
+          placeholder="Enter email..."
           allowClear
-          placeholder="Nhập mật khẩu"
-          value={password}
-          onChangeText={val => setPassword(val)}
-          label="Mật khẩu"
-          isPassword
+          error={errors.email?.message}
+          keyboardType="email-address"
         />
-        <SpaceComponent height={SPACING.space_24} />
+        {/* Password */}
+        <InputComponent
+          label="Password"
+          control={control}
+          name="password"
+          placeholder="Enter password..."
+          isPassword
+          error={errors.password?.message}
+        />
         {/* Forgot Password */}
         <ButtonComponent
           onPress={handleForgotPassword}
@@ -69,16 +110,16 @@ const SignInScreen = ({navigation}: Props) => {
           color={COLORS.primaryBlackHex}
           style={globalStyles.selfEnd}
         />
-        <SpaceComponent height={SPACING.space_10 * 5} />
         {/* Sign In */}
         <ButtonComponent
-          onPress={handleSignIn}
+          style={createSpacing(5)}
+          onPress={onSubmit}
           text="Sign In"
           backgroundColor={COLORS.primaryOrangeHex}
           color={COLORS.primaryWhiteHex}
         />
-        <SpaceComponent height={SPACING.space_10 * 5} />
-        <RowComponent>
+        {/* Other */}
+        <RowComponent style={createSpacing(5)}>
           <SpaceComponent
             style={globalStyles.flexOne}
             height={1}
@@ -94,9 +135,8 @@ const SignInScreen = ({navigation}: Props) => {
             backgroundColor={COLORS.primaryGreyHex}
           />
         </RowComponent>
-        <SpaceComponent height={SPACING.space_10 * 3} />
-        {/* Login with Facebook or Google */}
-        <RowComponent>
+        {/* Login with Google && Facebook */}
+        <RowComponent style={createSpacing(3)}>
           <ButtonComponent
             icon="facebook"
             iconSize={SPACING.space_24}
@@ -116,7 +156,6 @@ const SignInScreen = ({navigation}: Props) => {
           />
         </RowComponent>
       </SectionComponent>
-      <SpaceComponent height={SPACING.space_4} />
       {/* Footer */}
       <SectionComponent>
         <RowComponent style={globalStyles.jusCenter}>
