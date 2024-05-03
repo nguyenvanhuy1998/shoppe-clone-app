@@ -1,6 +1,6 @@
 import {yupResolver} from '@hookform/resolvers/yup';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {
   ButtonComponent,
@@ -15,16 +15,19 @@ import {
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
 import {createSpacing, isAxiosUnprocessableEntityError} from '../../utils';
-import {AuthStackNavigatorParamList} from '../../navigator/AuthStackNavigator';
+import {AuthNavigatorParamList} from '../../navigator/AuthNavigator';
 import {AuthSchema, schema} from '../../utils/rules';
 import {useMutation} from '@tanstack/react-query';
 import {registerAccount} from '../../apis/auth.api';
 import {omit} from 'lodash';
-import {ResponseApi} from '../../types/utils.type';
+import {ErrorResponse} from '../../types/utils.type';
+import {AppContext} from '../../contexts/AppContext';
 
-type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignUp'>;
+type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignUp'>;
 type FormData = AuthSchema;
 const SignUpScreen = ({navigation}: Props) => {
+  const {setIsAuthenticated} = useContext(AppContext);
+
   const {
     control,
     handleSubmit,
@@ -47,12 +50,14 @@ const SignUpScreen = ({navigation}: Props) => {
   const onSubmit = handleSubmit(data => {
     const body = omit(data, ['confirmPassword']);
     registerAccountMutation.mutate(body, {
-      onSuccess: res => console.log(res),
+      onSuccess: res => {
+        setIsAuthenticated(true);
+      },
       onError: error => {
         // Kiểm tra nếu nó là lỗi 422
         if (
           isAxiosUnprocessableEntityError<
-            ResponseApi<Omit<FormData, 'confirmPassword'>>
+            ErrorResponse<Omit<FormData, 'confirmPassword'>>
           >(error)
         ) {
           const formError = error.response?.data.data;

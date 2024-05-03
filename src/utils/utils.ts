@@ -1,4 +1,4 @@
-import axios, {Axios, AxiosError, HttpStatusCode} from 'axios';
+import axios, {AxiosError, HttpStatusCode} from 'axios';
 
 // Sau khi kiểm tra có phải là lỗi axios error không
 // chuyển đổi lỗi unknown thành lỗi AxiosError nhất định

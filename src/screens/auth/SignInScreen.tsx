@@ -1,7 +1,7 @@
 import {yupResolver} from '@hookform/resolvers/yup';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useMutation} from '@tanstack/react-query';
-import React from 'react';
+import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {login} from '../../apis/auth.api';
 import {
@@ -15,17 +15,19 @@ import {
   TextComponent,
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
-import {AuthStackNavigatorParamList} from '../../navigator/AuthStackNavigator';
+import {AuthNavigatorParamList} from '../../navigator/AuthNavigator';
 import {globalStyles} from '../../styles';
-import {ResponseApi} from '../../types/utils.type';
+import {ErrorResponse} from '../../types/utils.type';
 import {createSpacing, isAxiosUnprocessableEntityError} from '../../utils';
 import {AuthSchema, schema} from '../../utils/rules';
+import {AppContext} from '../../contexts/AppContext';
 
-type Props = NativeStackScreenProps<AuthStackNavigatorParamList, 'SignIn'>;
+type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignIn'>;
 
 type FormData = Omit<AuthSchema, 'confirmPassword'>;
 const loginSchema = schema.omit(['confirmPassword']);
 const SignInScreen = ({navigation}: Props) => {
+  const {setIsAuthenticated} = useContext(AppContext);
   const {
     control,
     handleSubmit,
@@ -45,10 +47,12 @@ const SignInScreen = ({navigation}: Props) => {
 
   const onSubmit = handleSubmit(data => {
     loginMutation.mutate(data, {
-      onSuccess: res => console.log(res),
+      onSuccess: res => {
+        setIsAuthenticated(true);
+      },
       onError: error => {
         // Kiểm tra nếu nó là lỗi 422
-        if (isAxiosUnprocessableEntityError<ResponseApi<FormData>>(error)) {
+        if (isAxiosUnprocessableEntityError<ErrorResponse<FormData>>(error)) {
           const formError = error.response?.data.data;
           if (formError) {
             Object.keys(formError).forEach(key => {

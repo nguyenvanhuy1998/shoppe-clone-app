@@ -1,3 +1,5 @@
-import AuthStackNavigator from './AuthStackNavigator';
-import RootStackNavigator from './RootStackNavigator';
-export {RootStackNavigator, AuthStackNavigator};
+import AuthNavigator from './AuthNavigator';
+import RootNavigator from './RootNavigator';
+import TabNavigator from './TabNavigator';
+
+export {RootNavigator, AuthNavigator, TabNavigator};

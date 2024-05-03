@@ -2,13 +2,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {SignInScreen, SignUpScreen} from '../screens';
 
-export type AuthStackNavigatorParamList = {
+export type AuthNavigatorParamList = {
   SignIn: undefined;
   SignUp: undefined;
 };
-const Stack = createNativeStackNavigator<AuthStackNavigatorParamList>();
+const Stack = createNativeStackNavigator<AuthNavigatorParamList>();
 
-const AuthStackNavigator = () => {
+const AuthNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -20,4 +20,4 @@ const AuthStackNavigator = () => {
   );
 };
 
-export default AuthStackNavigator;
+export default AuthNavigator;
