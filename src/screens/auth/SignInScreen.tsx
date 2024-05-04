@@ -28,7 +28,7 @@ type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignIn'>;
 type FormData = Omit<AuthSchema, 'confirmPassword'>;
 const loginSchema = schema.omit(['confirmPassword']);
 const SignInScreen = ({navigation}: Props) => {
-  const {setIsAuthenticated} = useContext(AppContext);
+  const {setIsAuthenticated, setProfile} = useContext(AppContext);
   const {
     control,
     handleSubmit,
@@ -48,8 +48,9 @@ const SignInScreen = ({navigation}: Props) => {
 
   const onSubmit = handleSubmit(data => {
     loginMutation.mutate(data, {
-      onSuccess: () => {
+      onSuccess: res => {
         setIsAuthenticated(true);
+        setProfile(res.data.data.user);
       },
       onError: error => {
         // Kiểm tra nếu nó là lỗi 422

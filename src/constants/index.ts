@@ -7,5 +7,15 @@ import {
   BORDER_RADIUS,
   FONT_FAMILY,
 } from './theme';
+import path from './path';
 
-export {COLORS, images, OS, SPACING, FONTSIZE, BORDER_RADIUS, FONT_FAMILY};
+export {
+  COLORS,
+  images,
+  OS,
+  SPACING,
+  FONTSIZE,
+  BORDER_RADIUS,
+  FONT_FAMILY,
+  path,
+};

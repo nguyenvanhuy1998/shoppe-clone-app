@@ -27,7 +27,7 @@ import {LoadingModal} from '../../modals';
 type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignUp'>;
 type FormData = AuthSchema;
 const SignUpScreen = ({navigation}: Props) => {
-  const {setIsAuthenticated} = useContext(AppContext);
+  const {setIsAuthenticated, setProfile} = useContext(AppContext);
 
   const {
     control,
@@ -51,8 +51,9 @@ const SignUpScreen = ({navigation}: Props) => {
   const onSubmit = handleSubmit(data => {
     const body = omit(data, ['confirmPassword']);
     registerAccountMutation.mutate(body, {
-      onSuccess: () => {
+      onSuccess: res => {
         setIsAuthenticated(true);
+        setProfile(res.data.data.user);
       },
       onError: error => {
         // Kiểm tra nếu nó là lỗi 422
