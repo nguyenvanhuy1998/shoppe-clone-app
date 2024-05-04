@@ -1,0 +1,72 @@
+import {StyleSheet} from 'react-native';
+import {
+  BORDER_RADIUS,
+  COLORS,
+  FONT_FAMILY,
+  FONTSIZE,
+  SPACING,
+} from '../constants';
+import {createButtonStyle} from '../utils';
+
+export const globalStyles = StyleSheet.create({
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  selfCenter: {
+    alignSelf: 'center',
+  },
+  selfEnd: {
+    alignSelf: 'flex-end',
+  },
+  jusCenter: {
+    justifyContent: 'center',
+  },
+  flexOne: {
+    flex: 1,
+  },
+  flexGrowOne: {
+    flexGrow: 1,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.primaryWhiteHex,
+  },
+  containerCenter: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  spaceBetween: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  button: createButtonStyle(SPACING.space_10 * 6, 'center', 'center'),
+  buttonText: createButtonStyle(SPACING.space_20, 'center', 'center'),
+  text: {
+    fontSize: FONTSIZE.size_14,
+    fontFamily: FONT_FAMILY.montserrat_regular,
+    color: COLORS.primaryBlackHex,
+  },
+  section: {
+    paddingHorizontal: SPACING.space_36,
+    paddingVertical: SPACING.space_20,
+  },
+
+  inputContainer: {
+    borderWidth: 0.5,
+    borderColor: COLORS.primaryGreyHex,
+    borderRadius: BORDER_RADIUS.radius_14,
+    backgroundColor: COLORS.secondaryWhiteHex,
+    minHeight: 60,
+    paddingHorizontal: SPACING.space_16,
+  },
+  buttonIcon: {
+    width: SPACING.space_24,
+    height: SPACING.space_24,
+  },
+});
