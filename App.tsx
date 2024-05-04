@@ -22,7 +22,7 @@ const App = () => {
           <AppProvider>
             <RootNavigator />
           </AppProvider>
-          <DevToolsBubble />
+          {/* <DevToolsBubble /> */}
         </QueryClientProvider>
       </NavigationContainer>
       <Toast />

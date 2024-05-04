@@ -25,7 +25,6 @@ export const AppProvider = ({children}: {children: ReactNode}) => {
     fetchToken();
   }, []);
 
-  console.log('isAuthenticated', isAuthenticated);
   return (
     <AppContext.Provider
       value={{
