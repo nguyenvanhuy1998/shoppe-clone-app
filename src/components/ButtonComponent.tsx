@@ -24,6 +24,7 @@ interface Props {
   icon?: string;
   iconSize?: number;
   iconColor?: ColorValue;
+  disabled?: boolean;
 }
 const ButtonComponent = ({
   text = '',
@@ -37,9 +38,11 @@ const ButtonComponent = ({
   icon,
   iconSize,
   iconColor,
+  disabled,
 }: Props) => {
   return (
     <TouchableOpacity
+      disabled={disabled}
       style={[
         type === 'text' ? globalStyles.buttonText : globalStyles.button,
         {

@@ -15,12 +15,13 @@ import {
   TextComponent,
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
+import {AppContext} from '../../contexts/AppContext';
 import {AuthNavigatorParamList} from '../../navigator/AuthNavigator';
 import {globalStyles} from '../../styles';
 import {ErrorResponse} from '../../types/utils.type';
 import {createSpacing, isAxiosUnprocessableEntityError} from '../../utils';
 import {AuthSchema, schema} from '../../utils/rules';
-import {AppContext} from '../../contexts/AppContext';
+import {LoadingModal} from '../../modals';
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignIn'>;
 
@@ -47,7 +48,7 @@ const SignInScreen = ({navigation}: Props) => {
 
   const onSubmit = handleSubmit(data => {
     loginMutation.mutate(data, {
-      onSuccess: res => {
+      onSuccess: () => {
         setIsAuthenticated(true);
       },
       onError: error => {
@@ -116,6 +117,7 @@ const SignInScreen = ({navigation}: Props) => {
         />
         {/* Sign In */}
         <ButtonComponent
+          disabled={loginMutation.isPending}
           style={createSpacing(5)}
           onPress={onSubmit}
           text="Sign In"
@@ -172,6 +174,7 @@ const SignInScreen = ({navigation}: Props) => {
           />
         </RowComponent>
       </SectionComponent>
+      <LoadingModal visible={loginMutation.isPending} />
     </ContainerComponent>
   );
 };

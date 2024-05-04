@@ -22,6 +22,7 @@ import {registerAccount} from '../../apis/auth.api';
 import {omit} from 'lodash';
 import {ErrorResponse} from '../../types/utils.type';
 import {AppContext} from '../../contexts/AppContext';
+import {LoadingModal} from '../../modals';
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignUp'>;
 type FormData = AuthSchema;
@@ -50,7 +51,7 @@ const SignUpScreen = ({navigation}: Props) => {
   const onSubmit = handleSubmit(data => {
     const body = omit(data, ['confirmPassword']);
     registerAccountMutation.mutate(body, {
-      onSuccess: res => {
+      onSuccess: () => {
         setIsAuthenticated(true);
       },
       onError: error => {
@@ -175,6 +176,7 @@ const SignUpScreen = ({navigation}: Props) => {
           />
         </RowComponent>
       </SectionComponent>
+      <LoadingModal visible={registerAccountMutation.isPending} />
     </ContainerComponent>
   );
 };
