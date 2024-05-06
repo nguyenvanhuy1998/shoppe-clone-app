@@ -7,6 +7,8 @@ import {
   BORDER_RADIUS,
   FONT_FAMILY,
   IconSizes,
+  WIDTH,
+  HEIGHT,
 } from './theme';
 import path from './path';
 
@@ -20,4 +22,6 @@ export {
   FONT_FAMILY,
   path,
   IconSizes,
+  WIDTH,
+  HEIGHT,
 };

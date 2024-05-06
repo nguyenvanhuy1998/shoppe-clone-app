@@ -1,4 +1,4 @@
-import {Platform} from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 
 interface Spacing {
   space_2: number;
@@ -125,11 +125,15 @@ export const IconSizes = {
   large: 24,
   extraLarge: 28,
 };
+export const WIDTH = Dimensions.get('window').width;
+export const HEIGHT = Dimensions.get('window').height;
 const theme = {
   COLORS,
   OS,
   SPACING,
   FONT_FAMILY,
   IconSizes,
+  WIDTH,
+  HEIGHT,
 };
 export default theme;
