@@ -4,7 +4,7 @@ import {ContainerComponent} from '../components';
 
 const HomeScreen = () => {
   return (
-    <ContainerComponent>
+    <ContainerComponent type="noSafeArea">
       <Text>Home Screen</Text>
     </ContainerComponent>
   );

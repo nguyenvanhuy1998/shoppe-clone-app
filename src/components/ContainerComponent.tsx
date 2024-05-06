@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {
   ColorValue,
   ScrollView,
@@ -15,9 +15,9 @@ import {COLORS} from '../constants';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   style?: StyleProp<ViewStyle>;
-  type?: 'linear' | 'primary' | 'input';
+  type?: 'linear' | 'input' | 'noSafeArea';
   barStyle?: StatusBarStyle;
   backgroundColorBarStyle?: ColorValue;
 }
@@ -29,12 +29,6 @@ const ContainerComponent = ({
   backgroundColorBarStyle,
 }: Props) => {
   const insets = useSafeAreaInsets();
-  const renderBarStyle = () => (
-    <FocusAwareStatusBar
-      barStyle={barStyle}
-      backgroundColor={backgroundColorBarStyle}
-    />
-  );
   const styleGeneral = [
     globalStyles.container,
     {
@@ -45,33 +39,59 @@ const ContainerComponent = ({
     },
     style,
   ];
-  return type === 'linear' ? (
-    <LinearGradient
-      colors={[COLORS.secondaryOrangeHex, COLORS.primaryOrangeHex]}
-      style={styleGeneral}>
-      {renderBarStyle()}
-      {children}
-    </LinearGradient>
-  ) : (
-    <View style={styleGeneral}>
-      {renderBarStyle()}
-      {type === 'input' ? (
+  const renderBarStyle = () => (
+    <FocusAwareStatusBar
+      barStyle={barStyle}
+      backgroundColor={backgroundColorBarStyle}
+    />
+  );
+  const CommonScrollView = ({
+    children: scrollChildren,
+  }: {
+    children: ReactNode;
+  }) => (
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      alwaysBounceVertical={false}
+      contentContainerStyle={globalStyles.flexGrowOne}>
+      {scrollChildren}
+    </ScrollView>
+  );
+
+  const typeComponents = {
+    linear: () => (
+      <LinearGradient
+        colors={[COLORS.secondaryOrangeHex, COLORS.primaryOrangeHex]}
+        style={styleGeneral}>
+        {renderBarStyle()}
+        {children}
+      </LinearGradient>
+    ),
+    input: () => (
+      <View style={styleGeneral}>
+        {renderBarStyle()}
         <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
           alwaysBounceVertical={false}
           contentContainerStyle={globalStyles.flexGrowOne}>
           {children}
         </KeyboardAwareScrollView>
-      ) : (
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          alwaysBounceVertical={false}
-          contentContainerStyle={globalStyles.flexGrowOne}>
-          {children}
-        </ScrollView>
-      )}
-    </View>
-  );
+      </View>
+    ),
+    noSafeArea: () => (
+      <View style={globalStyles.flexOne}>
+        {renderBarStyle()}
+        <CommonScrollView>{children}</CommonScrollView>
+      </View>
+    ),
+    default: () => (
+      <View style={styleGeneral}>
+        {renderBarStyle()}
+        <CommonScrollView>{children}</CommonScrollView>
+      </View>
+    ),
+  };
+  return typeComponents[type || 'default']();
 };
 
 export default ContainerComponent;
