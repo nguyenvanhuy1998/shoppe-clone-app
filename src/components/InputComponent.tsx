@@ -5,28 +5,27 @@ import {
   StyleProp,
   StyleSheet,
   TextInput,
+  TextInputProps,
   TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../constants';
 import {globalStyles} from '../styles';
 import MaterialIcons from './MaterialIcons';
 import RowComponent from './RowComponent';
 import TextComponent from './TextComponent';
+import Ionicons from './Ionicons';
 
-interface Props {
+interface Props extends TextInputProps {
   style?: StyleProp<ViewStyle>;
   label?: string;
   control: Control<any>;
   name: string;
-  placeholder?: string;
   styleInputContainer?: StyleProp<ViewStyle>;
   iconLeft?: ReactNode;
   styleInput?: StyleProp<TextStyle>;
-  keyboardType?: KeyboardType;
   isPassword?: boolean;
   iconRight?: ReactNode;
   allowClear?: boolean;
@@ -37,15 +36,14 @@ const InputComponent = ({
   style,
   control,
   name,
-  placeholder,
   styleInputContainer,
   iconLeft,
   styleInput,
-  keyboardType = 'default',
   isPassword,
   iconRight,
   allowClear,
   error,
+  ...props
 }: Props) => {
   const [isShowPass, setIsShowPass] = useState(isPassword);
 
@@ -68,13 +66,12 @@ const InputComponent = ({
               {iconLeft && iconLeft}
               <TextInput
                 style={[globalStyles.text, globalStyles.flexOne, styleInput]}
-                placeholder={placeholder}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                keyboardType={keyboardType}
                 secureTextEntry={isShowPass}
                 autoCapitalize="none"
+                {...props}
               />
               {iconRight && iconRight}
               <TouchableOpacity
@@ -85,7 +82,7 @@ const InputComponent = ({
                 {isPassword ? (
                   <Ionicons
                     name={isShowPass ? 'eye-off-outline' : 'eye-outline'}
-                    size={SPACING.space_18}
+                    size={'medium'}
                     color={COLORS.primaryGreyHex}
                   />
                 ) : (

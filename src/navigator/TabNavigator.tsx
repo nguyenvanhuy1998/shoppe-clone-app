@@ -8,7 +8,7 @@ import {
   ProfileScreen,
 } from '../screens';
 import LiveScreen from '../screens/LiveScreen';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Ionicons} from '../components';
 export type TabNavigatorParamList = {
   Home: undefined;
   Feed: undefined;
@@ -24,10 +24,10 @@ interface TabBarIconProps {
 const Tab = createBottomTabNavigator<TabNavigatorParamList>();
 
 const TabBarIcon = (focusedIcon: string, unfocusedIcon: string) => {
-  return ({focused, size, color}: TabBarIconProps) => (
+  return ({focused, color}: TabBarIconProps) => (
     <Ionicons
       name={focused ? focusedIcon : unfocusedIcon}
-      size={size}
+      size={'large'}
       color={color}
     />
   );

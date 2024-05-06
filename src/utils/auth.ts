@@ -19,6 +19,5 @@ export const setProfileToLS = async (profile: User) => {
 };
 export const getProfileFromLS = async () => {
   const result = await AsyncStorage.getItem('profile');
-  console.log('result', result);
   return result ? JSON.parse(result) : null;
 };

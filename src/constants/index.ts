@@ -6,6 +6,7 @@ import {
   FONTSIZE,
   BORDER_RADIUS,
   FONT_FAMILY,
+  IconSizes,
 } from './theme';
 import path from './path';
 
@@ -18,4 +19,5 @@ export {
   BORDER_RADIUS,
   FONT_FAMILY,
   path,
+  IconSizes,
 };

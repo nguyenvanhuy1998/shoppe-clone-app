@@ -119,10 +119,17 @@ export const FONT_FAMILY: FontFamily = {
   montserrat_semibold: 'Montserrat-SemiBold',
   montserrat_thin: 'Montserrat-Thin',
 };
+export const IconSizes = {
+  small: 14,
+  medium: 18,
+  large: 24,
+  extraLarge: 28,
+};
 const theme = {
   COLORS,
   OS,
   SPACING,
   FONT_FAMILY,
+  IconSizes,
 };
 export default theme;
