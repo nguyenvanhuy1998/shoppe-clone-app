@@ -10,6 +10,8 @@ import HeaderComponent from './HeaderComponent';
 import RowComponent from './RowComponent';
 import InputComponent from './InputComponent';
 import Ionicons from './Ionicons';
+import ButtonSecondaryComponent from './ButtonSecondaryComponent';
+import DotTextComponent from './DotTextComponent';
 
 export {
   ContainerComponent,
@@ -24,4 +26,6 @@ export {
   RowComponent,
   InputComponent,
   Ionicons,
+  ButtonSecondaryComponent,
+  DotTextComponent,
 };

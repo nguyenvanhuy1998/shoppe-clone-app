@@ -65,8 +65,29 @@ export const globalStyles = StyleSheet.create({
     minHeight: 60,
     paddingHorizontal: SPACING.space_16,
   },
+  inputSecondContainer: {
+    borderRadius: BORDER_RADIUS.radius_4,
+    minHeight: SPACING.space_36,
+    backgroundColor: COLORS.secondaryWhiteHex,
+    paddingHorizontal: SPACING.space_8,
+  },
   buttonIcon: {
     width: SPACING.space_24,
     height: SPACING.space_24,
+  },
+  buttonIconSecondary: {
+    minWidth: SPACING.space_24,
+    minHeight: SPACING.space_24,
+  },
+  dotText: {
+    position: 'absolute',
+    right: -SPACING.space_2,
+    top: -SPACING.space_2,
+    borderWidth: 1,
+    borderColor: COLORS.primaryWhiteHex,
+    width: SPACING.space_16,
+    height: SPACING.space_16,
+    borderRadius: 99,
+    backgroundColor: COLORS.primaryOrangeHex,
   },
 });

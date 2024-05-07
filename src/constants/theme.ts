@@ -23,6 +23,7 @@ interface Color {
   secondaryOrangeHex: string;
   primaryBlackHex: string;
   primaryGreyHex: string;
+  secondaryGreyHex: string;
   secondaryWhiteHex: string;
   primaryDangerousHex: string;
 }
@@ -65,6 +66,7 @@ export const COLORS: Color = {
   secondaryOrangeHex: '#ED4D2D',
   primaryBlackHex: '#3E4958',
   primaryGreyHex: '#D5DDE0',
+  secondaryGreyHex: '#A9A9A9',
   primaryDangerousHex: '#ff0505',
 };
 export const SPACING: Spacing = {
