@@ -6,6 +6,8 @@ import {DevToolsBubble} from 'react-native-react-query-devtools';
 import Toast from 'react-native-toast-message';
 import {RootNavigator} from './src/navigator';
 import {AppProvider} from './src/contexts/AppContext';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {globalStyles} from './src/styles';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,17 +18,19 @@ const queryClient = new QueryClient({
 });
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <QueryClientProvider client={queryClient}>
-          <AppProvider>
-            <RootNavigator />
-          </AppProvider>
-          {/* <DevToolsBubble /> */}
-        </QueryClientProvider>
-      </NavigationContainer>
-      <Toast />
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={globalStyles.flexOne}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <QueryClientProvider client={queryClient}>
+            <AppProvider>
+              <RootNavigator />
+            </AppProvider>
+            {/* <DevToolsBubble /> */}
+          </QueryClientProvider>
+        </NavigationContainer>
+        <Toast />
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 };
 
