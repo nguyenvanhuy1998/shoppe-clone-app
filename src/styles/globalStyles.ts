@@ -56,6 +56,7 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: SPACING.space_36,
     paddingVertical: SPACING.space_20,
   },
+  sectionSecondary: {},
 
   inputContainer: {
     borderWidth: 0.5,
@@ -89,5 +90,11 @@ export const globalStyles = StyleSheet.create({
     height: SPACING.space_16,
     borderRadius: 99,
     backgroundColor: COLORS.primaryOrangeHex,
+  },
+  dot: {
+    width: SPACING.space_8,
+    height: SPACING.space_8,
+    borderRadius: 99,
+    backgroundColor: COLORS.secondaryGreyHex,
   },
 });

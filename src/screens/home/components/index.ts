@@ -1,2 +1,3 @@
 import BannerItem from './BannerItem';
-export {BannerItem};
+import TypePay from './TypePay';
+export {BannerItem, TypePay};

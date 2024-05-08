@@ -1,10 +1,15 @@
 import React from 'react';
-import {Image, ImageResizeMode, ImageSourcePropType} from 'react-native';
+import {
+  DimensionValue,
+  Image,
+  ImageResizeMode,
+  ImageSourcePropType,
+} from 'react-native';
 
 interface Props {
   source: ImageSourcePropType;
-  width: number;
-  height: number;
+  width?: DimensionValue;
+  height?: DimensionValue;
   resizeMode?: ImageResizeMode;
 }
 const ImageComponent = ({

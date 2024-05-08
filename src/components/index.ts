@@ -12,6 +12,8 @@ import InputComponent from './InputComponent';
 import Ionicons from './Ionicons';
 import ButtonSecondaryComponent from './ButtonSecondaryComponent';
 import DotTextComponent from './DotTextComponent';
+import SectionSecondaryComponent from './SectionSecondaryComponent';
+import LineVerticalComponent from './LineVerticalComponent';
 
 export {
   ContainerComponent,
@@ -28,4 +30,6 @@ export {
   Ionicons,
   ButtonSecondaryComponent,
   DotTextComponent,
+  SectionSecondaryComponent,
+  LineVerticalComponent,
 };
