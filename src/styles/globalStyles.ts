@@ -56,7 +56,10 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: SPACING.space_36,
     paddingVertical: SPACING.space_20,
   },
-  sectionSecondary: {},
+  sectionSecondary: {
+    paddingHorizontal: SPACING.space_16,
+    paddingVertical: SPACING.space_8,
+  },
 
   inputContainer: {
     borderWidth: 0.5,

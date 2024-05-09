@@ -9,6 +9,7 @@ interface Props {
   fontSize?: number;
   fontFamily?: string;
   lineHeight?: number;
+  numberOfLines?: number;
 }
 const TextComponent = ({
   text = '',
@@ -17,9 +18,11 @@ const TextComponent = ({
   fontSize = FONTSIZE.size_14,
   fontFamily = FONT_FAMILY.montserrat_regular,
   lineHeight,
+  numberOfLines,
 }: Props) => {
   return (
     <Text
+      numberOfLines={numberOfLines}
       style={[
         {
           color,

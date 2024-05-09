@@ -1,11 +1,12 @@
 import React, {useRef} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useSharedValue} from 'react-native-reanimated';
 import Carousel, {
   ICarouselInstance,
   Pagination,
 } from 'react-native-reanimated-carousel';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Scan} from '../../assets/svg';
 import {
   ButtonSecondaryComponent,
   ContainerComponent,
@@ -13,14 +14,14 @@ import {
   Ionicons,
   LineVerticalComponent,
   RowComponent,
+  SectionSecondaryComponent,
   SpaceComponent,
   TextComponent,
 } from '../../components';
-import {COLORS, SPACING, WIDTH} from '../../constants';
+import {BORDER_RADIUS, COLORS, SPACING, WIDTH} from '../../constants';
 import {globalStyles} from '../../styles';
 import {BannerItem, TypePay} from './components';
 import {bannerData} from './data/banner';
-import {Scan} from '../../assets/svg';
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
@@ -36,7 +37,6 @@ const HomeScreen = () => {
     <ContainerComponent barStyle="light-content" type="noSafeArea">
       {/* Header Home */}
       <View>
-        {/* Banner */}
         <Carousel
           ref={refCarousel}
           loop
@@ -52,7 +52,6 @@ const HomeScreen = () => {
           onProgressChange={progress}
           renderItem={({item}) => <BannerItem item={item} />}
         />
-        {/* Search  */}
         <RowComponent
           style={[
             styles.searchHeaderContainer,
@@ -109,7 +108,6 @@ const HomeScreen = () => {
             }
           />
         </RowComponent>
-        {/* Pagination  */}
         <Pagination.Basic
           progress={progress}
           data={bannerData}
@@ -120,16 +118,35 @@ const HomeScreen = () => {
           containerStyle={styles.paginationContainer}
           onPress={onPressPagination}
         />
-        {/* Type Pay */}
-
-        <RowComponent>
-          <ButtonSecondaryComponent type="icon" childrenIcon={<Scan />} />
-          <LineVerticalComponent />
-          <TypePay />
-          <LineVerticalComponent />
-          <TypePay />
-        </RowComponent>
       </View>
+      {/* Category List */}
+      <SectionSecondaryComponent style={styles.categoryListContainer}>
+        <RowComponent
+          style={[globalStyles.sectionSecondary, styles.typePageContainer]}>
+          <ButtonSecondaryComponent
+            type="icon"
+            childrenIcon={
+              <Scan width={SPACING.space_32} height={SPACING.space_32} />
+            }
+          />
+          <LineVerticalComponent />
+          <TypePay
+            onPress={() => {}}
+            icon="wallet-outline"
+            title="Ví ShopeePay"
+            colorIcon={COLORS.primaryOrangeHex}
+            desc="Vourcher mua sắm giảm đến 40.000Đ"
+          />
+          <LineVerticalComponent />
+          <TypePay
+            onPress={() => {}}
+            icon="list-circle-outline"
+            title="1500"
+            colorIcon={COLORS.primaryYellowHex}
+            desc="Nhấn để nhận Xu mỗi ngày"
+          />
+        </RowComponent>
+      </SectionSecondaryComponent>
     </ContainerComponent>
   );
 };
@@ -147,6 +164,21 @@ const styles = StyleSheet.create({
   },
   paginationContainer: {
     gap: SPACING.space_8,
-    marginTop: -SPACING.space_32,
+    position: 'absolute',
+    alignItems: 'center',
+    bottom: SPACING.space_16,
+  },
+  categoryListContainer: {
+    backgroundColor: COLORS.primaryOrangeHex,
+    minHeight: 200,
+  },
+  typePageContainer: {
+    backgroundColor: COLORS.primaryWhiteHex,
+    borderRadius: BORDER_RADIUS.radius_8,
+    minHeight: SPACING.space_56,
+    position: 'absolute',
+    left: SPACING.space_16,
+    right: SPACING.space_16,
+    top: -SPACING.space_8,
   },
 });

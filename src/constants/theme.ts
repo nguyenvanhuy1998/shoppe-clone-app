@@ -15,6 +15,7 @@ interface Spacing {
   space_30: number;
   space_32: number;
   space_36: number;
+  space_56: number;
 }
 
 interface Color {
@@ -22,7 +23,9 @@ interface Color {
   primaryOrangeHex: string;
   secondaryOrangeHex: string;
   primaryBlackHex: string;
+  primaryYellowHex: string;
   primaryGreyHex: string;
+  thirdGreyHex: string;
   secondaryGreyHex: string;
   secondaryWhiteHex: string;
   primaryDangerousHex: string;
@@ -60,12 +63,14 @@ interface FontFamily {
   montserrat_thin: string;
 }
 export const COLORS: Color = {
+  primaryYellowHex: '#FFC300',
   primaryWhiteHex: '#ffffff',
   secondaryWhiteHex: '#F7F8F9',
   primaryOrangeHex: '#FF5B2C',
   secondaryOrangeHex: '#ED4D2D',
   primaryBlackHex: '#3E4958',
   primaryGreyHex: '#D5DDE0',
+  thirdGreyHex: '#808080',
   secondaryGreyHex: '#A9A9A9',
   primaryDangerousHex: '#ff0505',
 };
@@ -84,6 +89,7 @@ export const SPACING: Spacing = {
   space_30: 30,
   space_32: 32,
   space_36: 36,
+  space_56: 56,
 };
 export const BORDER_RADIUS: BorderRadius = {
   radius_4: 4,
