@@ -10,6 +10,7 @@ interface Props {
   fontFamily?: string;
   lineHeight?: number;
   numberOfLines?: number;
+  textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify';
 }
 const TextComponent = ({
   text = '',
@@ -19,6 +20,7 @@ const TextComponent = ({
   fontFamily = FONT_FAMILY.montserrat_regular,
   lineHeight,
   numberOfLines,
+  textAlign,
 }: Props) => {
   return (
     <Text
@@ -29,6 +31,7 @@ const TextComponent = ({
           fontSize,
           fontFamily,
           lineHeight,
+          textAlign,
         },
         style,
       ]}>

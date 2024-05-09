@@ -1,3 +1,4 @@
 import BannerItem from './BannerItem';
 import TypePay from './TypePay';
-export {BannerItem, TypePay};
+import MarketItem from './MarketItem';
+export {BannerItem, TypePay, MarketItem};

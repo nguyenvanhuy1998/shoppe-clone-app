@@ -135,6 +135,18 @@ export const IconSizes = {
 };
 export const WIDTH = Dimensions.get('window').width;
 export const HEIGHT = Dimensions.get('window').height;
+export const SHADOW = {
+  primary: {
+    shadowColor: COLORS.primaryBlackHex,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+};
 const theme = {
   COLORS,
   OS,
@@ -143,5 +155,6 @@ const theme = {
   IconSizes,
   WIDTH,
   HEIGHT,
+  SHADOW,
 };
 export default theme;

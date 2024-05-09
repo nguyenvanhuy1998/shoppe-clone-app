@@ -9,6 +9,7 @@ import {
   IconSizes,
   WIDTH,
   HEIGHT,
+  SHADOW,
 } from './theme';
 import path from './path';
 
@@ -24,4 +25,5 @@ export {
   IconSizes,
   WIDTH,
   HEIGHT,
+  SHADOW,
 };

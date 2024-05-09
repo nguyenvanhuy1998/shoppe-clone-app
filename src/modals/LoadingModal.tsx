@@ -1,8 +1,8 @@
-import {ActivityIndicator, Modal, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {globalStyles} from '../styles';
-import {COLORS} from '../constants';
+import {ActivityIndicator, Modal, StyleSheet, View} from 'react-native';
 import {TextComponent} from '../components';
+import {COLORS} from '../constants';
+import {globalStyles} from '../styles';
 interface Props {
   visible: boolean;
 }
