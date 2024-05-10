@@ -35,8 +35,6 @@ const HomeScreen = () => {
       animated: true,
     });
   };
-  const result = Math.ceil(marketData.length / 2);
-  console.log(result);
   return (
     <ContainerComponent barStyle="light-content" type="noSafeArea">
       {/* Header Home */}
@@ -165,6 +163,9 @@ const HomeScreen = () => {
             scrollEnabled={false}
           />
         </ScrollView>
+        <View style={styles.lineListContainer}>
+          <View style={styles.contentLineList} />
+        </View>
       </SectionSecondaryComponent>
     </ContainerComponent>
   );
@@ -206,5 +207,18 @@ const styles = StyleSheet.create({
   },
   contentFlatListMarket: {
     gap: 16,
+  },
+  lineListContainer: {
+    borderRadius: BORDER_RADIUS.radius_4,
+    height: SPACING.space_4,
+    width: SPACING.space_32,
+    backgroundColor: COLORS.primaryGreyHex,
+    alignSelf: 'center',
+  },
+  contentLineList: {
+    borderRadius: BORDER_RADIUS.radius_4,
+    height: '100%',
+    width: '30%',
+    backgroundColor: COLORS.primaryOrangeHex,
   },
 });
