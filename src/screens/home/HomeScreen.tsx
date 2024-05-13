@@ -18,10 +18,25 @@ import {
   SpaceComponent,
   TextComponent,
 } from '../../components';
-import {BORDER_RADIUS, COLORS, SHADOW, SPACING, WIDTH} from '../../constants';
+import {
+  BORDER_RADIUS,
+  COLORS,
+  images,
+  SHADOW,
+  SPACING,
+  WIDTH,
+} from '../../constants';
 import {globalStyles} from '../../styles';
-import {BannerItem, MarketItem, TypePay} from './components';
+import {
+  BannerItem,
+  HomeTitle,
+  LiveItem,
+  MarketItem,
+  OutStanding,
+  TypePay,
+} from './components';
 import {bannerData} from './data/banner';
+import {liveData} from './data/live';
 import {marketData} from './data/market';
 
 const HomeScreen = () => {
@@ -166,6 +181,20 @@ const HomeScreen = () => {
         <View style={styles.lineListContainer}>
           <View style={styles.contentLineList} />
         </View>
+        <RowComponent style={styles.outStandingContainer}>
+          <OutStanding onPress={() => {}} image={images.banner06} />
+          <OutStanding style={globalStyles.flexOne} image={images.banner07} />
+          <OutStanding image={images.banner08} />
+        </RowComponent>
+      </SectionSecondaryComponent>
+      {/* Shopee live siêu rẻ */}
+      <SectionSecondaryComponent style={styles.liveContainer}>
+        <HomeTitle title="SHOPEE LIVE SIÊU RẺ" textButton="Xem thêm" />
+        <FlatList
+          horizontal
+          data={liveData}
+          renderItem={({item}) => <LiveItem item={item} />}
+        />
       </SectionSecondaryComponent>
     </ContainerComponent>
   );
@@ -220,5 +249,14 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '30%',
     backgroundColor: COLORS.primaryOrangeHex,
+  },
+  outStandingContainer: {
+    marginTop: SPACING.space_24,
+    gap: SPACING.space_8,
+    paddingHorizontal: SPACING.space_16,
+  },
+  liveContainer: {
+    backgroundColor: COLORS.primaryWhiteHex,
+    marginTop: SPACING.space_16,
   },
 });

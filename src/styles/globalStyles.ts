@@ -22,6 +22,9 @@ export const globalStyles = StyleSheet.create({
   jusCenter: {
     justifyContent: 'center',
   },
+  jusBetween: {
+    justifyContent: 'space-between',
+  },
   flexOne: {
     flex: 1,
   },
@@ -99,5 +102,13 @@ export const globalStyles = StyleSheet.create({
     height: SPACING.space_8,
     borderRadius: 99,
     backgroundColor: COLORS.secondaryGreyHex,
+  },
+  buttonBoth: {
+    borderRadius: 99,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: SPACING.space_4,
+    minHeight: SPACING.space_24,
   },
 });

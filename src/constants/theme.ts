@@ -29,6 +29,7 @@ interface Color {
   secondaryGreyHex: string;
   secondaryWhiteHex: string;
   primaryDangerousHex: string;
+  primaryRedHex: string;
 }
 interface FontSize {
   size_8: number;
@@ -64,6 +65,7 @@ interface FontFamily {
 }
 export const COLORS: Color = {
   primaryYellowHex: '#FFC300',
+  primaryRedHex: '#dd1717',
   primaryWhiteHex: '#ffffff',
   secondaryWhiteHex: '#F7F8F9',
   primaryOrangeHex: '#FF5B2C',
