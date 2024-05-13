@@ -5,6 +5,7 @@ import {
   FONT_FAMILY,
   FONTSIZE,
   SPACING,
+  WIDTH,
 } from '../constants';
 import {createButtonStyle} from '../utils';
 
@@ -18,6 +19,9 @@ export const globalStyles = StyleSheet.create({
   },
   selfEnd: {
     alignSelf: 'flex-end',
+  },
+  alignStart: {
+    alignItems: 'flex-start',
   },
   jusCenter: {
     justifyContent: 'center',
@@ -60,8 +64,7 @@ export const globalStyles = StyleSheet.create({
     paddingVertical: SPACING.space_20,
   },
   sectionSecondary: {
-    paddingHorizontal: SPACING.space_16,
-    paddingVertical: SPACING.space_8,
+    padding: SPACING.space_8,
   },
 
   inputContainer: {
@@ -110,5 +113,12 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: SPACING.space_4,
     minHeight: SPACING.space_24,
+  },
+  liveCard: {
+    minHeight: 232,
+    width: WIDTH / 3 + SPACING.space_32,
+    padding: SPACING.space_8,
+    borderRadius: BORDER_RADIUS.radius_4,
+    overflow: 'hidden',
   },
 });

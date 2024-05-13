@@ -30,6 +30,7 @@ interface Color {
   secondaryWhiteHex: string;
   primaryDangerousHex: string;
   primaryRedHex: string;
+  primaryModal: string;
 }
 interface FontSize {
   size_8: number;
@@ -75,6 +76,7 @@ export const COLORS: Color = {
   thirdGreyHex: '#808080',
   secondaryGreyHex: '#A9A9A9',
   primaryDangerousHex: '#ff0505',
+  primaryModal: 'rgba(0, 0, 0, 0.5)',
 };
 export const SPACING: Spacing = {
   space_2: 2,

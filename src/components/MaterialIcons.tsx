@@ -6,11 +6,11 @@ import {IconSizes} from '../constants';
 
 interface Props {
   name: string;
-  size: IconSizeProps['iconSizes'];
-  color: ColorValue;
+  size?: IconSizeProps['iconSizes'];
+  color?: ColorValue;
   onPress?: () => void;
 }
-const MaterialIcons = ({name, size, color, onPress}: Props) => {
+const MaterialIcons = ({name, size = 'medium', color, onPress}: Props) => {
   return (
     <Icon name={name} size={IconSizes[size]} color={color} onPress={onPress} />
   );

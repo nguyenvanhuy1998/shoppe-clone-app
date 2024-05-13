@@ -4,6 +4,9 @@ import {FlexAlignType} from 'react-native';
 export const createSpacing = (multiplier: number) => ({
   marginTop: SPACING.space_10 * multiplier,
 });
+export const gapNumber = (gap: number) => ({
+  gap,
+});
 export function createButtonStyle(
   minHeight: number,
   alignItems: FlexAlignType,

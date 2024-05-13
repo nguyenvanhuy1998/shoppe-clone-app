@@ -38,6 +38,7 @@ import {
 import {bannerData} from './data/banner';
 import {liveData} from './data/live';
 import {marketData} from './data/market';
+import {gapNumber} from '../../utils/spacing';
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
@@ -94,7 +95,6 @@ const HomeScreen = () => {
               onPress={() => {}}
             />
           </RowComponent>
-          <SpaceComponent width={SPACING.space_8} />
           <ButtonSecondaryComponent
             type="icon"
             onPress={() => {}}
@@ -169,7 +169,7 @@ const HomeScreen = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.contentMarketList}>
           <FlatList
-            contentContainerStyle={styles.contentFlatListMarket}
+            contentContainerStyle={gapNumber(8)}
             data={marketData}
             renderItem={({item}) => (
               <MarketItem item={item} onPress={() => {}} />
@@ -191,6 +191,9 @@ const HomeScreen = () => {
       <SectionSecondaryComponent style={styles.liveContainer}>
         <HomeTitle title="SHOPEE LIVE SIÊU RẺ" textButton="Xem thêm" />
         <FlatList
+          alwaysBounceHorizontal={false}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={[styles.contentLiveContainer, gapNumber(8)]}
           horizontal
           data={liveData}
           renderItem={({item}) => <LiveItem item={item} />}
@@ -204,10 +207,11 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   searchHeaderContainer: {
     position: 'absolute',
-    left: SPACING.space_16,
-    right: SPACING.space_16,
+    left: SPACING.space_8,
+    right: SPACING.space_8,
   },
   inputContainer: {
+    marginRight: SPACING.space_8,
     ...globalStyles.flexOne,
     ...globalStyles.inputSecondContainer,
   },
@@ -227,12 +231,12 @@ const styles = StyleSheet.create({
     minHeight: SPACING.space_56,
     marginTop: -SPACING.space_16,
     marginBottom: SPACING.space_16,
-    marginHorizontal: SPACING.space_16,
+    marginHorizontal: SPACING.space_8,
     ...SHADOW.primary,
   },
   contentMarketList: {
-    paddingLeft: SPACING.space_16,
-    paddingRight: -SPACING.space_24,
+    paddingLeft: SPACING.space_8,
+    paddingRight: -SPACING.space_16,
   },
   contentFlatListMarket: {
     gap: 16,
@@ -253,10 +257,14 @@ const styles = StyleSheet.create({
   outStandingContainer: {
     marginTop: SPACING.space_24,
     gap: SPACING.space_8,
-    paddingHorizontal: SPACING.space_16,
+    paddingHorizontal: SPACING.space_8,
   },
   liveContainer: {
     backgroundColor: COLORS.primaryWhiteHex,
     marginTop: SPACING.space_16,
+    paddingHorizontal: 0,
+  },
+  contentLiveContainer: {
+    paddingHorizontal: SPACING.space_8,
   },
 });

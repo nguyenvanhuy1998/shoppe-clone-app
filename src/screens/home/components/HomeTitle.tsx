@@ -1,11 +1,10 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {
   ButtonSecondaryComponent,
   RowComponent,
   TextComponent,
 } from '../../../components';
-import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../../constants';
+import {COLORS, FONT_FAMILY, FONTSIZE} from '../../../constants';
 import {globalStyles} from '../../../styles';
 
 interface Props {
@@ -14,7 +13,8 @@ interface Props {
 }
 const HomeTitle = ({title, textButton}: Props) => {
   return (
-    <RowComponent style={[globalStyles.jusBetween, styles.container]}>
+    <RowComponent
+      style={[globalStyles.jusBetween, globalStyles.sectionSecondary]}>
       <TextComponent
         text={title}
         color={COLORS.primaryOrangeHex}
@@ -34,9 +34,3 @@ const HomeTitle = ({title, textButton}: Props) => {
 };
 
 export default HomeTitle;
-
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: SPACING.space_8,
-  },
-});
