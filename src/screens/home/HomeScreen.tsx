@@ -1,5 +1,6 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
+import CountDown from 'react-native-countdown-component';
 import {useSharedValue} from 'react-native-reanimated';
 import Carousel, {
   ICarouselInstance,
@@ -27,6 +28,7 @@ import {
   WIDTH,
 } from '../../constants';
 import {globalStyles} from '../../styles';
+import {gapNumber} from '../../utils/spacing';
 import {
   BannerItem,
   HomeTitle,
@@ -38,19 +40,20 @@ import {
 import {bannerData} from './data/banner';
 import {liveData} from './data/live';
 import {marketData} from './data/market';
-import {gapNumber} from '../../utils/spacing';
+import {useCountdown} from '../../hooks/useCountdown';
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const refCarousel = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
-
+  const time = 1000;
   const onPressPagination = (index: number) => {
     refCarousel.current?.scrollTo({
       count: index - progress.value,
       animated: true,
     });
   };
+  console.log('123');
   return (
     <ContainerComponent barStyle="light-content" type="noSafeArea">
       {/* Header Home */}
@@ -188,7 +191,7 @@ const HomeScreen = () => {
         </RowComponent>
       </SectionSecondaryComponent>
       {/* Shopee live siêu rẻ */}
-      <SectionSecondaryComponent style={styles.liveContainer}>
+      <SectionSecondaryComponent style={styles.sectionContainer}>
         <HomeTitle title="SHOPEE LIVE SIÊU RẺ" textButton="Xem thêm" />
         <FlatList
           alwaysBounceHorizontal={false}
@@ -197,6 +200,24 @@ const HomeScreen = () => {
           horizontal
           data={liveData}
           renderItem={({item}) => <LiveItem item={item} />}
+        />
+      </SectionSecondaryComponent>
+      {/* FLASH SALE */}
+      <SectionSecondaryComponent style={styles.sectionContainer}>
+        <HomeTitle
+          title="FLASH SALE"
+          textButton="Xem tất cả"
+          countdown={
+            <CountDown
+              size={10}
+              until={time}
+              digitStyle={globalStyles.digitContainer}
+              digitTxtStyle={globalStyles.digitText}
+              timeToShow={['H', 'M', 'S']}
+              timeLabels={{h: '', m: '', s: ''}}
+              showSeparator
+            />
+          }
         />
       </SectionSecondaryComponent>
     </ContainerComponent>
@@ -259,7 +280,7 @@ const styles = StyleSheet.create({
     gap: SPACING.space_8,
     paddingHorizontal: SPACING.space_8,
   },
-  liveContainer: {
+  sectionContainer: {
     backgroundColor: COLORS.primaryWhiteHex,
     marginTop: SPACING.space_16,
     paddingHorizontal: 0,

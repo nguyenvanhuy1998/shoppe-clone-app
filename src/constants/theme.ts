@@ -23,6 +23,7 @@ interface Color {
   primaryOrangeHex: string;
   secondaryOrangeHex: string;
   primaryBlackHex: string;
+  secondaryBlackHex: string;
   primaryYellowHex: string;
   primaryGreenHex: string;
   primaryGreyHex: string;
@@ -67,6 +68,7 @@ interface FontFamily {
   montserrat_thin: string;
 }
 export const COLORS: Color = {
+  secondaryBlackHex: '#333333',
   primaryYellowHex: '#FFC300',
   primaryRedHex: '#dd1717',
   primaryGreenHex: '#2AAA8A',

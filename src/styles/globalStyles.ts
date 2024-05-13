@@ -121,4 +121,12 @@ export const globalStyles = StyleSheet.create({
     borderRadius: BORDER_RADIUS.radius_4,
     overflow: 'hidden',
   },
+  digitContainer: {
+    backgroundColor: COLORS.secondaryBlackHex,
+  },
+  digitText: {
+    color: COLORS.primaryWhiteHex,
+    fontSize: FONTSIZE.size_12,
+    fontFamily: FONT_FAMILY.montserrat_medium,
+  },
 });
