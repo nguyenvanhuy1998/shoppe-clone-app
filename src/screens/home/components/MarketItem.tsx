@@ -21,7 +21,7 @@ const MarketItem = ({
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={[globalStyles.center, styles.iconContainer]}>
-        <Ionicons name={item.image} color={COLORS.primaryOrangeHex} />
+        <Ionicons name={item.image} color={item.colorIcon} />
       </View>
       <TextComponent
         text={item.title}
