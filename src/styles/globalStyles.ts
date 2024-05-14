@@ -131,7 +131,7 @@ export const globalStyles = StyleSheet.create({
     fontFamily: FONT_FAMILY.montserrat_medium,
   },
   contentListContainer: {
-    paddingHorizontal: SPACING.space_8,
+    padding: SPACING.space_8,
     ...gapNumber(8),
   },
 });

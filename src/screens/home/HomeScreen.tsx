@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import {useSharedValue} from 'react-native-reanimated';
@@ -39,23 +39,21 @@ import {
   TypePay,
 } from './components';
 import {bannerData} from './data/banner';
+import {dataFlashSale} from './data/flashsale';
 import {liveData} from './data/live';
 import {marketData} from './data/market';
-import {useCountdown} from '../../hooks/useCountdown';
-import {dataFlashSale} from './data/flashsale';
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
   const refCarousel = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
-  const time = 1000;
+  const time = 7200;
   const onPressPagination = (index: number) => {
     refCarousel.current?.scrollTo({
       count: index - progress.value,
       animated: true,
     });
   };
-  console.log('123');
   return (
     <ContainerComponent barStyle="light-content" type="noSafeArea">
       {/* Header Home */}
