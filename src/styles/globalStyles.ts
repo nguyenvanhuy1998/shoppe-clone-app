@@ -8,6 +8,7 @@ import {
   WIDTH,
 } from '../constants';
 import {createButtonStyle} from '../utils';
+import {gapNumber} from '../utils/spacing';
 
 export const globalStyles = StyleSheet.create({
   center: {
@@ -128,5 +129,9 @@ export const globalStyles = StyleSheet.create({
     color: COLORS.primaryWhiteHex,
     fontSize: FONTSIZE.size_12,
     fontFamily: FONT_FAMILY.montserrat_medium,
+  },
+  contentListContainer: {
+    paddingHorizontal: SPACING.space_8,
+    ...gapNumber(8),
   },
 });

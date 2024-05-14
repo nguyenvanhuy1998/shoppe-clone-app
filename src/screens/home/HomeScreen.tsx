@@ -31,6 +31,7 @@ import {globalStyles} from '../../styles';
 import {gapNumber} from '../../utils/spacing';
 import {
   BannerItem,
+  FlashSaleItem,
   HomeTitle,
   LiveItem,
   MarketItem,
@@ -41,6 +42,7 @@ import {bannerData} from './data/banner';
 import {liveData} from './data/live';
 import {marketData} from './data/market';
 import {useCountdown} from '../../hooks/useCountdown';
+import {dataFlashSale} from './data/flashsale';
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
@@ -196,7 +198,7 @@ const HomeScreen = () => {
         <FlatList
           alwaysBounceHorizontal={false}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={[styles.contentLiveContainer, gapNumber(8)]}
+          contentContainerStyle={globalStyles.contentListContainer}
           horizontal
           data={liveData}
           renderItem={({item}) => <LiveItem item={item} />}
@@ -218,6 +220,14 @@ const HomeScreen = () => {
               showSeparator
             />
           }
+        />
+        <FlatList
+          alwaysBounceHorizontal={false}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          data={dataFlashSale}
+          contentContainerStyle={globalStyles.contentListContainer}
+          renderItem={({item}) => <FlashSaleItem item={item} />}
         />
       </SectionSecondaryComponent>
     </ContainerComponent>
@@ -284,8 +294,5 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primaryWhiteHex,
     marginTop: SPACING.space_16,
     paddingHorizontal: 0,
-  },
-  contentLiveContainer: {
-    paddingHorizontal: SPACING.space_8,
   },
 });
