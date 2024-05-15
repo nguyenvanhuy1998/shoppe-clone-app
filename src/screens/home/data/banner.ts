@@ -27,3 +27,25 @@ export const bannerData: BannerProps[] = [
     image: images.banner05,
   },
 ];
+export const bannerServices: BannerProps[] = [
+  {
+    id: '1',
+    image: images.service01,
+  },
+  {
+    id: '2',
+    image: images.service02,
+  },
+  {
+    id: '3',
+    image: images.service03,
+  },
+  {
+    id: '4',
+    image: images.service04,
+  },
+  {
+    id: '5',
+    image: images.service05,
+  },
+];

@@ -15,7 +15,7 @@ import {
   SPACING,
   WIDTH,
 } from '../../../constants';
-import {createSpacing} from '../../../utils';
+import {spacingTop} from '../../../utils';
 import {formatVND} from '../../../utils/utils';
 import {globalStyles} from '../../../styles';
 interface Props {
@@ -31,12 +31,13 @@ const FlashSaleItem = ({item, onPress}: Props) => {
         height={SPACING.space_10 * 15}
       />
       <TextComponent
-        style={createSpacing(0.4)}
+        style={spacingTop(SPACING.space_4)}
         text={formatVND(item.price)}
         textAlign="center"
         color={COLORS.primaryOrangeHex}
       />
-      <RowComponent style={[styles.countByContainer, createSpacing(0.4)]}>
+      <RowComponent
+        style={[styles.countByContainer, spacingTop(SPACING.space_4)]}>
         <View style={styles.countByIn} />
         <TextComponent
           style={globalStyles.flexOne}

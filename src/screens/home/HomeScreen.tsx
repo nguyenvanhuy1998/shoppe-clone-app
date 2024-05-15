@@ -1,15 +1,12 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
 import CountDown from 'react-native-countdown-component';
-import {useSharedValue} from 'react-native-reanimated';
-import Carousel, {
-  ICarouselInstance,
-  Pagination,
-} from 'react-native-reanimated-carousel';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Scan} from '../../assets/svg';
 import {
+  ButtonIconWithBadge,
   ButtonSecondaryComponent,
+  CarouselComponent,
   ContainerComponent,
   DotTextComponent,
   Ionicons,
@@ -27,10 +24,15 @@ import {
   SPACING,
   WIDTH,
 } from '../../constants';
+import {useCarousel} from '../../hooks';
 import {globalStyles} from '../../styles';
-import {gapNumber} from '../../utils/spacing';
 import {
-  BannerItem,
+  createPositionStyle,
+  spacingTop,
+  gapNumber,
+  spacingLeft,
+} from '../../utils/spacing';
+import {
   FlashSaleItem,
   HomeTitle,
   LiveItem,
@@ -38,109 +40,76 @@ import {
   OutStanding,
   TypePay,
 } from './components';
-import {bannerData} from './data/banner';
+import {bannerData, bannerServices} from './data/banner';
 import {dataFlashSale} from './data/flashsale';
 import {liveData} from './data/live';
 import {marketData} from './data/market';
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
-  const refCarousel = useRef<ICarouselInstance>(null);
-  const progress = useSharedValue<number>(0);
   const time = 7200;
-  const onPressPagination = (index: number) => {
-    refCarousel.current?.scrollTo({
-      count: index - progress.value,
-      animated: true,
-    });
-  };
+  const {
+    refCarousel: refCarouselBanner,
+    progress: progressBanner,
+    onPressPagination: onPressPaginationBanner,
+  } = useCarousel();
+  const {
+    refCarousel: refCarouselServices,
+    progress: progressServices,
+    onPressPagination: onPressPaginationServices,
+  } = useCarousel();
+
   return (
     <ContainerComponent barStyle="light-content" type="noSafeArea">
       {/* Header Home */}
-      <View>
-        <Carousel
-          ref={refCarousel}
-          loop
-          width={WIDTH}
-          height={WIDTH / 2}
-          autoPlay={true}
-          autoPlayInterval={3000}
-          data={bannerData}
-          onConfigurePanGesture={gestureChain =>
-            gestureChain.activeOffsetX([-10, 10])
-          }
-          scrollAnimationDuration={1000}
-          onProgressChange={progress}
-          renderItem={({item}) => <BannerItem item={item} />}
-        />
-        <RowComponent
-          style={[
-            styles.searchHeaderContainer,
-            {
-              top: insets.top,
-            },
-          ]}>
-          <RowComponent style={styles.inputContainer}>
-            <Ionicons
-              name="search-outline"
-              color={COLORS.secondaryGreyHex}
+      <CarouselComponent
+        ref={refCarouselBanner}
+        data={bannerData}
+        width={WIDTH}
+        height={WIDTH / 2}
+        progress={progressBanner}
+        onPressPagination={onPressPaginationBanner}
+        children={
+          <RowComponent
+            style={[
+              styles.searchHeaderContainer,
+              {
+                top: insets.top,
+              },
+            ]}>
+            <RowComponent style={styles.inputContainer}>
+              <Ionicons
+                name="search-outline"
+                color={COLORS.secondaryGreyHex}
+                onPress={() => {}}
+              />
+              <TextComponent
+                text="Search..."
+                color={COLORS.primaryOrangeHex}
+                style={[globalStyles.flexOne, spacingLeft(SPACING.space_8)]}
+              />
+              <Ionicons
+                name="camera-outline"
+                color={COLORS.secondaryGreyHex}
+                onPress={() => {}}
+              />
+            </RowComponent>
+            <ButtonIconWithBadge
+              iconName="cart-outline"
+              badgeText="1"
               onPress={() => {}}
             />
-            <SpaceComponent width={SPACING.space_8} />
-            <TextComponent
-              text="Search..."
-              color={COLORS.primaryOrangeHex}
-              style={[globalStyles.flexOne]}
-            />
-            <Ionicons
-              name="camera-outline"
-              color={COLORS.secondaryGreyHex}
+            <ButtonIconWithBadge
+              iconName="chatbubbles-outline"
+              badgeText="22"
+              styleContainer={spacingLeft(SPACING.space_8)}
               onPress={() => {}}
             />
           </RowComponent>
-          <ButtonSecondaryComponent
-            type="icon"
-            onPress={() => {}}
-            childrenIcon={
-              <>
-                <Ionicons
-                  name="cart-outline"
-                  color={COLORS.primaryWhiteHex}
-                  size="extraLarge"
-                />
-                <DotTextComponent text="1" />
-              </>
-            }
-          />
-          <SpaceComponent width={SPACING.space_8} />
-          <ButtonSecondaryComponent
-            type="icon"
-            onPress={() => {}}
-            childrenIcon={
-              <>
-                <Ionicons
-                  name="chatbubbles-outline"
-                  color={COLORS.primaryWhiteHex}
-                  size="extraLarge"
-                />
-                <DotTextComponent text="22" />
-              </>
-            }
-          />
-        </RowComponent>
-        <Pagination.Basic
-          progress={progress}
-          data={bannerData}
-          dotStyle={globalStyles.dot}
-          activeDotStyle={{
-            backgroundColor: COLORS.primaryOrangeHex,
-          }}
-          containerStyle={styles.paginationContainer}
-          onPress={onPressPagination}
-        />
-      </View>
+        }
+      />
       {/* Market Shopee */}
-      <SectionSecondaryComponent style={styles.categoryListContainer}>
+      <SectionSecondaryComponent style={[globalStyles.resetContainer]}>
         <RowComponent
           style={[globalStyles.sectionSecondary, styles.typePageContainer]}>
           <ButtonSecondaryComponent
@@ -191,7 +160,8 @@ const HomeScreen = () => {
         </RowComponent>
       </SectionSecondaryComponent>
       {/* Shopee live siêu rẻ */}
-      <SectionSecondaryComponent style={styles.sectionContainer}>
+      <SectionSecondaryComponent
+        style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
         <HomeTitle title="SHOPEE LIVE SIÊU RẺ" textButton="Xem thêm" />
         <FlatList
           alwaysBounceHorizontal={false}
@@ -203,7 +173,8 @@ const HomeScreen = () => {
         />
       </SectionSecondaryComponent>
       {/* FLASH SALE */}
-      <SectionSecondaryComponent style={styles.sectionContainer}>
+      <SectionSecondaryComponent
+        style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
         <HomeTitle
           title="FLASH SALE"
           textButton="Xem tất cả"
@@ -228,6 +199,21 @@ const HomeScreen = () => {
           renderItem={({item}) => <FlashSaleItem item={item} />}
         />
       </SectionSecondaryComponent>
+      {/* SERVICES */}
+      <SectionSecondaryComponent
+        style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
+        <HomeTitle title="NẠP THẺ & DỊCH VỤ" textButton="Xem thêm" />
+        <CarouselComponent
+          ref={refCarouselServices}
+          styleContainer={styles.serviceBannerCarousel}
+          data={bannerServices}
+          height={(WIDTH - SPACING.space_16) / 4}
+          width={WIDTH - SPACING.space_16}
+          progress={progressServices}
+          onPressPagination={onPressPaginationServices}
+          stylePaginationContainer={styles.paginationServiceContainer}
+        />
+      </SectionSecondaryComponent>
     </ContainerComponent>
   );
 };
@@ -244,16 +230,6 @@ const styles = StyleSheet.create({
     ...globalStyles.flexOne,
     ...globalStyles.inputSecondContainer,
   },
-  paginationContainer: {
-    gap: SPACING.space_8,
-    position: 'absolute',
-    alignItems: 'center',
-    bottom: SPACING.space_16,
-  },
-  categoryListContainer: {
-    backgroundColor: COLORS.primaryWhiteHex,
-    paddingHorizontal: 0,
-  },
   typePageContainer: {
     backgroundColor: COLORS.primaryWhiteHex,
     borderRadius: BORDER_RADIUS.radius_8,
@@ -267,9 +243,7 @@ const styles = StyleSheet.create({
     paddingLeft: SPACING.space_8,
     paddingRight: -SPACING.space_16,
   },
-  contentFlatListMarket: {
-    gap: 16,
-  },
+
   lineListContainer: {
     borderRadius: BORDER_RADIUS.radius_4,
     height: SPACING.space_4,
@@ -288,9 +262,11 @@ const styles = StyleSheet.create({
     gap: SPACING.space_8,
     paddingHorizontal: SPACING.space_8,
   },
-  sectionContainer: {
-    backgroundColor: COLORS.primaryWhiteHex,
-    marginTop: SPACING.space_16,
-    paddingHorizontal: 0,
+  serviceBannerCarousel: {
+    paddingHorizontal: SPACING.space_8,
+    alignSelf: 'center',
+  },
+  paginationServiceContainer: {
+    bottom: SPACING.space_8,
   },
 });

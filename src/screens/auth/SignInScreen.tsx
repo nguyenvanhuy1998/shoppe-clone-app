@@ -19,7 +19,7 @@ import {AppContext} from '../../contexts/AppContext';
 import {AuthNavigatorParamList} from '../../navigator/AuthNavigator';
 import {globalStyles} from '../../styles';
 import {ErrorResponse} from '../../types/utils.type';
-import {createSpacing, isAxiosUnprocessableEntityError} from '../../utils';
+import {spacingTop, isAxiosUnprocessableEntityError} from '../../utils';
 import {AuthSchema, schema} from '../../utils/rules';
 import {LoadingModal} from '../../modals';
 
@@ -119,14 +119,14 @@ const SignInScreen = ({navigation}: Props) => {
         {/* Sign In */}
         <ButtonComponent
           disabled={loginMutation.isPending}
-          style={createSpacing(5)}
+          style={spacingTop(SPACING.space_10 * 5)}
           onPress={onSubmit}
           text="Sign In"
           backgroundColor={COLORS.primaryOrangeHex}
           color={COLORS.primaryWhiteHex}
         />
         {/* Other */}
-        <RowComponent style={createSpacing(5)}>
+        <RowComponent style={spacingTop(SPACING.space_10 * 5)}>
           <SpaceComponent
             style={globalStyles.flexOne}
             height={1}
@@ -143,7 +143,7 @@ const SignInScreen = ({navigation}: Props) => {
           />
         </RowComponent>
         {/* Login with Google && Facebook */}
-        <RowComponent style={createSpacing(3)}>
+        <RowComponent style={spacingTop(SPACING.space_10 * 3)}>
           <ButtonComponent
             icon="facebook"
             iconSize={SPACING.space_24}

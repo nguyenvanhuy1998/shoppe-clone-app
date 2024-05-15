@@ -14,6 +14,8 @@ import ButtonSecondaryComponent from './ButtonSecondaryComponent';
 import DotTextComponent from './DotTextComponent';
 import SectionSecondaryComponent from './SectionSecondaryComponent';
 import LineVerticalComponent from './LineVerticalComponent';
+import CarouselComponent from './CarouselComponent';
+import ButtonIconWithBadge from './ButtonIconWithBadge';
 
 export {
   ContainerComponent,
@@ -32,4 +34,6 @@ export {
   DotTextComponent,
   SectionSecondaryComponent,
   LineVerticalComponent,
+  CarouselComponent,
+  ButtonIconWithBadge,
 };

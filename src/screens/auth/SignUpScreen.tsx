@@ -14,7 +14,7 @@ import {
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
-import {createSpacing, isAxiosUnprocessableEntityError} from '../../utils';
+import {spacingTop, isAxiosUnprocessableEntityError} from '../../utils';
 import {AuthNavigatorParamList} from '../../navigator/AuthNavigator';
 import {AuthSchema, schema} from '../../utils/rules';
 import {useMutation} from '@tanstack/react-query';
@@ -121,14 +121,14 @@ const SignUpScreen = ({navigation}: Props) => {
         />
         {/* SignUp */}
         <ButtonComponent
-          style={createSpacing(2)}
+          style={spacingTop(SPACING.space_20)}
           onPress={onSubmit}
           text="Sign Up"
           backgroundColor={COLORS.primaryOrangeHex}
           color={COLORS.primaryWhiteHex}
         />
         {/* Other */}
-        <RowComponent style={createSpacing(5)}>
+        <RowComponent style={spacingTop(SPACING.space_10 * 5)}>
           <SpaceComponent
             style={globalStyles.flexOne}
             height={1}
@@ -145,7 +145,7 @@ const SignUpScreen = ({navigation}: Props) => {
           />
         </RowComponent>
         {/* Login with Google && Facebook */}
-        <RowComponent style={createSpacing(3)}>
+        <RowComponent style={spacingTop(SPACING.space_30)}>
           <ButtonComponent
             icon="facebook"
             iconSize={SPACING.space_24}

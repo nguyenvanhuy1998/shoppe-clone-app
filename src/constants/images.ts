@@ -15,6 +15,11 @@ export const flashSale01 = require('../assets/images/flash-sale-01.png');
 export const flashSale02 = require('../assets/images/flash-sale-02.png');
 export const flashSale03 = require('../assets/images/flash-sale-03.jpeg');
 export const flashSale04 = require('../assets/images/flash-sale-04.jpeg');
+export const service01 = require('../assets/images/service-01.jpg');
+export const service02 = require('../assets/images/service-02.jpg');
+export const service03 = require('../assets/images/service-03.jpg');
+export const service04 = require('../assets/images/service-04.jpg');
+export const service05 = require('../assets/images/service-05.jpg');
 
 export default {
   logo,
@@ -34,4 +39,9 @@ export default {
   flashSale02,
   flashSale03,
   flashSale04,
+  service01,
+  service02,
+  service03,
+  service04,
+  service05,
 };

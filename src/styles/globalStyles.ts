@@ -101,12 +101,6 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 99,
     backgroundColor: COLORS.primaryOrangeHex,
   },
-  dot: {
-    width: SPACING.space_8,
-    height: SPACING.space_8,
-    borderRadius: 99,
-    backgroundColor: COLORS.secondaryGreyHex,
-  },
   buttonBoth: {
     borderRadius: 99,
     flexDirection: 'row',
@@ -133,5 +127,9 @@ export const globalStyles = StyleSheet.create({
   contentListContainer: {
     padding: SPACING.space_8,
     ...gapNumber(8),
+  },
+  resetContainer: {
+    backgroundColor: COLORS.primaryWhiteHex,
+    paddingHorizontal: 0,
   },
 });
