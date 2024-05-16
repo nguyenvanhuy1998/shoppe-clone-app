@@ -8,15 +8,16 @@ import {
 } from 'react-native';
 import {COLORS, FONT_FAMILY, FONTSIZE, images, SPACING} from '../constants';
 import {globalStyles} from '../styles';
-import {spacingLeft, spacingRight, spacingTop} from '../utils';
-import ImageComponent from './ImageComponent';
 import {WIDTH_PRODUCT} from '../styles/globalStyles';
-import LabelProductComponent from './LabelProductComponent';
-import DiscountProductComponent from './DiscountProductComponent';
-import TextComponent from './TextComponent';
-import RowComponent from './RowComponent';
-import MaterialIcons from './MaterialIcons';
+import {spacingLeft, spacingRight} from '../utils';
+import {gapNumber} from '../utils/spacing';
 import {formatVND} from '../utils/utils';
+import DiscountProductComponent from './DiscountProductComponent';
+import ImageComponent from './ImageComponent';
+import LabelProductComponent from './LabelProductComponent';
+import MaterialIcons from './MaterialIcons';
+import RowComponent from './RowComponent';
+import TextComponent from './TextComponent';
 
 interface Props {
   onPress?: () => void;
@@ -37,7 +38,12 @@ const ProductComponent = ({onPress, style}: Props) => {
         backgroundColor={COLORS.primaryWhitePinkHex}
         text={String(28)}
       />
-      <View style={[globalStyles.sectionSecondary, globalStyles.flexOne]}>
+      <View
+        style={[
+          globalStyles.sectionSecondary,
+          globalStyles.flexOne,
+          gapNumber(8),
+        ]}>
         <TextComponent
           numberOfLines={2}
           color={COLORS.primaryBlackHex}
@@ -46,8 +52,7 @@ const ProductComponent = ({onPress, style}: Props) => {
           }
           fontSize={FONTSIZE.size_12}
         />
-        <RowComponent
-          style={[styles.starContainer, globalStyles.jusCenter, spacingTop(8)]}>
+        <RowComponent style={[styles.starContainer, globalStyles.jusCenter]}>
           <MaterialIcons
             name="star"
             color={COLORS.primaryYellowHex}
@@ -60,7 +65,7 @@ const ProductComponent = ({onPress, style}: Props) => {
             color={COLORS.primaryBlackHex}
           />
         </RowComponent>
-        <RowComponent style={[globalStyles.jusBetween, spacingTop(8)]}>
+        <RowComponent style={[globalStyles.jusBetween]}>
           <TextComponent
             style={[globalStyles.flexOne, spacingRight(4)]}
             text={formatVND(335000)}
