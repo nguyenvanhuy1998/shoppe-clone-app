@@ -16,6 +16,7 @@ import SectionSecondaryComponent from './SectionSecondaryComponent';
 import LineVerticalComponent from './LineVerticalComponent';
 import CarouselComponent from './CarouselComponent';
 import ButtonIconWithBadge from './ButtonIconWithBadge';
+import ProductComponent from './ProductComponent';
 
 export {
   ContainerComponent,
@@ -36,4 +37,5 @@ export {
   LineVerticalComponent,
   CarouselComponent,
   ButtonIconWithBadge,
+  ProductComponent,
 };

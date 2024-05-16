@@ -8,12 +8,11 @@ import {
   ButtonSecondaryComponent,
   CarouselComponent,
   ContainerComponent,
-  DotTextComponent,
   Ionicons,
   LineVerticalComponent,
+  ProductComponent,
   RowComponent,
   SectionSecondaryComponent,
-  SpaceComponent,
   TextComponent,
 } from '../../components';
 import {
@@ -27,10 +26,10 @@ import {
 import {useCarousel} from '../../hooks';
 import {globalStyles} from '../../styles';
 import {
-  createPositionStyle,
-  spacingTop,
   gapNumber,
+  spacingBottom,
   spacingLeft,
+  spacingTop,
 } from '../../utils/spacing';
 import {
   FlashSaleItem,
@@ -38,12 +37,14 @@ import {
   LiveItem,
   MarketItem,
   OutStanding,
+  ServiceItem,
   TypePay,
 } from './components';
 import {bannerData, bannerServices} from './data/banner';
 import {dataFlashSale} from './data/flashsale';
 import {liveData} from './data/live';
 import {marketData} from './data/market';
+import {services} from './data/services';
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
@@ -166,7 +167,10 @@ const HomeScreen = () => {
         <FlatList
           alwaysBounceHorizontal={false}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={globalStyles.contentListContainer}
+          contentContainerStyle={[
+            globalStyles.horizontalSpacing8,
+            gapNumber(8),
+          ]}
           horizontal
           data={liveData}
           renderItem={({item}) => <LiveItem item={item} />}
@@ -195,7 +199,10 @@ const HomeScreen = () => {
           showsHorizontalScrollIndicator={false}
           horizontal
           data={dataFlashSale}
-          contentContainerStyle={globalStyles.contentListContainer}
+          contentContainerStyle={[
+            globalStyles.horizontalSpacing8,
+            gapNumber(8),
+          ]}
           renderItem={({item}) => <FlashSaleItem item={item} />}
         />
       </SectionSecondaryComponent>
@@ -205,13 +212,34 @@ const HomeScreen = () => {
         <HomeTitle title="NẠP THẺ & DỊCH VỤ" textButton="Xem thêm" />
         <CarouselComponent
           ref={refCarouselServices}
-          styleContainer={styles.serviceBannerCarousel}
+          styleContainer={[styles.serviceBannerCarousel, spacingBottom(8)]}
           data={bannerServices}
           height={(WIDTH - SPACING.space_16) / 4}
           width={WIDTH - SPACING.space_16}
           progress={progressServices}
           onPressPagination={onPressPaginationServices}
-          stylePaginationContainer={styles.paginationServiceContainer}
+        />
+        <FlatList
+          alwaysBounceHorizontal={false}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          data={services}
+          contentContainerStyle={[
+            globalStyles.horizontalSpacing8,
+            gapNumber(8),
+          ]}
+          renderItem={({item}) => <ServiceItem item={item} />}
+        />
+      </SectionSecondaryComponent>
+      {/* SUGGEST */}
+      <SectionSecondaryComponent
+        style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
+        <HomeTitle title="GỢI Ý HÔM NAY" />
+        <FlatList
+          scrollEnabled={false}
+          numColumns={2}
+          data={Array(30).fill(0)}
+          renderItem={() => <ProductComponent />}
         />
       </SectionSecondaryComponent>
     </ContainerComponent>
@@ -265,8 +293,5 @@ const styles = StyleSheet.create({
   serviceBannerCarousel: {
     paddingHorizontal: SPACING.space_8,
     alignSelf: 'center',
-  },
-  paginationServiceContainer: {
-    bottom: SPACING.space_8,
   },
 });

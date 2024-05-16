@@ -27,6 +27,7 @@ interface Color {
   primaryYellowHex: string;
   primaryGreenHex: string;
   primaryGreyHex: string;
+  primaryGreenOpacity: string;
   thirdGreyHex: string;
   secondaryGreyHex: string;
   secondaryWhiteHex: string;
@@ -83,6 +84,7 @@ export const COLORS: Color = {
   primaryDangerousHex: '#ff0505',
   primaryModal: 'rgba(0, 0, 0, 0.5)',
   primaryBlueHex: '#00FFFF',
+  primaryGreenOpacity: '#EFE1C6CC',
 };
 export const SPACING: Spacing = {
   space_2: 2,

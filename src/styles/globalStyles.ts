@@ -124,12 +124,15 @@ export const globalStyles = StyleSheet.create({
     fontSize: FONTSIZE.size_12,
     fontFamily: FONT_FAMILY.montserrat_medium,
   },
-  contentListContainer: {
-    padding: SPACING.space_8,
-    ...gapNumber(8),
-  },
+
   resetContainer: {
     backgroundColor: COLORS.primaryWhiteHex,
     paddingHorizontal: 0,
+  },
+  horizontalSpacing8: {
+    paddingHorizontal: SPACING.space_8,
+  },
+  verticalSpacing8: {
+    paddingVertical: SPACING.space_8,
   },
 });

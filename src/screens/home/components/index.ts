@@ -5,6 +5,7 @@ import OutStanding from './OutStanding';
 import HomeTitle from './HomeTitle';
 import LiveItem from './LiveItem';
 import FlashSaleItem from './FlashSaleItem';
+import ServiceItem from './ServiceItem';
 export {
   BannerItem,
   TypePay,
@@ -13,4 +14,5 @@ export {
   HomeTitle,
   LiveItem,
   FlashSaleItem,
+  ServiceItem,
 };

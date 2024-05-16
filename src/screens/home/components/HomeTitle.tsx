@@ -10,7 +10,7 @@ import {globalStyles} from '../../../styles';
 
 interface Props {
   title: string;
-  textButton: string;
+  textButton?: string;
   countdown?: ReactNode;
 }
 const HomeTitle = ({title, textButton, countdown}: Props) => {
@@ -27,14 +27,16 @@ const HomeTitle = ({title, textButton, countdown}: Props) => {
         {countdown && <SpaceComponent width={SPACING.space_4} />}
         {countdown && countdown}
       </RowComponent>
-      <ButtonSecondaryComponent
-        type="both"
-        text={textButton}
-        color={COLORS.thirdGreyHex}
-        nameIcon="arrow-forward"
-        colorIcon={COLORS.thirdGreyHex}
-        backgroundColor={'transparent'}
-      />
+      {textButton && (
+        <ButtonSecondaryComponent
+          type="both"
+          text={textButton}
+          color={COLORS.thirdGreyHex}
+          nameIcon="arrow-forward"
+          colorIcon={COLORS.thirdGreyHex}
+          backgroundColor={'transparent'}
+        />
+      )}
     </RowComponent>
   );
 };
