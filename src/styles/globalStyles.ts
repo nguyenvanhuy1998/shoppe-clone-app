@@ -4,12 +4,13 @@ import {
   COLORS,
   FONT_FAMILY,
   FONTSIZE,
+  SHADOW,
   SPACING,
   WIDTH,
 } from '../constants';
 import {createButtonStyle} from '../utils';
-import {gapNumber} from '../utils/spacing';
 
+export const WIDTH_PRODUCT = (WIDTH - SPACING.space_24) / 2;
 export const globalStyles = StyleSheet.create({
   center: {
     alignItems: 'center',
@@ -134,5 +135,11 @@ export const globalStyles = StyleSheet.create({
   },
   verticalSpacing8: {
     paddingVertical: SPACING.space_8,
+  },
+  product: {
+    backgroundColor: COLORS.primaryWhiteHex,
+    width: WIDTH_PRODUCT,
+    minHeight: WIDTH_PRODUCT * 1.5,
+    ...SHADOW.primary,
   },
 });

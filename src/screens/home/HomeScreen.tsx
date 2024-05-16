@@ -235,13 +235,19 @@ const HomeScreen = () => {
       <SectionSecondaryComponent
         style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
         <HomeTitle title="GỢI Ý HÔM NAY" />
-        <FlatList
-          scrollEnabled={false}
-          numColumns={2}
-          data={Array(30).fill(0)}
-          renderItem={() => <ProductComponent />}
-        />
       </SectionSecondaryComponent>
+      {/* Product List */}
+      <FlatList
+        scrollEnabled={false}
+        contentContainerStyle={[
+          gapNumber(8),
+          spacingLeft(8),
+          globalStyles.verticalSpacing8,
+        ]}
+        numColumns={2}
+        data={Array(30).fill(0)}
+        renderItem={() => <ProductComponent />}
+      />
     </ContainerComponent>
   );
 };

@@ -35,6 +35,8 @@ interface Color {
   primaryRedHex: string;
   primaryModal: string;
   primaryBlueHex: string;
+  primaryWhitePinkHex: string;
+  primaryYellowPastelHex: string;
 }
 interface FontSize {
   size_8: number;
@@ -85,6 +87,8 @@ export const COLORS: Color = {
   primaryModal: 'rgba(0, 0, 0, 0.5)',
   primaryBlueHex: '#00FFFF',
   primaryGreenOpacity: '#EFE1C6CC',
+  primaryWhitePinkHex: '#ffeaea',
+  primaryYellowPastelHex: '#FFFDD1',
 };
 export const SPACING: Spacing = {
   space_2: 2,

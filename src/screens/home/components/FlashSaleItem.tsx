@@ -1,7 +1,9 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {
+  DiscountProductComponent,
   ImageComponent,
+  LabelProductComponent,
   MaterialIcons,
   RowComponent,
   TextComponent,
@@ -47,22 +49,8 @@ const FlashSaleItem = ({item, onPress}: Props) => {
           color={COLORS.primaryWhiteHex}
         />
       </RowComponent>
-      <View style={[styles.iconContainer, globalStyles.center]}>
-        <MaterialIcons
-          name="local-mall"
-          color={COLORS.primaryWhiteHex}
-          size="small"
-        />
-      </View>
-      <RowComponent style={styles.discountContainer}>
-        <MaterialIcons name="flash-on" color={COLORS.primaryRedHex} />
-        <TextComponent
-          text={`-${item.discount}%`}
-          color={COLORS.primaryOrangeHex}
-          fontFamily={FONT_FAMILY.montserrat_medium}
-          fontSize={FONTSIZE.size_12}
-        />
-      </RowComponent>
+      <LabelProductComponent />
+      <DiscountProductComponent icon="flash-on" text={String(item.discount)} />
     </TouchableOpacity>
   );
 };
@@ -74,22 +62,6 @@ const styles = StyleSheet.create({
     width: WIDTH / 3 + SPACING.space_32,
     borderWidth: 0.5,
     borderColor: COLORS.primaryGreyHex,
-  },
-  iconContainer: {
-    position: 'absolute',
-    left: -SPACING.space_2,
-    top: 0,
-    width: SPACING.space_32,
-    paddingVertical: SPACING.space_2,
-    backgroundColor: COLORS.primaryRedHex,
-    borderTopRightRadius: BORDER_RADIUS.radius_4,
-    borderBottomRightRadius: BORDER_RADIUS.radius_4,
-  },
-  discountContainer: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    backgroundColor: COLORS.primaryYellowHex,
   },
   countByContainer: {
     backgroundColor: COLORS.primaryGreyHex,

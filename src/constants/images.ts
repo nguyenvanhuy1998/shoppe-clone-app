@@ -20,6 +20,7 @@ export const service02 = require('../assets/images/service-02.jpg');
 export const service03 = require('../assets/images/service-03.jpg');
 export const service04 = require('../assets/images/service-04.jpg');
 export const service05 = require('../assets/images/service-05.jpg');
+export const shirt = require('../assets/images/shirt.webp');
 
 export default {
   logo,
@@ -44,4 +45,5 @@ export default {
   service03,
   service04,
   service05,
+  shirt,
 };
