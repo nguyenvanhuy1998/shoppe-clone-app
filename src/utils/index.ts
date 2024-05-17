@@ -7,7 +7,11 @@ import {
   spacingBottom,
   spacingRight,
 } from './spacing';
-import {isAxiosUnprocessableEntityError} from './utils';
+import {
+  isAxiosUnprocessableEntityError,
+  formatVND,
+  formatNumberToSocialStyle,
+} from './utils';
 export {
   createButtonStyle,
   spacingTop,
@@ -17,4 +21,6 @@ export {
   http,
   schema,
   isAxiosUnprocessableEntityError,
+  formatVND,
+  formatNumberToSocialStyle,
 };

@@ -2,15 +2,15 @@ import React, {useContext} from 'react';
 import {Button, View} from 'react-native';
 import {globalStyles} from '../styles';
 import {useMutation} from '@tanstack/react-query';
-import {logout} from '../apis/auth.api';
 import {AppContext} from '../contexts/AppContext';
 import {TextComponent} from '../components';
+import authApi from '../apis/auth.api';
 
 const ProfileScreen = () => {
   const {setIsAuthenticated, setProfile, profile} = useContext(AppContext);
 
   const logoutMutation = useMutation({
-    mutationFn: logout,
+    mutationFn: authApi.logout,
     onSuccess: () => {
       setIsAuthenticated(false);
       setProfile(null);

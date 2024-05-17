@@ -18,7 +18,7 @@ import {spacingTop, isAxiosUnprocessableEntityError} from '../../utils';
 import {AuthNavigatorParamList} from '../../navigator/AuthNavigator';
 import {AuthSchema, schema} from '../../utils/rules';
 import {useMutation} from '@tanstack/react-query';
-import {registerAccount} from '../../apis/auth.api';
+import authApi from '../../apis/auth.api';
 import {omit} from 'lodash';
 import {ErrorResponse} from '../../types/utils.type';
 import {AppContext} from '../../contexts/AppContext';
@@ -45,7 +45,7 @@ const SignUpScreen = ({navigation}: Props) => {
 
   const registerAccountMutation = useMutation({
     mutationFn: (body: Omit<FormData, 'confirmPassword'>) =>
-      registerAccount(body),
+      authApi.registerAccount(body),
   });
 
   const onSubmit = handleSubmit(data => {

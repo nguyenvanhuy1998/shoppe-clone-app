@@ -6,30 +6,36 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {COLORS, FONT_FAMILY, FONTSIZE, images, SPACING} from '../constants';
+import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../constants';
 import {globalStyles} from '../styles';
 import {WIDTH_PRODUCT} from '../styles/globalStyles';
-import {spacingLeft, spacingRight} from '../utils';
+import {
+  formatNumberToSocialStyle,
+  formatVND,
+  spacingLeft,
+  spacingRight,
+} from '../utils';
 import {gapNumber} from '../utils/spacing';
-import {formatVND} from '../utils/utils';
 import DiscountProductComponent from './DiscountProductComponent';
 import ImageComponent from './ImageComponent';
 import LabelProductComponent from './LabelProductComponent';
 import MaterialIcons from './MaterialIcons';
 import RowComponent from './RowComponent';
 import TextComponent from './TextComponent';
+import {Product} from '../types/product.type';
 
 interface Props {
+  product: Product;
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
 }
-const ProductComponent = ({onPress, style}: Props) => {
+const ProductComponent = ({onPress, style, product}: Props) => {
   return (
-    <TouchableOpacity
-      style={[globalStyles.product, spacingRight(8), style]}
-      onPress={onPress}>
+    <TouchableOpacity style={[globalStyles.product, style]} onPress={onPress}>
       <ImageComponent
-        source={images.flashSale01}
+        source={{
+          uri: product.image,
+        }}
         width={WIDTH_PRODUCT}
         height={WIDTH_PRODUCT}
       />
@@ -47,9 +53,7 @@ const ProductComponent = ({onPress, style}: Props) => {
         <TextComponent
           numberOfLines={2}
           color={COLORS.primaryBlackHex}
-          text={
-            'Sữa rửa mặt dưỡng ẩm da innisfree Green Tea Amino Cleansing Foam 150g'
-          }
+          text={product.name}
           fontSize={FONTSIZE.size_12}
         />
         <RowComponent style={[styles.starContainer, globalStyles.jusCenter]}>
@@ -68,11 +72,15 @@ const ProductComponent = ({onPress, style}: Props) => {
         <RowComponent style={[globalStyles.jusBetween]}>
           <TextComponent
             style={[globalStyles.flexOne, spacingRight(4)]}
-            text={formatVND(335000)}
+            text={`₫ ${formatVND(product.price)}`}
             color={COLORS.primaryOrangeHex}
+            fontSize={FONTSIZE.size_12}
             fontFamily={FONT_FAMILY.montserrat_medium}
           />
-          <TextComponent text={'Đã bán 1.3k'} fontSize={FONTSIZE.size_12} />
+          <TextComponent
+            text={`Đã bán ${formatNumberToSocialStyle(product.sold)}`}
+            fontSize={FONTSIZE.size_10}
+          />
         </RowComponent>
       </View>
     </TouchableOpacity>

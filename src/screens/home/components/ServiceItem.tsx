@@ -12,7 +12,7 @@ import {
 import {ServiceProps} from '../data/services';
 import {globalStyles} from '../../../styles';
 import {spacingLeft, spacingTop} from '../../../utils';
-import {formatVND} from '../../../utils/utils';
+import {formatVND} from '../../../utils';
 
 interface Props {
   item: ServiceProps;
@@ -70,10 +70,10 @@ const ServiceItem = ({item, onPress}: Props) => {
             }}
             fontSize={FONTSIZE.size_10}
             color={COLORS.thirdGreyHex}
-            text={formatVND(item.cost)}
+            text={`₫ ${formatVND(item.cost)}`}
           />
           <TextComponent
-            text={formatVND(item.price)}
+            text={`₫ ${formatVND(item.price)}`}
             fontSize={FONTSIZE.size_12}
             color={COLORS.primaryOrangeHex}
             fontFamily={FONT_FAMILY.montserrat_semibold}

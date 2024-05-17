@@ -3,7 +3,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useMutation} from '@tanstack/react-query';
 import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
-import {login} from '../../apis/auth.api';
+import authApi from '../../apis/auth.api';
 import {
   ButtonComponent,
   ContainerComponent,
@@ -43,7 +43,7 @@ const SignInScreen = ({navigation}: Props) => {
   });
 
   const loginMutation = useMutation({
-    mutationFn: (body: FormData) => login(body),
+    mutationFn: (body: FormData) => authApi.login(body),
   });
 
   const onSubmit = handleSubmit(data => {

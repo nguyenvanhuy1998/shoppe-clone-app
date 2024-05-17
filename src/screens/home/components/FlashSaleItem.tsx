@@ -4,22 +4,14 @@ import {
   DiscountProductComponent,
   ImageComponent,
   LabelProductComponent,
-  MaterialIcons,
   RowComponent,
   TextComponent,
 } from '../../../components';
-import {FlashSale} from '../data/flashsale';
-import {
-  BORDER_RADIUS,
-  COLORS,
-  FONT_FAMILY,
-  FONTSIZE,
-  SPACING,
-  WIDTH,
-} from '../../../constants';
-import {spacingTop} from '../../../utils';
-import {formatVND} from '../../../utils/utils';
+import {COLORS, FONTSIZE, SPACING, WIDTH} from '../../../constants';
 import {globalStyles} from '../../../styles';
+import {spacingTop} from '../../../utils';
+import {formatVND} from '../../../utils';
+import {FlashSale} from '../data/flashsale';
 interface Props {
   item: FlashSale;
   onPress?: () => void;
@@ -34,7 +26,7 @@ const FlashSaleItem = ({item, onPress}: Props) => {
       />
       <TextComponent
         style={spacingTop(SPACING.space_4)}
-        text={formatVND(item.price)}
+        text={`₫ ${formatVND(item.price)}`}
         textAlign="center"
         color={COLORS.primaryOrangeHex}
       />

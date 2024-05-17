@@ -1,5 +1,12 @@
 import React from 'react';
-import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Scan} from '../../assets/svg';
@@ -24,6 +31,7 @@ import {
   WIDTH,
 } from '../../constants';
 import {useCarousel} from '../../hooks';
+import {useInfiniteScroll} from '../../hooks/useInfiniteScroll';
 import {globalStyles} from '../../styles';
 import {
   gapNumber,
@@ -59,11 +67,18 @@ const HomeScreen = () => {
     progress: progressServices,
     onPressPagination: onPressPaginationServices,
   } = useCarousel();
+  const {data, isRefreshing, onRefresh, onEndReached, isFetchingNextPage} =
+    useInfiniteScroll({
+      key: 'products',
+      limit: 10,
+      filters: {},
+    });
+  console.log(data.length);
 
   return (
-    <ContainerComponent barStyle="light-content" type="noSafeArea">
+    <View>
       {/* Header Home */}
-      <CarouselComponent
+      {/* <CarouselComponent
         ref={refCarouselBanner}
         data={bannerData}
         width={WIDTH}
@@ -108,9 +123,9 @@ const HomeScreen = () => {
             />
           </RowComponent>
         }
-      />
+      /> */}
       {/* Market Shopee */}
-      <SectionSecondaryComponent style={[globalStyles.resetContainer]}>
+      {/* <SectionSecondaryComponent style={[globalStyles.resetContainer]}>
         <RowComponent
           style={[globalStyles.sectionSecondary, styles.typePageContainer]}>
           <ButtonSecondaryComponent
@@ -159,9 +174,9 @@ const HomeScreen = () => {
           <OutStanding style={globalStyles.flexOne} image={images.banner07} />
           <OutStanding image={images.banner08} />
         </RowComponent>
-      </SectionSecondaryComponent>
+      </SectionSecondaryComponent> */}
       {/* Shopee live siêu rẻ */}
-      <SectionSecondaryComponent
+      {/* <SectionSecondaryComponent
         style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
         <HomeTitle title="SHOPEE LIVE SIÊU RẺ" textButton="Xem thêm" />
         <FlatList
@@ -175,9 +190,9 @@ const HomeScreen = () => {
           data={liveData}
           renderItem={({item}) => <LiveItem item={item} />}
         />
-      </SectionSecondaryComponent>
+      </SectionSecondaryComponent> */}
       {/* FLASH SALE */}
-      <SectionSecondaryComponent
+      {/* <SectionSecondaryComponent
         style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
         <HomeTitle
           title="FLASH SALE"
@@ -205,9 +220,9 @@ const HomeScreen = () => {
           ]}
           renderItem={({item}) => <FlashSaleItem item={item} />}
         />
-      </SectionSecondaryComponent>
+      </SectionSecondaryComponent> */}
       {/* SERVICES */}
-      <SectionSecondaryComponent
+      {/* <SectionSecondaryComponent
         style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
         <HomeTitle title="NẠP THẺ & DỊCH VỤ" textButton="Xem thêm" />
         <CarouselComponent
@@ -230,25 +245,37 @@ const HomeScreen = () => {
           ]}
           renderItem={({item}) => <ServiceItem item={item} />}
         />
-      </SectionSecondaryComponent>
+      </SectionSecondaryComponent> */}
       {/* SUGGEST */}
-      <SectionSecondaryComponent
+      {/* <SectionSecondaryComponent
         style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
         <HomeTitle title="GỢI Ý HÔM NAY" />
-      </SectionSecondaryComponent>
+      </SectionSecondaryComponent> */}
       {/* Product List */}
       <FlatList
-        scrollEnabled={false}
-        contentContainerStyle={[
-          gapNumber(8),
-          spacingLeft(8),
-          globalStyles.verticalSpacing8,
-        ]}
         numColumns={2}
-        data={Array(30).fill(0)}
-        renderItem={() => <ProductComponent />}
+        initialNumToRender={10}
+        data={data}
+        contentContainerStyle={[gapNumber(8), globalStyles.horizontalSpacing8]}
+        columnWrapperStyle={gapNumber(8)}
+        renderItem={({item}) => <ProductComponent product={item} />}
+        onEndReached={onEndReached}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={onRefresh}
+            tintColor={COLORS.primaryOrangeHex}
+          />
+        }
+        ListFooterComponent={
+          <View style={styles.listFooterComponent}>
+            {isFetchingNextPage && (
+              <ActivityIndicator color={COLORS.primaryOrangeHex} />
+            )}
+          </View>
+        }
       />
-    </ContainerComponent>
+    </View>
   );
 };
 
@@ -299,5 +326,22 @@ const styles = StyleSheet.create({
   serviceBannerCarousel: {
     paddingHorizontal: SPACING.space_8,
     alignSelf: 'center',
+  },
+  listEmptyComponent: {
+    flexDirection: 'row',
+  },
+  listFooterComponent: {
+    flexDirection: 'row',
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  item: {
+    height: 100,
+    width: '100%',
+  },
+  contentContainerStyle: {
+    marginTop: 10,
+    padding: 10,
   },
 });

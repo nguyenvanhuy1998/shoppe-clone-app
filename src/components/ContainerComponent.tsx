@@ -1,7 +1,6 @@
 import React, {ReactNode} from 'react';
 import {
   ColorValue,
-  ScrollView,
   StatusBarStyle,
   StyleProp,
   View,
@@ -13,6 +12,7 @@ import {globalStyles} from '../styles';
 import FocusAwareStatusBar from './FocusAwareStatusBar';
 import {COLORS} from '../constants';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {ScrollView} from 'react-native-virtualized-view';
 
 interface Props {
   children: ReactNode;
@@ -52,7 +52,6 @@ const ContainerComponent = ({
   }) => (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      alwaysBounceVertical={false}
       contentContainerStyle={globalStyles.flexGrowOne}>
       {scrollChildren}
     </ScrollView>
