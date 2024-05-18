@@ -1,11 +1,26 @@
 import http from './http';
 import {schema} from './rules';
-import {createButtonStyle, createSpacing} from './spacing';
-import {isAxiosUnprocessableEntityError} from './utils';
+import {
+  createButtonStyle,
+  spacingTop,
+  spacingLeft,
+  spacingBottom,
+  spacingRight,
+} from './spacing';
+import {
+  isAxiosUnprocessableEntityError,
+  formatVND,
+  formatNumberToSocialStyle,
+} from './utils';
 export {
   createButtonStyle,
-  createSpacing,
+  spacingTop,
+  spacingLeft,
+  spacingBottom,
+  spacingRight,
   http,
   schema,
   isAxiosUnprocessableEntityError,
+  formatVND,
+  formatNumberToSocialStyle,
 };

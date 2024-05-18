@@ -1,4 +1,4 @@
-import {Platform} from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 
 interface Spacing {
   space_2: number;
@@ -15,6 +15,7 @@ interface Spacing {
   space_30: number;
   space_32: number;
   space_36: number;
+  space_56: number;
 }
 
 interface Color {
@@ -22,9 +23,20 @@ interface Color {
   primaryOrangeHex: string;
   secondaryOrangeHex: string;
   primaryBlackHex: string;
+  secondaryBlackHex: string;
+  primaryYellowHex: string;
+  primaryGreenHex: string;
   primaryGreyHex: string;
+  primaryGreenOpacity: string;
+  thirdGreyHex: string;
+  secondaryGreyHex: string;
   secondaryWhiteHex: string;
   primaryDangerousHex: string;
+  primaryRedHex: string;
+  primaryModal: string;
+  primaryBlueHex: string;
+  primaryWhitePinkHex: string;
+  primaryYellowPastelHex: string;
 }
 interface FontSize {
   size_8: number;
@@ -59,13 +71,24 @@ interface FontFamily {
   montserrat_thin: string;
 }
 export const COLORS: Color = {
+  secondaryBlackHex: '#333333',
+  primaryYellowHex: '#FFC300',
+  primaryRedHex: '#dd1717',
+  primaryGreenHex: '#2AAA8A',
   primaryWhiteHex: '#ffffff',
   secondaryWhiteHex: '#F7F8F9',
   primaryOrangeHex: '#FF5B2C',
   secondaryOrangeHex: '#ED4D2D',
   primaryBlackHex: '#3E4958',
   primaryGreyHex: '#D5DDE0',
+  thirdGreyHex: '#808080',
+  secondaryGreyHex: '#A9A9A9',
   primaryDangerousHex: '#ff0505',
+  primaryModal: 'rgba(0, 0, 0, 0.5)',
+  primaryBlueHex: '#00FFFF',
+  primaryGreenOpacity: '#EFE1C6CC',
+  primaryWhitePinkHex: '#ffeaea',
+  primaryYellowPastelHex: '#FFFDD1',
 };
 export const SPACING: Spacing = {
   space_2: 2,
@@ -82,6 +105,7 @@ export const SPACING: Spacing = {
   space_30: 30,
   space_32: 32,
   space_36: 36,
+  space_56: 56,
 };
 export const BORDER_RADIUS: BorderRadius = {
   radius_4: 4,
@@ -119,10 +143,34 @@ export const FONT_FAMILY: FontFamily = {
   montserrat_semibold: 'Montserrat-SemiBold',
   montserrat_thin: 'Montserrat-Thin',
 };
+export const IconSizes = {
+  small: 14,
+  medium: 18,
+  large: 24,
+  extraLarge: 28,
+};
+export const WIDTH = Dimensions.get('window').width;
+export const HEIGHT = Dimensions.get('window').height;
+export const SHADOW = {
+  primary: {
+    shadowColor: COLORS.primaryBlackHex,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+};
 const theme = {
   COLORS,
   OS,
   SPACING,
   FONT_FAMILY,
+  IconSizes,
+  WIDTH,
+  HEIGHT,
+  SHADOW,
 };
 export default theme;

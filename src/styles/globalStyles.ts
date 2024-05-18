@@ -4,10 +4,13 @@ import {
   COLORS,
   FONT_FAMILY,
   FONTSIZE,
+  SHADOW,
   SPACING,
+  WIDTH,
 } from '../constants';
 import {createButtonStyle} from '../utils';
 
+export const WIDTH_PRODUCT = (WIDTH - SPACING.space_24) / 2;
 export const globalStyles = StyleSheet.create({
   center: {
     alignItems: 'center',
@@ -19,8 +22,14 @@ export const globalStyles = StyleSheet.create({
   selfEnd: {
     alignSelf: 'flex-end',
   },
+  alignStart: {
+    alignItems: 'flex-start',
+  },
   jusCenter: {
     justifyContent: 'center',
+  },
+  jusBetween: {
+    justifyContent: 'space-between',
   },
   flexOne: {
     flex: 1,
@@ -56,6 +65,9 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: SPACING.space_36,
     paddingVertical: SPACING.space_20,
   },
+  sectionSecondary: {
+    padding: SPACING.space_8,
+  },
 
   inputContainer: {
     borderWidth: 0.5,
@@ -65,8 +77,71 @@ export const globalStyles = StyleSheet.create({
     minHeight: 60,
     paddingHorizontal: SPACING.space_16,
   },
+  inputSecondContainer: {
+    borderRadius: BORDER_RADIUS.radius_4,
+    minHeight: SPACING.space_36,
+    backgroundColor: COLORS.secondaryWhiteHex,
+    paddingHorizontal: SPACING.space_8,
+  },
   buttonIcon: {
     width: SPACING.space_24,
     height: SPACING.space_24,
+  },
+  buttonIconSecondary: {
+    minWidth: SPACING.space_24,
+    minHeight: SPACING.space_24,
+  },
+  dotText: {
+    position: 'absolute',
+    right: -SPACING.space_2,
+    top: -SPACING.space_2,
+    borderWidth: 1,
+    borderColor: COLORS.primaryWhiteHex,
+    width: SPACING.space_16,
+    height: SPACING.space_16,
+    borderRadius: 99,
+    backgroundColor: COLORS.primaryOrangeHex,
+  },
+  buttonBoth: {
+    borderRadius: 99,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: SPACING.space_4,
+    minHeight: SPACING.space_24,
+  },
+  liveCard: {
+    minHeight: 232,
+    width: WIDTH / 3 + SPACING.space_32,
+    padding: SPACING.space_8,
+    borderRadius: BORDER_RADIUS.radius_4,
+    overflow: 'hidden',
+  },
+  digitContainer: {
+    backgroundColor: COLORS.secondaryBlackHex,
+  },
+  digitText: {
+    color: COLORS.primaryWhiteHex,
+    fontSize: FONTSIZE.size_12,
+    fontFamily: FONT_FAMILY.montserrat_medium,
+  },
+
+  resetContainer: {
+    backgroundColor: COLORS.primaryWhiteHex,
+    paddingHorizontal: 0,
+  },
+  horizontalSpacing8: {
+    paddingHorizontal: SPACING.space_8,
+  },
+  verticalSpacing8: {
+    paddingVertical: SPACING.space_8,
+  },
+  product: {
+    backgroundColor: COLORS.primaryWhiteHex,
+    width: WIDTH_PRODUCT,
+    marginLeft: SPACING.space_8,
+    marginTop: SPACING.space_8,
+    minHeight: WIDTH_PRODUCT * 1.5,
+    ...SHADOW.primary,
   },
 });

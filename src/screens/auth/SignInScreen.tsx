@@ -3,7 +3,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useMutation} from '@tanstack/react-query';
 import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
-import {login} from '../../apis/auth.api';
+import authApi from '../../apis/auth.api';
 import {
   ButtonComponent,
   ContainerComponent,
@@ -15,19 +15,20 @@ import {
   TextComponent,
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
+import {AppContext} from '../../contexts/AppContext';
 import {AuthNavigatorParamList} from '../../navigator/AuthNavigator';
 import {globalStyles} from '../../styles';
 import {ErrorResponse} from '../../types/utils.type';
-import {createSpacing, isAxiosUnprocessableEntityError} from '../../utils';
+import {spacingTop, isAxiosUnprocessableEntityError} from '../../utils';
 import {AuthSchema, schema} from '../../utils/rules';
-import {AppContext} from '../../contexts/AppContext';
+import {LoadingModal} from '../../modals';
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignIn'>;
 
 type FormData = Omit<AuthSchema, 'confirmPassword'>;
 const loginSchema = schema.omit(['confirmPassword']);
 const SignInScreen = ({navigation}: Props) => {
-  const {setIsAuthenticated} = useContext(AppContext);
+  const {setIsAuthenticated, setProfile} = useContext(AppContext);
   const {
     control,
     handleSubmit,
@@ -42,13 +43,14 @@ const SignInScreen = ({navigation}: Props) => {
   });
 
   const loginMutation = useMutation({
-    mutationFn: (body: FormData) => login(body),
+    mutationFn: (body: FormData) => authApi.login(body),
   });
 
   const onSubmit = handleSubmit(data => {
     loginMutation.mutate(data, {
       onSuccess: res => {
         setIsAuthenticated(true);
+        setProfile(res.data.data.user);
       },
       onError: error => {
         // Kiểm tra nếu nó là lỗi 422
@@ -116,14 +118,15 @@ const SignInScreen = ({navigation}: Props) => {
         />
         {/* Sign In */}
         <ButtonComponent
-          style={createSpacing(5)}
+          disabled={loginMutation.isPending}
+          style={spacingTop(SPACING.space_10 * 5)}
           onPress={onSubmit}
           text="Sign In"
           backgroundColor={COLORS.primaryOrangeHex}
           color={COLORS.primaryWhiteHex}
         />
         {/* Other */}
-        <RowComponent style={createSpacing(5)}>
+        <RowComponent style={spacingTop(SPACING.space_10 * 5)}>
           <SpaceComponent
             style={globalStyles.flexOne}
             height={1}
@@ -140,7 +143,7 @@ const SignInScreen = ({navigation}: Props) => {
           />
         </RowComponent>
         {/* Login with Google && Facebook */}
-        <RowComponent style={createSpacing(3)}>
+        <RowComponent style={spacingTop(SPACING.space_10 * 3)}>
           <ButtonComponent
             icon="facebook"
             iconSize={SPACING.space_24}
@@ -172,6 +175,7 @@ const SignInScreen = ({navigation}: Props) => {
           />
         </RowComponent>
       </SectionComponent>
+      <LoadingModal visible={loginMutation.isPending} />
     </ContainerComponent>
   );
 };

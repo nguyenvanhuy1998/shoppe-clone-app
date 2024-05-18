@@ -14,19 +14,20 @@ import {
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
-import {createSpacing, isAxiosUnprocessableEntityError} from '../../utils';
+import {spacingTop, isAxiosUnprocessableEntityError} from '../../utils';
 import {AuthNavigatorParamList} from '../../navigator/AuthNavigator';
 import {AuthSchema, schema} from '../../utils/rules';
 import {useMutation} from '@tanstack/react-query';
-import {registerAccount} from '../../apis/auth.api';
+import authApi from '../../apis/auth.api';
 import {omit} from 'lodash';
 import {ErrorResponse} from '../../types/utils.type';
 import {AppContext} from '../../contexts/AppContext';
+import {LoadingModal} from '../../modals';
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignUp'>;
 type FormData = AuthSchema;
 const SignUpScreen = ({navigation}: Props) => {
-  const {setIsAuthenticated} = useContext(AppContext);
+  const {setIsAuthenticated, setProfile} = useContext(AppContext);
 
   const {
     control,
@@ -44,7 +45,7 @@ const SignUpScreen = ({navigation}: Props) => {
 
   const registerAccountMutation = useMutation({
     mutationFn: (body: Omit<FormData, 'confirmPassword'>) =>
-      registerAccount(body),
+      authApi.registerAccount(body),
   });
 
   const onSubmit = handleSubmit(data => {
@@ -52,6 +53,7 @@ const SignUpScreen = ({navigation}: Props) => {
     registerAccountMutation.mutate(body, {
       onSuccess: res => {
         setIsAuthenticated(true);
+        setProfile(res.data.data.user);
       },
       onError: error => {
         // Kiểm tra nếu nó là lỗi 422
@@ -119,14 +121,14 @@ const SignUpScreen = ({navigation}: Props) => {
         />
         {/* SignUp */}
         <ButtonComponent
-          style={createSpacing(2)}
+          style={spacingTop(SPACING.space_20)}
           onPress={onSubmit}
           text="Sign Up"
           backgroundColor={COLORS.primaryOrangeHex}
           color={COLORS.primaryWhiteHex}
         />
         {/* Other */}
-        <RowComponent style={createSpacing(5)}>
+        <RowComponent style={spacingTop(SPACING.space_10 * 5)}>
           <SpaceComponent
             style={globalStyles.flexOne}
             height={1}
@@ -143,7 +145,7 @@ const SignUpScreen = ({navigation}: Props) => {
           />
         </RowComponent>
         {/* Login with Google && Facebook */}
-        <RowComponent style={createSpacing(3)}>
+        <RowComponent style={spacingTop(SPACING.space_30)}>
           <ButtonComponent
             icon="facebook"
             iconSize={SPACING.space_24}
@@ -175,6 +177,7 @@ const SignUpScreen = ({navigation}: Props) => {
           />
         </RowComponent>
       </SectionComponent>
+      <LoadingModal visible={registerAccountMutation.isPending} />
     </ContainerComponent>
   );
 };

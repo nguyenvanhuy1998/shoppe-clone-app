@@ -8,8 +8,17 @@ import TextComponent from './TextComponent';
 import MaterialIcons from './MaterialIcons';
 import HeaderComponent from './HeaderComponent';
 import RowComponent from './RowComponent';
-import InputOldComponent from './InputOldComponent';
 import InputComponent from './InputComponent';
+import Ionicons from './Ionicons';
+import ButtonSecondaryComponent from './ButtonSecondaryComponent';
+import DotTextComponent from './DotTextComponent';
+import SectionSecondaryComponent from './SectionSecondaryComponent';
+import LineVerticalComponent from './LineVerticalComponent';
+import CarouselComponent from './CarouselComponent';
+import ButtonIconWithBadge from './ButtonIconWithBadge';
+import ProductComponent from './ProductComponent';
+import LabelProductComponent from './LabelProductComponent';
+import DiscountProductComponent from './DiscountProductComponent';
 
 export {
   ContainerComponent,
@@ -22,6 +31,15 @@ export {
   MaterialIcons,
   HeaderComponent,
   RowComponent,
-  InputOldComponent,
   InputComponent,
+  Ionicons,
+  ButtonSecondaryComponent,
+  DotTextComponent,
+  SectionSecondaryComponent,
+  LineVerticalComponent,
+  CarouselComponent,
+  ButtonIconWithBadge,
+  ProductComponent,
+  LabelProductComponent,
+  DiscountProductComponent,
 };
