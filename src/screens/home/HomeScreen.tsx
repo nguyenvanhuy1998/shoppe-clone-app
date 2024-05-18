@@ -25,6 +25,7 @@ import {
   BORDER_RADIUS,
   COLORS,
   images,
+  OS,
   SHADOW,
   SPACING,
   WIDTH,
@@ -87,7 +88,7 @@ const HomeScreen = () => {
               style={[
                 styles.searchHeaderContainer,
                 {
-                  top: insets.top,
+                  top: OS.isIOS ? insets.top : SPACING.space_32,
                 },
               ]}>
               <RowComponent style={styles.inputContainer}>
@@ -253,7 +254,10 @@ const HomeScreen = () => {
   };
   return (
     <>
-      <FocusAwareStatusBar barStyle={'dark-content'} />
+      <FocusAwareStatusBar
+        barStyle={'dark-content'}
+        backgroundColor={COLORS.primaryWhiteHex}
+      />
       <FlatList
         showsVerticalScrollIndicator={false}
         numColumns={2}

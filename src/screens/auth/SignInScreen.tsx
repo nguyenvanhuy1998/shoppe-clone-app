@@ -73,7 +73,9 @@ const SignInScreen = ({navigation}: Props) => {
   };
   const handleForgotPassword = () => {};
   return (
-    <ContainerComponent type="input">
+    <ContainerComponent
+      backgroundColorBarStyle={COLORS.primaryWhiteHex}
+      type="input">
       {/* Header */}
       <SectionComponent>
         <HeaderComponent

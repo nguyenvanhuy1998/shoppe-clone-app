@@ -80,7 +80,9 @@ const SignUpScreen = ({navigation}: Props) => {
     navigation.navigate('SignIn');
   };
   return (
-    <ContainerComponent type="input">
+    <ContainerComponent
+      type="input"
+      backgroundColorBarStyle={COLORS.primaryWhiteHex}>
       {/* Header */}
       <SectionComponent>
         <HeaderComponent

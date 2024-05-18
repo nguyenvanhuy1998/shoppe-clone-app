@@ -5,6 +5,7 @@ import {
   StyleProp,
   View,
   ViewStyle,
+  ScrollView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -12,7 +13,6 @@ import {globalStyles} from '../styles';
 import FocusAwareStatusBar from './FocusAwareStatusBar';
 import {COLORS} from '../constants';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {ScrollView} from 'react-native-virtualized-view';
 
 interface Props {
   children: ReactNode;
