@@ -1,3 +1,5 @@
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   FlatList,
@@ -32,7 +34,9 @@ import {
 } from '../../constants';
 import {useCarousel} from '../../hooks';
 import {useInfiniteScroll} from '../../hooks/useInfiniteScroll';
+import {HomeNavigatorParamList} from '../../navigator/HomeNavigator';
 import {globalStyles} from '../../styles';
+import {Product} from '../../types/product.type';
 import {
   gapNumber,
   spacingBottom,
@@ -54,7 +58,13 @@ import {liveData} from './data/live';
 import {marketData} from './data/market';
 import {services} from './data/services';
 
+type HomeScreenNavigationProp = NativeStackNavigationProp<
+  HomeNavigatorParamList,
+  'Home'
+>;
 const HomeScreen = () => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
   const insets = useSafeAreaInsets();
   const time = 7200;
   const {
@@ -72,6 +82,11 @@ const HomeScreen = () => {
     limit: 10,
     filters: {},
   });
+  const handleChangeProductDetailScreen = (product: Product) => {
+    navigation.navigate('ProductDetail', {
+      product,
+    });
+  };
   const renderHeaderList = () => {
     return (
       <>
@@ -263,7 +278,12 @@ const HomeScreen = () => {
         numColumns={2}
         initialNumToRender={10}
         data={data}
-        renderItem={({item}) => <ProductComponent product={item} />}
+        renderItem={({item}) => (
+          <ProductComponent
+            product={item}
+            onPress={() => handleChangeProductDetailScreen(item)}
+          />
+        )}
         onEndReached={onEndReached}
         refreshControl={
           <RefreshControl

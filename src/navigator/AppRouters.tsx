@@ -1,10 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {SplashScreen} from '../screens';
-import TabNavigator from './TabNavigator';
-import AuthNavigator from './AuthNavigator';
 import {AppContext} from '../contexts/AppContext';
+import {SplashScreen} from '../screens';
+import AuthNavigator from './AuthNavigator';
+import MainNavigator from './MainNavigator';
 
-const RootNavigator = () => {
+const AppRouters = () => {
   const [isShowSplash, setIsShowSplash] = useState(true);
   const {isAuthenticated} = useContext(AppContext);
   useEffect(() => {
@@ -20,10 +20,10 @@ const RootNavigator = () => {
   return isShowSplash ? (
     <SplashScreen />
   ) : isAuthenticated ? (
-    <TabNavigator />
+    <MainNavigator />
   ) : (
     <AuthNavigator />
   );
 };
 
-export default RootNavigator;
+export default AppRouters;
