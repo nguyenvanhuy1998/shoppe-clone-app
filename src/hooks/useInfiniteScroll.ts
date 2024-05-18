@@ -1,14 +1,8 @@
 import {useInfiniteQuery} from '@tanstack/react-query';
 import _ from 'lodash';
 import {useCallback, useMemo, useState} from 'react';
-import {http} from '../utils';
-import {SuccessResponse} from '../types/utils.type';
-import {
-  Pagination,
-  ProductList,
-  ProductListConfig,
-} from '../types/product.type';
 import productApi from '../apis/product.api';
+import {ProductListConfig} from '../types/product.type';
 
 type Params = {
   key: string;

@@ -139,6 +139,8 @@ export const globalStyles = StyleSheet.create({
   product: {
     backgroundColor: COLORS.primaryWhiteHex,
     width: WIDTH_PRODUCT,
+    marginLeft: SPACING.space_8,
+    marginTop: SPACING.space_8,
     minHeight: WIDTH_PRODUCT * 1.5,
     ...SHADOW.primary,
   },
