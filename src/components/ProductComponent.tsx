@@ -64,7 +64,7 @@ const ProductComponent = ({onPress, style, product}: Props) => {
           />
           <TextComponent
             style={spacingLeft(2)}
-            text="4.9"
+            text={product.rating}
             fontSize={FONTSIZE.size_10}
             color={COLORS.primaryBlackHex}
           />

@@ -6,6 +6,7 @@ import {ProductDetailScreen} from '../screens';
 import {Product} from '../types/product.type';
 export type MainNavigatorParamList = {
   Main: undefined;
+  Home: undefined;
   ProductDetail: {
     product: Product;
   };

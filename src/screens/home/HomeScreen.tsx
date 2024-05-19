@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {
   FlatList,
   RefreshControl,
@@ -36,7 +36,7 @@ import {useCarousel} from '../../hooks';
 import {useInfiniteScroll} from '../../hooks/useInfiniteScroll';
 import {HomeNavigatorParamList} from '../../navigator/HomeNavigator';
 import {globalStyles} from '../../styles';
-import {Product} from '../../types/product.type';
+import {Product, ProductListConfig} from '../../types/product.type';
 import {
   gapNumber,
   spacingBottom,
@@ -57,16 +57,19 @@ import {dataFlashSale} from './data/flashsale';
 import {liveData} from './data/live';
 import {marketData} from './data/market';
 import {services} from './data/services';
+import {MainNavigatorParamList} from '../../navigator/MainNavigator';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
-  HomeNavigatorParamList,
+  MainNavigatorParamList,
   'Home'
 >;
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
-
+  const [filters, setFilters] = useState<ProductListConfig>({
+    sort_by: 'price',
+    order: 'desc',
+  });
   const insets = useSafeAreaInsets();
-  const time = 7200;
   const {
     refCarousel: refCarouselBanner,
     progress: progressBanner,
@@ -79,8 +82,7 @@ const HomeScreen = () => {
   } = useCarousel();
   const {data, isRefreshing, onRefresh, onEndReached} = useInfiniteScroll({
     key: 'products',
-    limit: 10,
-    filters: {},
+    filters,
   });
   const handleChangeProductDetailScreen = (product: Product) => {
     navigation.navigate('ProductDetail', {
@@ -213,7 +215,7 @@ const HomeScreen = () => {
             countdown={
               <CountDown
                 size={10}
-                until={time}
+                until={7200}
                 digitStyle={globalStyles.digitContainer}
                 digitTxtStyle={globalStyles.digitText}
                 timeToShow={['H', 'M', 'S']}
