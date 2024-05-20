@@ -65,9 +65,7 @@ const ServiceItem = ({item, onPress}: Props) => {
             spacingTop(4),
           ]}>
           <TextComponent
-            style={{
-              textDecorationLine: 'line-through',
-            }}
+            style={globalStyles.decorLine}
             fontSize={FONTSIZE.size_10}
             color={COLORS.thirdGreyHex}
             text={`₫ ${formatVND(item.cost)}`}

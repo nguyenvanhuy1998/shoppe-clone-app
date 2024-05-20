@@ -75,6 +75,7 @@ const HomeScreen = () => {
     progress: progressBanner,
     onPressPagination: onPressPaginationBanner,
   } = useCarousel();
+  console.log(progressBanner, 'progressBanner');
   const {
     refCarousel: refCarouselServices,
     progress: progressServices,
@@ -86,7 +87,7 @@ const HomeScreen = () => {
   });
   const handleChangeProductDetailScreen = (product: Product) => {
     navigation.navigate('ProductDetail', {
-      product,
+      id: product._id,
     });
   };
   const renderHeaderList = () => {
@@ -103,7 +104,7 @@ const HomeScreen = () => {
           children={
             <RowComponent
               style={[
-                styles.searchHeaderContainer,
+                globalStyles.header,
                 {
                   top: OS.isIOS ? insets.top : SPACING.space_32,
                 },
@@ -302,11 +303,6 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 const styles = StyleSheet.create({
-  searchHeaderContainer: {
-    position: 'absolute',
-    left: SPACING.space_8,
-    right: SPACING.space_8,
-  },
   inputContainer: {
     marginRight: SPACING.space_8,
     ...globalStyles.flexOne,

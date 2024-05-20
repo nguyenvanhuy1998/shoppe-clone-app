@@ -12,6 +12,7 @@ import {WIDTH_PRODUCT} from '../styles/globalStyles';
 import {
   formatNumberToSocialStyle,
   formatVND,
+  rateSale,
   spacingLeft,
   spacingRight,
 } from '../utils';
@@ -41,8 +42,9 @@ const ProductComponent = ({onPress, style, product}: Props) => {
       />
       <LabelProductComponent />
       <DiscountProductComponent
+        style={globalStyles.discount}
         backgroundColor={COLORS.primaryWhitePinkHex}
-        text={String(28)}
+        text={`${rateSale(product.price_before_discount, product.price)}`}
       />
       <View
         style={[

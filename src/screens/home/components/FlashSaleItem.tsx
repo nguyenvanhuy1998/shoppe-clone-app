@@ -42,7 +42,11 @@ const FlashSaleItem = ({item, onPress}: Props) => {
         />
       </RowComponent>
       <LabelProductComponent />
-      <DiscountProductComponent icon="flash-on" text={String(item.discount)} />
+      <DiscountProductComponent
+        icon="flash-on"
+        text={item.discount}
+        style={globalStyles.discount}
+      />
     </TouchableOpacity>
   );
 };

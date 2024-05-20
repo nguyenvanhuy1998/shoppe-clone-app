@@ -72,7 +72,7 @@ interface FontFamily {
 }
 export const COLORS: Color = {
   secondaryBlackHex: '#333333',
-  primaryYellowHex: '#FFC300',
+  primaryYellowHex: '#FFFF00',
   primaryRedHex: '#dd1717',
   primaryGreenHex: '#2AAA8A',
   primaryWhiteHex: '#ffffff',

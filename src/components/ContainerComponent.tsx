@@ -78,7 +78,7 @@ const ContainerComponent = ({
       </View>
     ),
     noSafeArea: () => (
-      <View style={globalStyles.flexOne}>
+      <View style={[globalStyles.flexOne, style]}>
         {renderBarStyle()}
         <CommonScrollView>{children}</CommonScrollView>
       </View>

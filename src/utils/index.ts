@@ -11,6 +11,7 @@ import {
   isAxiosUnprocessableEntityError,
   formatVND,
   formatNumberToSocialStyle,
+  rateSale,
 } from './utils';
 export {
   createButtonStyle,
@@ -23,4 +24,5 @@ export {
   isAxiosUnprocessableEntityError,
   formatVND,
   formatNumberToSocialStyle,
+  rateSale,
 };

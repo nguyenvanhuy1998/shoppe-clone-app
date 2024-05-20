@@ -144,4 +144,17 @@ export const globalStyles = StyleSheet.create({
     minHeight: WIDTH_PRODUCT * 1.5,
     ...SHADOW.primary,
   },
+  header: {
+    position: 'absolute',
+    left: SPACING.space_8,
+    right: SPACING.space_8,
+  },
+  decorLine: {
+    textDecorationLine: 'line-through',
+  },
+  discount: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
 });

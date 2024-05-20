@@ -1,30 +1,31 @@
-import {ColorValue, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import RowComponent from './RowComponent';
-import MaterialIcons from './MaterialIcons';
-import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../constants';
-import TextComponent from './TextComponent';
+import {ColorValue, StyleProp, ViewStyle} from 'react-native';
+import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
 import {globalStyles} from '../styles';
+import MaterialIcons from './MaterialIcons';
+import RowComponent from './RowComponent';
+import TextComponent from './TextComponent';
 
 interface Props {
-  text: string;
+  text: string | number;
   icon?: string;
   backgroundColor?: ColorValue;
+  style?: StyleProp<ViewStyle>;
 }
 const DiscountProductComponent = ({
   text,
   icon,
   backgroundColor = COLORS.primaryYellowHex,
+  style,
 }: Props) => {
   return (
     <RowComponent
       style={[
-        styles.container,
-        globalStyles.horizontalSpacing8,
         globalStyles.center,
         {
           backgroundColor,
         },
+        style,
       ]}>
       {icon && <MaterialIcons name={icon} color={COLORS.primaryRedHex} />}
       <TextComponent
@@ -38,12 +39,3 @@ const DiscountProductComponent = ({
 };
 
 export default DiscountProductComponent;
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    minWidth: SPACING.space_32,
-  },
-});

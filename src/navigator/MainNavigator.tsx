@@ -1,14 +1,13 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import TabNavigator from './TabNavigator';
 import {ProductDetailScreen} from '../screens';
-import {Product} from '../types/product.type';
+import TabNavigator from './TabNavigator';
 export type MainNavigatorParamList = {
   Main: undefined;
   Home: undefined;
   ProductDetail: {
-    product: Product;
+    id: string;
   };
 };
 const Stack = createNativeStackNavigator<MainNavigatorParamList>();

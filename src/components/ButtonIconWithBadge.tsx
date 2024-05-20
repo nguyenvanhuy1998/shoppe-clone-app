@@ -4,18 +4,22 @@ import {COLORS} from '../constants';
 import ButtonSecondaryComponent from './ButtonSecondaryComponent';
 import DotTextComponent from './DotTextComponent';
 import Ionicons from './Ionicons';
+import {IconSizeProps} from '../types/utils.type';
 
-const ButtonIconWithBadge = ({
-  iconName,
-  badgeText,
-  styleContainer,
-  onPress,
-}: {
+interface Props {
   iconName: string;
   badgeText: string;
   styleContainer?: StyleProp<ViewStyle>;
   onPress?: () => void;
-}) => (
+  sizeIcon?: IconSizeProps['iconSizes'];
+}
+const ButtonIconWithBadge = ({
+  iconName,
+  badgeText,
+  styleContainer,
+  sizeIcon,
+  onPress,
+}: Props) => (
   <ButtonSecondaryComponent
     styleContainer={styleContainer}
     type="icon"
@@ -25,7 +29,7 @@ const ButtonIconWithBadge = ({
         <Ionicons
           name={iconName}
           color={COLORS.primaryWhiteHex}
-          size="extraLarge"
+          size={sizeIcon}
         />
         <DotTextComponent text={badgeText} />
       </>

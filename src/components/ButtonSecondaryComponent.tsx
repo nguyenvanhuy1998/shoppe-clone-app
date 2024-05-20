@@ -37,7 +37,7 @@ const ButtonSecondaryComponent = ({
   text,
   fontSize = FONTSIZE.size_12,
   color = COLORS.primaryWhiteHex,
-  backgroundColor = COLORS.primaryOrangeHex,
+  backgroundColor,
   fontFamily = FONT_FAMILY.montserrat_semibold,
   nameIcon,
   colorIcon,
@@ -49,6 +49,9 @@ const ButtonSecondaryComponent = ({
         style={[
           globalStyles.buttonIconSecondary,
           globalStyles.center,
+          {
+            backgroundColor,
+          },
           styleContainer,
         ]}
         onPress={onPress}>
