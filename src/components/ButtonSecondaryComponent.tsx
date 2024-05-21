@@ -1,19 +1,9 @@
 import React, {ReactNode} from 'react';
-import {
-  ColorValue,
-  StyleProp,
-  Text,
-  TextStyle,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import {ColorValue, StyleProp, TouchableOpacity, ViewStyle} from 'react-native';
+import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
 import {globalStyles} from '../styles';
 import TextComponent from './TextComponent';
-import Ionicons from './Ionicons';
-import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../constants';
-import SpaceComponent from './SpaceComponent';
-import {IconSizeProps} from '../types/utils.type';
+import {gapNumber} from '../utils/spacing';
 
 interface Props {
   onPress?: () => void;
@@ -25,9 +15,8 @@ interface Props {
   color?: ColorValue;
   backgroundColor?: ColorValue;
   fontFamily?: string;
-  nameIcon?: string;
-  colorIcon?: ColorValue;
-  sizeIcon?: IconSizeProps['iconSizes'];
+  iconRight?: ReactNode;
+  iconLeft?: ReactNode;
 }
 const ButtonSecondaryComponent = ({
   onPress,
@@ -39,9 +28,8 @@ const ButtonSecondaryComponent = ({
   color = COLORS.primaryWhiteHex,
   backgroundColor,
   fontFamily = FONT_FAMILY.montserrat_semibold,
-  nameIcon,
-  colorIcon,
-  sizeIcon,
+  iconRight,
+  iconLeft,
 }: Props) => {
   if (type === 'icon') {
     return (
@@ -78,6 +66,7 @@ const ButtonSecondaryComponent = ({
           },
           styleContainer,
         ]}>
+        {iconLeft && iconLeft}
         <TextComponent
           numberOfLines={1}
           text={text}
@@ -85,10 +74,7 @@ const ButtonSecondaryComponent = ({
           color={color}
           fontFamily={fontFamily}
         />
-        <SpaceComponent width={SPACING.space_4} />
-        {nameIcon && (
-          <Ionicons name={nameIcon} color={colorIcon} size={sizeIcon} />
-        )}
+        {iconRight && iconRight}
       </TouchableOpacity>
     );
   }

@@ -1,6 +1,7 @@
 import React, {ReactNode} from 'react';
 import {
   ButtonSecondaryComponent,
+  MaterialIcons,
   RowComponent,
   SpaceComponent,
   TextComponent,
@@ -32,9 +33,13 @@ const HomeTitle = ({title, textButton, countdown}: Props) => {
           type="both"
           text={textButton}
           color={COLORS.thirdGreyHex}
-          nameIcon="arrow-forward"
-          colorIcon={COLORS.thirdGreyHex}
-          backgroundColor={'transparent'}
+          iconRight={
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              color={COLORS.thirdGreyHex}
+              size="large"
+            />
+          }
         />
       )}
     </RowComponent>

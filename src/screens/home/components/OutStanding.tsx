@@ -43,8 +43,12 @@ const OutStanding = ({image, onPress, style}: Props) => {
         fontSize={FONTSIZE.size_10}
         type="both"
         text="MUA NGAY"
-        nameIcon="arrow-forward-circle"
-        colorIcon={COLORS.primaryWhiteHex}
+        iconRight={
+          <Ionicons
+            name="arrow-forward-circle"
+            color={COLORS.primaryWhiteHex}
+          />
+        }
       />
     </TouchableOpacity>
   );

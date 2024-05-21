@@ -107,8 +107,8 @@ export const globalStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: SPACING.space_4,
     minHeight: SPACING.space_24,
+    paddingHorizontal: SPACING.space_4,
   },
   liveCard: {
     minHeight: 232,

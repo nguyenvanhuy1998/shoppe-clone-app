@@ -7,6 +7,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Entypo from 'react-native-vector-icons/Entypo';
 import productApi from '../../apis/product.api';
 import {
+  ButtonComponent,
   ButtonIconWithBadge,
   ButtonSecondaryComponent,
   ContainerComponent,
@@ -290,6 +291,29 @@ const ProductDetailScreen = () => {
           />
         </RowComponent>
       </SectionSecondaryComponent>
+      {/* SPayLater */}
+      <SectionSecondaryComponent
+        style={[
+          styles.spayLaterContainer,
+          spacingTop(8),
+          globalStyles.row,
+          globalStyles.jusBetween,
+        ]}>
+        <TextComponent text={'SPayLater'} />
+        <ButtonSecondaryComponent
+          type="both"
+          text="Mua trước trả sau"
+          color={COLORS.primaryOrangeHex}
+          fontFamily={FONT_FAMILY.montserrat_medium}
+          iconRight={
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              color={COLORS.thirdGreyHex}
+              size="large"
+            />
+          }
+        />
+      </SectionSecondaryComponent>
     </ContainerComponent>
   );
 };
@@ -321,5 +345,8 @@ const styles = StyleSheet.create({
   lineHorizontal: {
     width: WIDTH,
     height: SPACING.space_2,
+  },
+  spayLaterContainer: {
+    backgroundColor: COLORS.primaryWhiteHex,
   },
 });
