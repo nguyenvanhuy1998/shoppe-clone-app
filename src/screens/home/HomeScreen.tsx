@@ -129,13 +129,13 @@ const HomeScreen = () => {
               <ButtonIconWithBadge
                 iconName="cart-outline"
                 badgeText="1"
-                onPress={() => {}}
+                sizeIcon="large"
               />
               <ButtonIconWithBadge
                 iconName="chatbubbles-outline"
                 badgeText="22"
+                sizeIcon="large"
                 styleContainer={spacingLeft(SPACING.space_8)}
-                onPress={() => {}}
               />
             </RowComponent>
           }
@@ -145,8 +145,7 @@ const HomeScreen = () => {
           <RowComponent
             style={[globalStyles.sectionSecondary, styles.typePageContainer]}>
             <ButtonSecondaryComponent
-              type="icon"
-              childrenIcon={
+              iconLeft={
                 <Scan width={SPACING.space_32} height={SPACING.space_32} />
               }
             />

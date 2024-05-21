@@ -104,12 +104,8 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: COLORS.primaryOrangeHex,
   },
   buttonBoth: {
-    borderRadius: 99,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
     minHeight: SPACING.space_24,
-    paddingHorizontal: SPACING.space_4,
+    padding: SPACING.space_4,
   },
   liveCard: {
     minHeight: 232,
@@ -157,5 +153,11 @@ export const globalStyles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 0,
+  },
+  column: {
+    flexDirection: 'column',
+  },
+  resetPaddingHorizontal: {
+    paddingHorizontal: 0,
   },
 });

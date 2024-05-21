@@ -21,6 +21,7 @@ import {
   WIDTH,
 } from '../../../constants';
 import {globalStyles} from '../../../styles';
+import {gapNumber} from '../../../utils/spacing';
 interface Props {
   image: ImageSourcePropType;
   onPress?: () => void;
@@ -37,11 +38,11 @@ const OutStanding = ({image, onPress, style}: Props) => {
         resizeMode="cover"
       />
       <ButtonSecondaryComponent
-        styleContainer={styles.button}
+        styleContainer={[styles.button, gapNumber(4)]}
+        radius={99}
         fontFamily={FONT_FAMILY.montserrat_bold}
         backgroundColor={COLORS.primaryRedHex}
         fontSize={FONTSIZE.size_10}
-        type="both"
         text="MUA NGAY"
         iconRight={
           <Ionicons

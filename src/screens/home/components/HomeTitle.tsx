@@ -30,7 +30,7 @@ const HomeTitle = ({title, textButton, countdown}: Props) => {
       </RowComponent>
       {textButton && (
         <ButtonSecondaryComponent
-          type="both"
+          styleContainer={globalStyles.resetPaddingHorizontal}
           text={textButton}
           color={COLORS.thirdGreyHex}
           iconRight={

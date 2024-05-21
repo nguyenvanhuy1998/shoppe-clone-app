@@ -22,9 +22,8 @@ const ButtonIconWithBadge = ({
 }: Props) => (
   <ButtonSecondaryComponent
     styleContainer={styleContainer}
-    type="icon"
     onPress={onPress}
-    childrenIcon={
+    iconLeft={
       <>
         <Ionicons
           name={iconName}

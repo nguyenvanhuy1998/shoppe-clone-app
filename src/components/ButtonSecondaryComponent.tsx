@@ -1,28 +1,24 @@
 import React, {ReactNode} from 'react';
 import {ColorValue, StyleProp, TouchableOpacity, ViewStyle} from 'react-native';
-import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
+import {BORDER_RADIUS, COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
 import {globalStyles} from '../styles';
 import TextComponent from './TextComponent';
-import {gapNumber} from '../utils/spacing';
 
 interface Props {
   onPress?: () => void;
-  type?: 'text' | 'icon' | 'both';
   styleContainer?: StyleProp<ViewStyle>;
   text?: string;
-  childrenIcon?: ReactNode;
   fontSize?: number;
   color?: ColorValue;
   backgroundColor?: ColorValue;
   fontFamily?: string;
   iconRight?: ReactNode;
   iconLeft?: ReactNode;
+  radius?: number;
 }
 const ButtonSecondaryComponent = ({
   onPress,
-  type = 'text',
   styleContainer,
-  childrenIcon,
   text,
   fontSize = FONTSIZE.size_12,
   color = COLORS.primaryWhiteHex,
@@ -30,43 +26,23 @@ const ButtonSecondaryComponent = ({
   fontFamily = FONT_FAMILY.montserrat_semibold,
   iconRight,
   iconLeft,
+  radius = BORDER_RADIUS.radius_4,
 }: Props) => {
-  if (type === 'icon') {
-    return (
-      <TouchableOpacity
-        style={[
-          globalStyles.buttonIconSecondary,
-          globalStyles.center,
-          {
-            backgroundColor,
-          },
-          styleContainer,
-        ]}
-        onPress={onPress}>
-        {childrenIcon}
-      </TouchableOpacity>
-    );
-  }
-  if (type === 'text') {
-    return (
-      <TouchableOpacity
-        style={[globalStyles.buttonText, styleContainer]}
-        onPress={onPress}>
-        <TextComponent text={text} />
-      </TouchableOpacity>
-    );
-  }
-  if (type === 'both') {
-    return (
-      <TouchableOpacity
-        style={[
-          globalStyles.buttonBoth,
-          {
-            backgroundColor,
-          },
-          styleContainer,
-        ]}>
-        {iconLeft && iconLeft}
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        globalStyles.buttonBoth,
+        globalStyles.center,
+        globalStyles.row,
+        {
+          backgroundColor,
+          borderRadius: radius,
+        },
+        styleContainer,
+      ]}>
+      {iconLeft && iconLeft}
+      {text && (
         <TextComponent
           numberOfLines={1}
           text={text}
@@ -74,10 +50,11 @@ const ButtonSecondaryComponent = ({
           color={color}
           fontFamily={fontFamily}
         />
-        {iconRight && iconRight}
-      </TouchableOpacity>
-    );
-  }
+      )}
+
+      {iconRight && iconRight}
+    </TouchableOpacity>
+  );
 };
 
 export default ButtonSecondaryComponent;
