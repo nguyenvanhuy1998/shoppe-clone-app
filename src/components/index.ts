@@ -13,12 +13,13 @@ import Ionicons from './Ionicons';
 import ButtonSecondaryComponent from './ButtonSecondaryComponent';
 import DotTextComponent from './DotTextComponent';
 import SectionSecondaryComponent from './SectionSecondaryComponent';
-import LineVerticalComponent from './LineVerticalComponent';
+import LineComponent from './LineComponent';
 import CarouselComponent from './CarouselComponent';
 import ButtonIconWithBadge from './ButtonIconWithBadge';
 import ProductComponent from './ProductComponent';
 import LabelProductComponent from './LabelProductComponent';
 import DiscountProductComponent from './DiscountProductComponent';
+import IconTextComponent from './IconTextComponent';
 
 export {
   ContainerComponent,
@@ -36,10 +37,11 @@ export {
   ButtonSecondaryComponent,
   DotTextComponent,
   SectionSecondaryComponent,
-  LineVerticalComponent,
+  LineComponent,
   CarouselComponent,
   ButtonIconWithBadge,
   ProductComponent,
   LabelProductComponent,
   DiscountProductComponent,
+  IconTextComponent,
 };

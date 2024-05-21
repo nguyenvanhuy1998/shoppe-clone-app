@@ -15,7 +15,7 @@ interface Props {
 const DiscountProductComponent = ({
   text,
   icon,
-  backgroundColor = COLORS.primaryYellowHex,
+  backgroundColor = COLORS.secondYellowHex,
   style,
 }: Props) => {
   return (

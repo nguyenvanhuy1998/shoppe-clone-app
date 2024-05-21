@@ -11,7 +11,9 @@ import {
   ButtonSecondaryComponent,
   ContainerComponent,
   DiscountProductComponent,
+  IconTextComponent,
   Ionicons,
+  LineComponent,
   MaterialIcons,
   RowComponent,
   SectionSecondaryComponent,
@@ -23,12 +25,16 @@ import {globalStyles} from '../../styles';
 import {
   gapNumber,
   spacingBottom,
+  spacingHorizontal,
   spacingLeft,
+  spacingRight,
   spacingTop,
+  spacingVertical,
 } from '../../utils/spacing';
 import {ProductImage} from './components';
 import {formatVND} from '../../utils';
-import {rateSale} from '../../utils/utils';
+import {formatNumberToSocialStyle, rateSale} from '../../utils/utils';
+import {WIDTH} from '../../constants/theme';
 
 type ProductDetailScreenRouteProp = RouteProp<
   MainNavigatorParamList,
@@ -136,7 +142,7 @@ const ProductDetailScreen = () => {
           <TextComponent text={`${0}/${product.images.length}`} />
         </View>
       </View>
-      {/* Phân loại có sẵn */}
+      {/* Product Info */}
       <SectionSecondaryComponent style={globalStyles.resetContainer}>
         <TextComponent
           text={`${product.images.length} phân loại có sẵn`}
@@ -194,6 +200,95 @@ const ProductDetailScreen = () => {
             text={`${rateSale(product.price_before_discount, product.price)}`}
           />
         </RowComponent>
+        <View
+          style={[styles.labelContainer, spacingVertical(8), spacingLeft(8)]}>
+          <TextComponent
+            fontSize={FONTSIZE.size_10}
+            text={'Mua Kèm Deal Sốc'}
+            color={COLORS.primaryRedHex}
+          />
+        </View>
+        <TextComponent
+          numberOfLines={2}
+          text={product.name}
+          style={globalStyles.horizontalSpacing8}
+        />
+        <RowComponent
+          style={[
+            globalStyles.jusBetween,
+            spacingHorizontal(SPACING.space_8),
+            spacingTop(SPACING.space_12),
+          ]}>
+          <RowComponent>
+            <IconTextComponent
+              icon={
+                <MaterialIcons name="star" color={COLORS.primaryYellowHex} />
+              }
+              text={`${product.rating} / 5`}
+              fontSize={FONTSIZE.size_12}
+              color={COLORS.primaryBlackHex}
+            />
+            <LineComponent
+              width={2}
+              height={SPACING.space_12}
+              left={SPACING.space_8}
+              right={SPACING.space_8}
+            />
+            <TextComponent
+              text={`Đã bán ${formatNumberToSocialStyle(product.sold)}`}
+              fontSize={FONTSIZE.size_10}
+            />
+          </RowComponent>
+          <RowComponent style={gapNumber(8)}>
+            <MaterialIcons
+              name="favorite-outline"
+              color={COLORS.thirdGreyHex}
+            />
+            <MaterialIcons name="chat" color={COLORS.primaryBlueHex} />
+          </RowComponent>
+        </RowComponent>
+        <LineComponent
+          width={WIDTH}
+          height={1}
+          top={SPACING.space_8}
+          bottom={SPACING.space_8}
+        />
+        <RowComponent
+          style={[
+            globalStyles.horizontalSpacing8,
+            globalStyles.spaceBetween,
+            gapNumber(4),
+          ]}>
+          <IconTextComponent
+            icon={
+              <Ionicons
+                name="logo-dropbox"
+                size="small"
+                color={COLORS.primaryRedHex}
+              />
+            }
+            text="Đổi ý miễn phí 15 ngày"
+            fontSize={FONTSIZE.size_10}
+          />
+          <IconTextComponent
+            icon={
+              <Ionicons
+                name="shield-checkmark"
+                size="small"
+                color={COLORS.primaryRedHex}
+              />
+            }
+            text="Chính hãng 100%"
+            fontSize={FONTSIZE.size_10}
+          />
+          <IconTextComponent
+            icon={
+              <Ionicons name="bus" size="small" color={COLORS.primaryRedHex} />
+            }
+            text="Giao miễn phí"
+            fontSize={FONTSIZE.size_10}
+          />
+        </RowComponent>
       </SectionSecondaryComponent>
     </ContainerComponent>
   );
@@ -214,5 +309,17 @@ const styles = StyleSheet.create({
     bottom: SPACING.space_8,
     right: SPACING.space_8,
   },
-  productImageContainer: {},
+  labelContainer: {
+    borderWidth: 0.5,
+    borderColor: COLORS.primaryRedHex,
+    alignSelf: 'flex-start',
+    paddingHorizontal: SPACING.space_4,
+  },
+  lineVertical: {
+    height: SPACING.space_12,
+  },
+  lineHorizontal: {
+    width: WIDTH,
+    height: SPACING.space_2,
+  },
 });

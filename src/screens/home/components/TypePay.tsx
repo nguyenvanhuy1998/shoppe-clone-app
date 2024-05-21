@@ -3,6 +3,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  ViewStyle,
 } from 'react-native';
 import {
   Ionicons,
@@ -11,6 +12,7 @@ import {
   TextComponent,
 } from '../../../components';
 import {COLORS, FONTSIZE, SPACING} from '../../../constants';
+import {StyleProp} from 'react-native';
 
 interface Props {
   icon: string;
@@ -18,10 +20,11 @@ interface Props {
   title: string;
   desc: string;
   onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
 }
-const TypePay = ({icon, colorIcon, title, desc, onPress}: Props) => {
+const TypePay = ({icon, colorIcon, title, desc, onPress, style}: Props) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
       <RowComponent>
         <Ionicons name={icon} color={colorIcon} />
         <SpaceComponent width={SPACING.space_4} />

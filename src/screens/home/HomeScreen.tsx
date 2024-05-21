@@ -17,7 +17,7 @@ import {
   CarouselComponent,
   FocusAwareStatusBar,
   Ionicons,
-  LineVerticalComponent,
+  LineComponent,
   ProductComponent,
   RowComponent,
   SectionSecondaryComponent,
@@ -150,7 +150,12 @@ const HomeScreen = () => {
                 <Scan width={SPACING.space_32} height={SPACING.space_32} />
               }
             />
-            <LineVerticalComponent />
+            <LineComponent
+              width={SPACING.space_2}
+              height={'65%'}
+              left={SPACING.space_4}
+              right={SPACING.space_4}
+            />
             <TypePay
               onPress={() => {}}
               icon="wallet-outline"
@@ -158,7 +163,12 @@ const HomeScreen = () => {
               colorIcon={COLORS.primaryOrangeHex}
               desc="Vourcher mua sắm giảm đến 40.000Đ"
             />
-            <LineVerticalComponent />
+            <LineComponent
+              width={SPACING.space_2}
+              height={'65%'}
+              left={SPACING.space_4}
+              right={SPACING.space_4}
+            />
             <TypePay
               onPress={() => {}}
               icon="list-circle-outline"
