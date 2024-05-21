@@ -16,7 +16,7 @@ const TextComponent = ({
   text = '',
   color = COLORS.primaryBlackHex,
   style,
-  fontSize = FONTSIZE.size_14,
+  fontSize = FONTSIZE.size_12,
   fontFamily = FONT_FAMILY.montserrat_regular,
   lineHeight,
   numberOfLines,

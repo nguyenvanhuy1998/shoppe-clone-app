@@ -2,7 +2,7 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
 import React, {useRef} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Entypo from 'react-native-vector-icons/Entypo';
 import productApi from '../../apis/product.api';
@@ -226,7 +226,6 @@ const ProductDetailScreen = () => {
                 <MaterialIcons name="star" color={COLORS.primaryYellowHex} />
               }
               text={`${product.rating} / 5`}
-              fontSize={FONTSIZE.size_12}
               color={COLORS.primaryBlackHex}
             />
             <LineComponent
@@ -293,12 +292,7 @@ const ProductDetailScreen = () => {
       </SectionSecondaryComponent>
       {/* SPayLater */}
       <SectionSecondaryComponent
-        style={[
-          styles.spayLaterContainer,
-          spacingTop(8),
-          globalStyles.row,
-          globalStyles.jusBetween,
-        ]}>
+        style={[spacingTop(8), globalStyles.row, globalStyles.jusBetween]}>
         <TextComponent text={'SPayLater'} />
         <ButtonSecondaryComponent
           type="both"
@@ -313,6 +307,54 @@ const ProductDetailScreen = () => {
             />
           }
         />
+      </SectionSecondaryComponent>
+
+      {/* Phí vận chuyển */}
+      <SectionSecondaryComponent style={[spacingTop(8)]}>
+        <RowComponent style={[globalStyles.jusBetween, spacingBottom(8)]}>
+          <RowComponent style={gapNumber(4)}>
+            <TextComponent
+              text={'Phí vận chuyển'}
+              fontFamily={FONT_FAMILY.montserrat_semibold}
+            />
+            <TextComponent
+              text={'đ0'}
+              color={COLORS.primaryOrangeHex}
+              fontFamily={FONT_FAMILY.montserrat_semibold}
+            />
+            <TextComponent
+              style={globalStyles.decorLine}
+              text={'đ38.000'}
+              color={COLORS.thirdGreyHex}
+            />
+          </RowComponent>
+          <MaterialIcons name="local-shipping" color={COLORS.primaryGreenHex} />
+        </RowComponent>
+        <TextComponent
+          lineHeight={19}
+          text={'Miễn phí vận chuyển cho đơn hàng từ đ0'}
+          fontSize={FONTSIZE.size_12}
+        />
+        <TextComponent
+          lineHeight={19}
+          text={'Đảm bảo nhận hàng từ 24 Tháng 5 - 25 Tháng 5'}
+          fontSize={FONTSIZE.size_12}
+        />
+        <TextComponent
+          lineHeight={19}
+          text={
+            'Nhận Voucher trị giá đ15.000 nếu đơn hàng được giao đến bạn trễ hơn thời gian dự kiến'
+          }
+          fontSize={FONTSIZE.size_12}
+        />
+        <TouchableOpacity style={[globalStyles.row, globalStyles.jusBetween]}>
+          <TextComponent text={'Xem thêm'} />
+          <MaterialIcons
+            name="keyboard-arrow-right"
+            color={COLORS.thirdGreyHex}
+            size="large"
+          />
+        </TouchableOpacity>
       </SectionSecondaryComponent>
     </ContainerComponent>
   );
@@ -345,8 +387,5 @@ const styles = StyleSheet.create({
   lineHorizontal: {
     width: WIDTH,
     height: SPACING.space_2,
-  },
-  spayLaterContainer: {
-    backgroundColor: COLORS.primaryWhiteHex,
   },
 });

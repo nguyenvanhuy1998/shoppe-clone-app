@@ -67,6 +67,7 @@ export const globalStyles = StyleSheet.create({
   },
   sectionSecondary: {
     padding: SPACING.space_8,
+    backgroundColor: COLORS.primaryWhiteHex,
   },
 
   inputContainer: {
