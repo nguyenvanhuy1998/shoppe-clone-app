@@ -3,12 +3,12 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {
-  ButtonComponent,
+  ButtonOldSecondaryComponent,
   ContainerComponent,
   HeaderComponent,
-  InputComponent,
+  InputOldComponent,
   RowComponent,
-  SectionComponent,
+  SectionOldComponent,
   SpaceComponent,
   TextComponent,
 } from '../../components';
@@ -84,17 +84,17 @@ const SignUpScreen = ({navigation}: Props) => {
       type="input"
       backgroundColorBarStyle={COLORS.primaryWhiteHex}>
       {/* Header */}
-      <SectionComponent>
+      <SectionOldComponent>
         <HeaderComponent
           text="Sign Up"
           fontSize={FONTSIZE.size_26}
           fontFamily={FONT_FAMILY.montserrat_semibold}
         />
-      </SectionComponent>
+      </SectionOldComponent>
       {/* Body */}
-      <SectionComponent style={globalStyles.flexOne}>
+      <SectionOldComponent style={globalStyles.flexOne}>
         {/* Email */}
-        <InputComponent
+        <InputOldComponent
           label="Email"
           control={control}
           name="email"
@@ -104,7 +104,7 @@ const SignUpScreen = ({navigation}: Props) => {
           keyboardType="email-address"
         />
         {/* Password */}
-        <InputComponent
+        <InputOldComponent
           label="Password"
           control={control}
           name="password"
@@ -113,7 +113,7 @@ const SignUpScreen = ({navigation}: Props) => {
           error={errors.password?.message}
         />
         {/* Confirm Password */}
-        <InputComponent
+        <InputOldComponent
           label="Confirm password"
           control={control}
           name="confirmPassword"
@@ -122,7 +122,7 @@ const SignUpScreen = ({navigation}: Props) => {
           error={errors.confirmPassword?.message}
         />
         {/* SignUp */}
-        <ButtonComponent
+        <ButtonOldSecondaryComponent
           style={spacingTop(SPACING.space_20)}
           onPress={onSubmit}
           text="Sign Up"
@@ -148,7 +148,7 @@ const SignUpScreen = ({navigation}: Props) => {
         </RowComponent>
         {/* Login with Google && Facebook */}
         <RowComponent style={spacingTop(SPACING.space_30)}>
-          <ButtonComponent
+          <ButtonOldSecondaryComponent
             icon="facebook"
             iconSize={SPACING.space_24}
             iconColor={COLORS.primaryWhiteHex}
@@ -157,7 +157,7 @@ const SignUpScreen = ({navigation}: Props) => {
             style={globalStyles.flexOne}
           />
           <SpaceComponent width={SPACING.space_20} />
-          <ButtonComponent
+          <ButtonOldSecondaryComponent
             icon="google"
             iconSize={SPACING.space_24}
             iconColor={COLORS.primaryWhiteHex}
@@ -166,19 +166,19 @@ const SignUpScreen = ({navigation}: Props) => {
             style={globalStyles.flexOne}
           />
         </RowComponent>
-      </SectionComponent>
+      </SectionOldComponent>
       {/* Footer */}
-      <SectionComponent>
+      <SectionOldComponent>
         <RowComponent style={globalStyles.jusCenter}>
           <TextComponent text="Already have an account? " />
-          <ButtonComponent
+          <ButtonOldSecondaryComponent
             onPress={handleSignIn}
             type="text"
             text="Sign In"
             backgroundColor={'transparent'}
           />
         </RowComponent>
-      </SectionComponent>
+      </SectionOldComponent>
       <LoadingModal visible={registerAccountMutation.isPending} />
     </ContainerComponent>
   );

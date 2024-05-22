@@ -7,7 +7,7 @@ interface Props {
   children?: ReactNode;
 }
 const SectionComponent = ({children, style}: Props) => {
-  return <View style={[globalStyles.section, style]}>{children}</View>;
+  return <View style={[globalStyles.sectionSecondary, style]}>{children}</View>;
 };
 
 export default SectionComponent;

@@ -56,6 +56,11 @@ export const globalStyles = StyleSheet.create({
   },
   button: createButtonStyle(SPACING.space_10 * 6, 'center', 'center'),
   buttonText: createButtonStyle(SPACING.space_20, 'center', 'center'),
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   text: {
     fontSize: FONTSIZE.size_14,
     fontFamily: FONT_FAMILY.montserrat_regular,
@@ -66,11 +71,11 @@ export const globalStyles = StyleSheet.create({
     paddingVertical: SPACING.space_20,
   },
   sectionSecondary: {
-    padding: SPACING.space_8,
     backgroundColor: COLORS.primaryWhiteHex,
+    padding: SPACING.space_8,
   },
 
-  inputContainer: {
+  inputOldContainer: {
     borderWidth: 0.5,
     borderColor: COLORS.primaryGreyHex,
     borderRadius: BORDER_RADIUS.radius_14,
@@ -78,11 +83,13 @@ export const globalStyles = StyleSheet.create({
     minHeight: 60,
     paddingHorizontal: SPACING.space_16,
   },
-  inputSecondContainer: {
+  inputContainer: {
+    flex: 1,
     borderRadius: BORDER_RADIUS.radius_4,
-    minHeight: SPACING.space_36,
-    backgroundColor: COLORS.secondaryWhiteHex,
+    minHeight: SPACING.space_32,
+    backgroundColor: COLORS.primaryWhiteHex,
     paddingHorizontal: SPACING.space_8,
+    gap: SPACING.space_4,
   },
   buttonIcon: {
     width: SPACING.space_24,
@@ -124,8 +131,8 @@ export const globalStyles = StyleSheet.create({
   },
 
   resetContainer: {
-    backgroundColor: COLORS.primaryWhiteHex,
-    paddingHorizontal: 0,
+    padding: 0,
+    margin: 0,
   },
   horizontalSpacing8: {
     paddingHorizontal: SPACING.space_8,
@@ -136,10 +143,8 @@ export const globalStyles = StyleSheet.create({
   product: {
     backgroundColor: COLORS.primaryWhiteHex,
     width: WIDTH_PRODUCT,
+    marginBottom: SPACING.space_8,
     marginLeft: SPACING.space_8,
-    marginTop: SPACING.space_8,
-    minHeight: WIDTH_PRODUCT * 1.5,
-    ...SHADOW.primary,
   },
   header: {
     position: 'absolute',
@@ -159,5 +164,21 @@ export const globalStyles = StyleSheet.create({
   },
   resetPaddingHorizontal: {
     paddingHorizontal: 0,
+  },
+  input: {
+    flex: 1,
+    minHeight: SPACING.space_32,
+    fontSize: FONTSIZE.size_12,
+    fontFamily: FONT_FAMILY.montserrat_regular,
+    color: COLORS.primaryBlackHex,
+  },
+  dot: {
+    backgroundColor: COLORS.thirdGreyHex,
+    width: SPACING.space_4 + SPACING.space_2,
+    height: SPACING.space_4 + SPACING.space_2,
+    borderRadius: 99,
+  },
+  activeDot: {
+    backgroundColor: COLORS.primaryOrangeHex,
   },
 });

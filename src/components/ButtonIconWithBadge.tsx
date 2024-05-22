@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import {COLORS} from '../constants';
-import ButtonSecondaryComponent from './ButtonSecondaryComponent';
+import ButtonOldComponent from './ButtonOldComponent';
 import DotTextComponent from './DotTextComponent';
 import Ionicons from './Ionicons';
 import {IconSizeProps} from '../types/utils.type';
@@ -20,7 +20,7 @@ const ButtonIconWithBadge = ({
   sizeIcon,
   onPress,
 }: Props) => (
-  <ButtonSecondaryComponent
+  <ButtonOldComponent
     styleContainer={styleContainer}
     onPress={onPress}
     iconLeft={

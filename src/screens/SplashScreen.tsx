@@ -2,7 +2,7 @@ import React from 'react';
 import {
   ContainerComponent,
   ImageComponent,
-  SectionComponent,
+  SectionOldComponent,
 } from '../components';
 import {COLORS, images} from '../constants';
 import {globalStyles} from '../styles';
@@ -13,9 +13,9 @@ const SplashScreen = () => {
       type="linear"
       barStyle="light-content"
       backgroundColorBarStyle={COLORS.secondaryOrangeHex}>
-      <SectionComponent style={globalStyles.containerCenter}>
+      <SectionOldComponent style={globalStyles.containerCenter}>
         <ImageComponent source={images.logo} width={100} height={142} />
-      </SectionComponent>
+      </SectionOldComponent>
     </ContainerComponent>
   );
 };

@@ -17,7 +17,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 interface Props {
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
-  type?: 'linear' | 'input' | 'noSafeArea';
+  type?: 'linear' | 'input' | 'noSafeArea' | 'noScrollView';
   barStyle?: StatusBarStyle;
   backgroundColorBarStyle?: ColorValue;
 }
@@ -26,7 +26,7 @@ const ContainerComponent = ({
   style,
   type,
   barStyle = 'dark-content',
-  backgroundColorBarStyle,
+  backgroundColorBarStyle = COLORS.primaryWhiteHex,
 }: Props) => {
   const insets = useSafeAreaInsets();
   const styleGeneral = [
@@ -58,6 +58,12 @@ const ContainerComponent = ({
   );
 
   const typeComponents = {
+    noScrollView: () => (
+      <View style={globalStyles.flexOne}>
+        {renderBarStyle()}
+        {children}
+      </View>
+    ),
     linear: () => (
       <LinearGradient
         colors={[COLORS.secondaryOrangeHex, COLORS.primaryOrangeHex]}

@@ -81,7 +81,7 @@ export const COLORS: Color = {
   secondaryWhiteHex: '#F7F8F9',
   primaryOrangeHex: '#FF5B2C',
   secondaryOrangeHex: '#ED4D2D',
-  primaryBlackHex: '#3E4958',
+  primaryBlackHex: '#131324',
   primaryGreyHex: '#D5DDE0',
   thirdGreyHex: '#808080',
   secondaryGreyHex: '#A9A9A9',

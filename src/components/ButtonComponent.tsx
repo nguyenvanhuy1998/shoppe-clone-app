@@ -1,68 +1,53 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {
-  ColorValue,
   StyleProp,
-  TextStyle,
+  StyleSheet,
   TouchableOpacity,
+  TouchableOpacityProps,
   ViewStyle,
 } from 'react-native';
-import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
 import {globalStyles} from '../styles';
 import TextComponent from './TextComponent';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-interface Props {
-  text?: string;
+interface Props extends TouchableOpacityProps {
+  styleContainer?: StyleProp<ViewStyle>;
   onPress?: () => void;
-  style?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
-  type?: 'primary' | 'text';
-  backgroundColor?: ColorValue;
-  color?: ColorValue;
+  startIcon?: ReactNode;
+  text?: string;
+  endIcon?: ReactNode;
+  badge?: number;
   fontSize?: number;
+  color?: string;
   fontFamily?: string;
-  icon?: string;
-  iconSize?: number;
-  iconColor?: ColorValue;
-  disabled?: boolean;
 }
 const ButtonComponent = ({
-  text = '',
-  onPress,
-  style,
-  type,
-  backgroundColor = COLORS.primaryWhiteHex,
-  color = COLORS.primaryOrangeHex,
-  fontSize = FONTSIZE.size_16,
-  fontFamily = FONT_FAMILY.montserrat_bold,
-  icon,
-  iconSize,
-  iconColor,
-  disabled,
+  styleContainer,
+  startIcon,
+  text,
+  endIcon,
+  fontSize,
+  color,
+  fontFamily,
+  ...rest
 }: Props) => {
   return (
     <TouchableOpacity
-      disabled={disabled}
-      style={[
-        type === 'text' ? globalStyles.buttonText : globalStyles.button,
-        {
-          backgroundColor,
-        },
-        style,
-      ]}
-      onPress={onPress}>
-      {icon ? (
-        <FontAwesome name={icon} size={iconSize} color={iconColor} />
-      ) : (
+      {...rest}
+      style={[globalStyles.buttonContainer, styleContainer]}>
+      {startIcon && startIcon}
+      {text && (
         <TextComponent
           text={text}
-          color={color}
           fontSize={fontSize}
+          color={color}
           fontFamily={fontFamily}
         />
       )}
+      {endIcon && endIcon}
     </TouchableOpacity>
   );
 };
 
 export default ButtonComponent;
+
+const styles = StyleSheet.create({});

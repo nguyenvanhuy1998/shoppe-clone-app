@@ -5,12 +5,12 @@ import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import authApi from '../../apis/auth.api';
 import {
-  ButtonComponent,
+  ButtonOldSecondaryComponent,
   ContainerComponent,
   HeaderComponent,
-  InputComponent,
+  InputOldComponent,
   RowComponent,
-  SectionComponent,
+  SectionOldComponent,
   SpaceComponent,
   TextComponent,
 } from '../../components';
@@ -77,7 +77,7 @@ const SignInScreen = ({navigation}: Props) => {
       backgroundColorBarStyle={COLORS.primaryWhiteHex}
       type="input">
       {/* Header */}
-      <SectionComponent>
+      <SectionOldComponent>
         <HeaderComponent
           isHideIconLeft
           text="Sign In"
@@ -86,11 +86,11 @@ const SignInScreen = ({navigation}: Props) => {
           fontSize={FONTSIZE.size_26}
           fontFamily={FONT_FAMILY.montserrat_semibold}
         />
-      </SectionComponent>
+      </SectionOldComponent>
       {/* Body */}
-      <SectionComponent style={globalStyles.flexOne}>
+      <SectionOldComponent style={globalStyles.flexOne}>
         {/* Email */}
-        <InputComponent
+        <InputOldComponent
           label="Email"
           control={control}
           name="email"
@@ -100,7 +100,7 @@ const SignInScreen = ({navigation}: Props) => {
           keyboardType="email-address"
         />
         {/* Password */}
-        <InputComponent
+        <InputOldComponent
           label="Password"
           control={control}
           name="password"
@@ -109,7 +109,7 @@ const SignInScreen = ({navigation}: Props) => {
           error={errors.password?.message}
         />
         {/* Forgot Password */}
-        <ButtonComponent
+        <ButtonOldSecondaryComponent
           onPress={handleForgotPassword}
           type="text"
           text="Forgot password?"
@@ -119,7 +119,7 @@ const SignInScreen = ({navigation}: Props) => {
           style={globalStyles.selfEnd}
         />
         {/* Sign In */}
-        <ButtonComponent
+        <ButtonOldSecondaryComponent
           disabled={loginMutation.isPending}
           style={spacingTop(SPACING.space_10 * 5)}
           onPress={onSubmit}
@@ -146,7 +146,7 @@ const SignInScreen = ({navigation}: Props) => {
         </RowComponent>
         {/* Login with Google && Facebook */}
         <RowComponent style={spacingTop(SPACING.space_10 * 3)}>
-          <ButtonComponent
+          <ButtonOldSecondaryComponent
             icon="facebook"
             iconSize={SPACING.space_24}
             iconColor={COLORS.primaryWhiteHex}
@@ -155,7 +155,7 @@ const SignInScreen = ({navigation}: Props) => {
             style={globalStyles.flexOne}
           />
           <SpaceComponent width={SPACING.space_20} />
-          <ButtonComponent
+          <ButtonOldSecondaryComponent
             icon="google"
             iconSize={SPACING.space_24}
             iconColor={COLORS.primaryWhiteHex}
@@ -164,19 +164,19 @@ const SignInScreen = ({navigation}: Props) => {
             style={globalStyles.flexOne}
           />
         </RowComponent>
-      </SectionComponent>
+      </SectionOldComponent>
       {/* Footer */}
-      <SectionComponent>
+      <SectionOldComponent>
         <RowComponent style={globalStyles.jusCenter}>
           <TextComponent text="Don’t have an account? " />
-          <ButtonComponent
+          <ButtonOldSecondaryComponent
             onPress={handleSignUp}
             type="text"
             text="Sign Up"
             backgroundColor={'transparent'}
           />
         </RowComponent>
-      </SectionComponent>
+      </SectionOldComponent>
       <LoadingModal visible={loginMutation.isPending} />
     </ContainerComponent>
   );

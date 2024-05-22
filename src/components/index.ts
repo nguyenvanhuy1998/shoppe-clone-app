@@ -1,47 +1,53 @@
 import ContainerComponent from './ContainerComponent';
 import ImageComponent from './ImageComponent';
-import ButtonComponent from './ButtonComponent';
-import SectionComponent from './SectionComponent';
+import ButtonOldSecondaryComponent from './ButtonOldSecondaryComponent';
+import SectionOldComponent from './SectionOldComponent';
 import FocusAwareStatusBar from './FocusAwareStatusBar';
 import SpaceComponent from './SpaceComponent';
 import TextComponent from './TextComponent';
 import MaterialIcons from './MaterialIcons';
 import HeaderComponent from './HeaderComponent';
 import RowComponent from './RowComponent';
-import InputComponent from './InputComponent';
+import InputOldComponent from './InputOldComponent';
 import Ionicons from './Ionicons';
-import ButtonSecondaryComponent from './ButtonSecondaryComponent';
+import ButtonOldComponent from './ButtonOldComponent';
 import DotTextComponent from './DotTextComponent';
-import SectionSecondaryComponent from './SectionSecondaryComponent';
+import SectionComponent from './SectionComponent';
 import LineComponent from './LineComponent';
 import CarouselComponent from './CarouselComponent';
 import ButtonIconWithBadge from './ButtonIconWithBadge';
 import ProductComponent from './ProductComponent';
-import LabelProductComponent from './LabelProductComponent';
 import DiscountProductComponent from './DiscountProductComponent';
 import IconTextComponent from './IconTextComponent';
+import BannerListComponent from './BannerListComponent';
+import InputComponent from './InputComponent';
+import ButtonComponent from './ButtonComponent';
+import DotComponent from './DotComponent';
 
 export {
   ContainerComponent,
   ImageComponent,
-  ButtonComponent,
-  SectionComponent,
+  ButtonOldSecondaryComponent,
+  SectionOldComponent,
   FocusAwareStatusBar,
   SpaceComponent,
   TextComponent,
   MaterialIcons,
   HeaderComponent,
   RowComponent,
-  InputComponent,
+  InputOldComponent,
   Ionicons,
-  ButtonSecondaryComponent,
+  ButtonOldComponent,
   DotTextComponent,
-  SectionSecondaryComponent,
+  SectionComponent,
   LineComponent,
   CarouselComponent,
   ButtonIconWithBadge,
   ProductComponent,
-  LabelProductComponent,
   DiscountProductComponent,
   IconTextComponent,
+  BannerListComponent,
+  InputComponent,
+  ButtonComponent,
+  DotComponent,
 };

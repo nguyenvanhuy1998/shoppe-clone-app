@@ -1,14 +1,14 @@
 import {ColorValue} from 'react-native';
 import {COLORS} from '../../../constants';
 
-export interface MarketProps {
+export interface CategoryProps {
   id: string;
   image: string;
   title: string;
   colorIcon: ColorValue;
 }
 
-export const marketData: MarketProps[] = [
+export const categories: CategoryProps[] = [
   {
     id: '1',
     image: 'play',

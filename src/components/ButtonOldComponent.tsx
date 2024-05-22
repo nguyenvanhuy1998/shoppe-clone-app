@@ -16,7 +16,7 @@ interface Props {
   iconLeft?: ReactNode;
   radius?: number;
 }
-const ButtonSecondaryComponent = ({
+const ButtonOldComponent = ({
   onPress,
   styleContainer,
   text,
@@ -57,4 +57,4 @@ const ButtonSecondaryComponent = ({
   );
 };
 
-export default ButtonSecondaryComponent;
+export default ButtonOldComponent;

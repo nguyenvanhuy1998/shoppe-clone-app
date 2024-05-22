@@ -1,18 +1,5 @@
-import BannerItem from './BannerItem';
-import TypePay from './TypePay';
-import MarketItem from './MarketItem';
-import OutStanding from './OutStanding';
-import HomeTitle from './HomeTitle';
-import LiveItem from './LiveItem';
-import FlashSaleItem from './FlashSaleItem';
-import ServiceItem from './ServiceItem';
-export {
-  BannerItem,
-  TypePay,
-  MarketItem,
-  OutStanding,
-  HomeTitle,
-  LiveItem,
-  FlashSaleItem,
-  ServiceItem,
-};
+import Category from './Category';
+import SearchProduct from './SearchProduct';
+import Wallet from './Wallet';
+import CategoryList from './CategoryList';
+export {Category, SearchProduct, Wallet, CategoryList};

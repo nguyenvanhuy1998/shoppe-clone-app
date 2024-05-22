@@ -8,7 +8,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import productApi from '../../apis/product.api';
 import {
   ButtonIconWithBadge,
-  ButtonSecondaryComponent,
+  ButtonOldComponent,
   ContainerComponent,
   DiscountProductComponent,
   IconTextComponent,
@@ -16,7 +16,7 @@ import {
   LineComponent,
   MaterialIcons,
   RowComponent,
-  SectionSecondaryComponent,
+  SectionComponent,
   TextComponent,
 } from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, OS, SPACING} from '../../constants';
@@ -99,7 +99,7 @@ const ProductDetailScreen = () => {
                 },
               ],
             ]}>
-            <ButtonSecondaryComponent
+            <ButtonOldComponent
               onPress={handleBack}
               backgroundColor={COLORS.primaryModal}
               styleContainer={styles.iconButtonContainer}
@@ -112,7 +112,7 @@ const ProductDetailScreen = () => {
               }
             />
             <RowComponent style={gapNumber(8)}>
-              <ButtonSecondaryComponent
+              <ButtonOldComponent
                 backgroundColor={COLORS.primaryModal}
                 styleContainer={styles.iconButtonContainer}
                 iconLeft={
@@ -129,7 +129,7 @@ const ProductDetailScreen = () => {
                 sizeIcon="large"
                 styleContainer={styles.iconButtonContainer}
               />
-              <ButtonSecondaryComponent
+              <ButtonOldComponent
                 backgroundColor={COLORS.primaryModal}
                 styleContainer={styles.iconButtonContainer}
                 iconLeft={
@@ -148,7 +148,7 @@ const ProductDetailScreen = () => {
           </View>
         </View>
         {/* Product Info */}
-        <SectionSecondaryComponent style={globalStyles.resetContainer}>
+        <SectionComponent style={globalStyles.resetContainer}>
           <TextComponent
             text={`${product.quantity} phân loại có sẵn`}
             fontFamily={FONT_FAMILY.montserrat_bold}
@@ -299,12 +299,12 @@ const ProductDetailScreen = () => {
               fontSize={FONTSIZE.size_10}
             />
           </RowComponent>
-        </SectionSecondaryComponent>
+        </SectionComponent>
         {/* SPayLater */}
-        <SectionSecondaryComponent
+        <SectionComponent
           style={[spacingTop(8), globalStyles.row, globalStyles.jusBetween]}>
           <TextComponent text={'SPayLater'} />
-          <ButtonSecondaryComponent
+          <ButtonOldComponent
             text="Mua trước trả sau"
             color={COLORS.primaryOrangeHex}
             fontFamily={FONT_FAMILY.montserrat_medium}
@@ -316,10 +316,10 @@ const ProductDetailScreen = () => {
               />
             }
           />
-        </SectionSecondaryComponent>
+        </SectionComponent>
 
         {/* Phí vận chuyển */}
-        <SectionSecondaryComponent style={[spacingTop(8)]}>
+        <SectionComponent style={[spacingTop(8)]}>
           <RowComponent style={[globalStyles.jusBetween, spacingBottom(8)]}>
             <RowComponent style={gapNumber(4)}>
               <TextComponent
@@ -367,15 +367,15 @@ const ProductDetailScreen = () => {
               size="large"
             />
           </TouchableOpacity>
-        </SectionSecondaryComponent>
+        </SectionComponent>
         {/* Chi tiết sản phẩm và Mô tả sản phẩm */}
-        <SectionSecondaryComponent style={[spacingTop(8)]}>
+        <SectionComponent style={[spacingTop(8)]}>
           <RowComponent style={globalStyles.jusBetween}>
             <TextComponent
               text={'Chi tiết sản phẩm'}
               fontFamily={FONT_FAMILY.montserrat_semibold}
             />
-            <ButtonSecondaryComponent
+            <ButtonOldComponent
               text="Kho, Thương hiệu, H..."
               fontFamily={FONT_FAMILY.montserrat_medium}
               color={COLORS.primaryBlackHex}
@@ -405,7 +405,7 @@ const ProductDetailScreen = () => {
               html: product.description,
             }}
           />
-        </SectionSecondaryComponent>
+        </SectionComponent>
         {/* Mua sản phẩm */}
       </ContainerComponent>
       <RowComponent
@@ -415,7 +415,7 @@ const ProductDetailScreen = () => {
             bottom: insets.bottom,
           },
         ]}>
-        <ButtonSecondaryComponent
+        <ButtonOldComponent
           styleContainer={[globalStyles.column, styles.buttonContainer]}
           iconLeft={
             <Ionicons name="chatbubbles-outline" color={COLORS.primaryRedHex} />
@@ -427,7 +427,7 @@ const ProductDetailScreen = () => {
         />
         <LineComponent width={1} height={'50%'} />
 
-        <ButtonSecondaryComponent
+        <ButtonOldComponent
           styleContainer={[globalStyles.column, styles.buttonContainer]}
           iconLeft={<Ionicons name="cart" color={COLORS.primaryRedHex} />}
           text="Thêm vào giỏ hàng"
@@ -435,7 +435,7 @@ const ProductDetailScreen = () => {
           fontFamily={FONT_FAMILY.montserrat_regular}
           color={COLORS.primaryBlackHex}
         />
-        <ButtonSecondaryComponent
+        <ButtonOldComponent
           styleContainer={[globalStyles.flexOne, styles.buttonBuyContainer]}
           text="Mua ngay"
           backgroundColor={COLORS.primaryRedHex}

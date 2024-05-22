@@ -8,19 +8,18 @@ import {
   SPACING,
   WIDTH,
 } from '../../../constants';
-import {MarketProps} from '../data/market';
-import {globalStyles} from '../../../styles';
+import {CategoryProps} from '../data/categories';
 
-const MarketItem = ({
+const Category = ({
   item,
   onPress,
 }: {
-  item: MarketProps;
+  item: CategoryProps;
   onPress?: () => void;
 }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <View style={[globalStyles.center, styles.iconContainer]}>
+      <View style={styles.iconContainer}>
         <Ionicons name={item.image} color={item.colorIcon} />
       </View>
       <TextComponent
@@ -34,13 +33,12 @@ const MarketItem = ({
   );
 };
 
-export default MarketItem;
+export default Category;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    gap: SPACING.space_8,
     width: WIDTH / 4 - SPACING.space_24,
-    height: SPACING.space_10 * 8,
-    marginRight: SPACING.space_16,
   },
   iconContainer: {
     width: SPACING.space_32,
@@ -50,6 +48,5 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS.radius_8,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: SPACING.space_8,
   },
 });
