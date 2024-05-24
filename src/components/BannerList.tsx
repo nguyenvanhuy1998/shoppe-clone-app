@@ -54,9 +54,11 @@ const BannerList = forwardRef<ICarouselInstance, Props>(
           }
           scrollAnimationDuration={scrollAnimationDuration}
           onProgressChange={onProgressChange}
-          renderItem={() => (
+          renderItem={({item}) => (
             <ImageComponent
-              source={images.banner05}
+              source={{
+                uri: item,
+              }}
               width={'100%'}
               height={'100%'}
             />

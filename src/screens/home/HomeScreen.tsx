@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useState} from 'react';
+import React from 'react';
 import {FlatList, RefreshControl, StyleSheet} from 'react-native';
 import {Pagination} from 'react-native-reanimated-carousel';
 import {
@@ -15,10 +15,10 @@ import {useCarousel} from '../../hooks';
 import {useInfiniteScroll} from '../../hooks/useInfiniteScroll';
 import {MainNavigatorParamList} from '../../navigator/MainNavigator';
 import {globalStyles} from '../../styles';
-import {Product, ProductListConfig} from '../../types/product.type';
+import {Product} from '../../types/product.type';
+import {spacingBottom} from '../../utils';
 import {CategoryList, SearchProduct, Wallet} from './components';
 import {dummyBanner} from './data/banner';
-import {spacingBottom} from '../../utils';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   MainNavigatorParamList,
@@ -26,11 +26,9 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 >;
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
-  const [filters, setFilters] = useState<ProductListConfig>({});
   const {refCarousel, progress, onPressPagination} = useCarousel();
   const {data, isRefreshing, onRefresh, onEndReached} = useInfiniteScroll({
     key: 'products',
-    filters,
   });
   const handleChangeProductDetailScreen = (product: Product) => {
     navigation.navigate('ProductDetail', {
