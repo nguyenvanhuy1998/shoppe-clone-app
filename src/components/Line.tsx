@@ -17,15 +17,7 @@ interface Props {
   top?: number;
   bottom?: number;
 }
-const LineComponent = ({
-  width,
-  height,
-  left,
-  right,
-  top,
-  bottom,
-  style,
-}: Props) => {
+const Line = ({width, height, left, right, top, bottom, style}: Props) => {
   return (
     <View
       style={[
@@ -44,7 +36,7 @@ const LineComponent = ({
   );
 };
 
-export default LineComponent;
+export default Line;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.primaryGreyHex,

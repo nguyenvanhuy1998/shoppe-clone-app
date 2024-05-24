@@ -8,8 +8,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import {globalStyles} from '../styles';
-import RowComponent from './RowComponent';
-import {View} from 'react-native';
+import Row from './Row';
 
 interface Props extends TextInputProps {
   styleContainer?: StyleProp<ViewStyle>;
@@ -17,7 +16,7 @@ interface Props extends TextInputProps {
   styleInput?: StyleProp<TextStyle>;
   rightIcon?: ReactNode;
 }
-const InputComponent = ({
+const Input = ({
   leftIcon,
   rightIcon,
   styleContainer,
@@ -25,14 +24,14 @@ const InputComponent = ({
   ...rest
 }: Props) => {
   return (
-    <RowComponent style={[globalStyles.inputContainer, styleContainer]}>
+    <Row style={[globalStyles.inputContainer, styleContainer]}>
       {leftIcon && leftIcon}
       <TextInput style={[globalStyles.input, styleInput]} {...rest} />
       {rightIcon && rightIcon}
-    </RowComponent>
+    </Row>
   );
 };
 
-export default InputComponent;
+export default Input;
 
 const styles = StyleSheet.create({});

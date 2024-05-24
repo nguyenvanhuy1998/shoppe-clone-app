@@ -11,12 +11,12 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../constants';
-import {globalStyles} from '../styles';
-import MaterialIcons from './MaterialIcons';
-import RowComponent from './RowComponent';
-import TextComponent from './TextComponent';
-import Ionicons from './Ionicons';
+import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../../constants';
+import {globalStyles} from '../../../styles';
+import MaterialIcons from '../../../components/MaterialIcons';
+import Row from '../../../components/Row';
+import TextComponent from '../../../components/TextComponent';
+import Ionicons from '../../../components/Ionicons';
 
 interface Props extends TextInputProps {
   style?: StyleProp<ViewStyle>;
@@ -31,7 +31,7 @@ interface Props extends TextInputProps {
   allowClear?: boolean;
   error?: string;
 }
-const InputOldComponent = ({
+const InputAuth = ({
   label,
   style,
   control,
@@ -61,8 +61,7 @@ const InputOldComponent = ({
         name={name}
         render={({field: {onChange, onBlur, value}}) => {
           return (
-            <RowComponent
-              style={[globalStyles.inputOldContainer, styleInputContainer]}>
+            <Row style={[globalStyles.inputOldContainer, styleInputContainer]}>
               {iconLeft && iconLeft}
               <TextInput
                 style={[globalStyles.text, globalStyles.flexOne, styleInput]}
@@ -97,7 +96,7 @@ const InputOldComponent = ({
                   )
                 )}
               </TouchableOpacity>
-            </RowComponent>
+            </Row>
           );
         }}
       />
@@ -113,7 +112,7 @@ const InputOldComponent = ({
   );
 };
 
-export default InputOldComponent;
+export default InputAuth;
 const styles = StyleSheet.create({
   container: {
     marginBottom: SPACING.space_20,

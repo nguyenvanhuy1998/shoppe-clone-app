@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {Button, View} from 'react-native';
-import {globalStyles} from '../styles';
 import {useMutation} from '@tanstack/react-query';
-import {AppContext} from '../contexts/AppContext';
-import {TextComponent} from '../components';
-import authApi from '../apis/auth.api';
+import authApi from '../../apis/auth.api';
+import {globalStyles} from '../../styles';
+import {TextComponent} from '../../components';
+import {AppContext} from '../../contexts/AppContext';
 
 const ProfileScreen = () => {
   const {setIsAuthenticated, setProfile, profile} = useContext(AppContext);

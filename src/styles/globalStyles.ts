@@ -4,7 +4,6 @@ import {
   COLORS,
   FONT_FAMILY,
   FONTSIZE,
-  SHADOW,
   SPACING,
   WIDTH,
 } from '../constants';

@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {COLORS} from '../constants';
 import {FeedScreen, NotificationsScreen, ProfileScreen} from '../screens';
-import LiveScreen from '../screens/LiveScreen';
+import LiveScreen from '../screens/live/LiveScreen';
 import {Ionicons} from '../components';
 import HomeNavigator from './HomeNavigator';
 export type TabNavigatorParamList = {

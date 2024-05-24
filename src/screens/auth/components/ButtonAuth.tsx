@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
-import {globalStyles} from '../styles';
-import TextComponent from './TextComponent';
+import {COLORS, FONT_FAMILY, FONTSIZE} from '../../../constants';
+import {globalStyles} from '../../../styles';
+import TextComponent from '../../../components/TextComponent';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 interface Props {
@@ -26,7 +26,7 @@ interface Props {
   iconColor?: ColorValue;
   disabled?: boolean;
 }
-const ButtonOldSecondaryComponent = ({
+const ButtonAuth = ({
   text = '',
   onPress,
   style,
@@ -65,4 +65,4 @@ const ButtonOldSecondaryComponent = ({
   );
 };
 
-export default ButtonOldSecondaryComponent;
+export default ButtonAuth;

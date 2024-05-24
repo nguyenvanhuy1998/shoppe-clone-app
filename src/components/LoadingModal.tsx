@@ -1,6 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, Modal, StyleSheet, View} from 'react-native';
-import {TextComponent} from '../components';
+import {TextComponent} from '.';
 import {COLORS} from '../constants';
 import {globalStyles} from '../styles';
 interface Props {

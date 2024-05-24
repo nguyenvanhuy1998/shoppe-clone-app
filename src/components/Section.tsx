@@ -6,8 +6,8 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   children?: ReactNode;
 }
-const SectionComponent = ({children, style}: Props) => {
+const Section = ({children, style}: Props) => {
   return <View style={[globalStyles.sectionSecondary, style]}>{children}</View>;
 };
 
-export default SectionComponent;
+export default Section;

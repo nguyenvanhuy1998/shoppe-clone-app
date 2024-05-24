@@ -16,11 +16,11 @@ import {
   rateSale,
   spacingRight,
 } from '../utils';
-import DiscountProductComponent from './DiscountProductComponent';
-import IconTextComponent from './IconTextComponent';
+import DiscountProduct from './DiscountProduct';
+import IconText from './IconText';
 import ImageComponent from './ImageComponent';
 import MaterialIcons from './MaterialIcons';
-import RowComponent from './RowComponent';
+import Row from './Row';
 import TextComponent from './TextComponent';
 
 interface Props {
@@ -38,14 +38,14 @@ const ProductComponent = ({onPress, style, product}: Props) => {
         width={WIDTH_PRODUCT}
         height={WIDTH_PRODUCT}
       />
-      <DiscountProductComponent
+      <DiscountProduct
         style={globalStyles.discount}
         backgroundColor={COLORS.primaryWhitePinkHex}
         text={`${rateSale(product.price_before_discount, product.price)}`}
       />
       <View style={styles.infoContainer}>
         <TextComponent numberOfLines={2} text={product.name} />
-        <IconTextComponent
+        <IconText
           style={styles.starContainer}
           text={product.rating}
           fontSize={FONTSIZE.size_10}
@@ -57,7 +57,7 @@ const ProductComponent = ({onPress, style, product}: Props) => {
             />
           }
         />
-        <RowComponent style={[globalStyles.jusBetween]}>
+        <Row style={[globalStyles.jusBetween]}>
           <TextComponent
             style={[globalStyles.flexOne, spacingRight(4)]}
             text={`₫ ${formatVND(product.price)}`}
@@ -69,7 +69,7 @@ const ProductComponent = ({onPress, style, product}: Props) => {
             text={`Đã bán ${formatNumberToSocialStyle(product.sold)}`}
             fontSize={FONTSIZE.size_10}
           />
-        </RowComponent>
+        </Row>
       </View>
     </TouchableOpacity>
   );

@@ -4,16 +4,7 @@ import {useMutation} from '@tanstack/react-query';
 import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import authApi from '../../apis/auth.api';
-import {
-  ButtonOldSecondaryComponent,
-  ContainerComponent,
-  HeaderComponent,
-  InputOldComponent,
-  RowComponent,
-  SectionOldComponent,
-  SpaceComponent,
-  TextComponent,
-} from '../../components';
+import {Container, LoadingModal, Row, TextComponent} from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {AppContext} from '../../contexts/AppContext';
 import {AuthNavigatorParamList} from '../../navigator/AuthNavigator';
@@ -21,7 +12,13 @@ import {globalStyles} from '../../styles';
 import {ErrorResponse} from '../../types/utils.type';
 import {spacingTop, isAxiosUnprocessableEntityError} from '../../utils';
 import {AuthSchema, schema} from '../../utils/rules';
-import {LoadingModal} from '../../modals';
+import {
+  ButtonAuth,
+  HeaderAuth,
+  InputAuth,
+  SectionAuth,
+  SpaceAuth,
+} from './components';
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignIn'>;
 
@@ -73,12 +70,10 @@ const SignInScreen = ({navigation}: Props) => {
   };
   const handleForgotPassword = () => {};
   return (
-    <ContainerComponent
-      backgroundColorBarStyle={COLORS.primaryWhiteHex}
-      type="input">
+    <Container backgroundColorBarStyle={COLORS.primaryWhiteHex} type="input">
       {/* Header */}
-      <SectionOldComponent>
-        <HeaderComponent
+      <SectionAuth>
+        <HeaderAuth
           isHideIconLeft
           text="Sign In"
           desc="Please fill E-mail & password to login your
@@ -86,11 +81,11 @@ const SignInScreen = ({navigation}: Props) => {
           fontSize={FONTSIZE.size_26}
           fontFamily={FONT_FAMILY.montserrat_semibold}
         />
-      </SectionOldComponent>
+      </SectionAuth>
       {/* Body */}
-      <SectionOldComponent style={globalStyles.flexOne}>
+      <SectionAuth style={globalStyles.flexOne}>
         {/* Email */}
-        <InputOldComponent
+        <InputAuth
           label="Email"
           control={control}
           name="email"
@@ -100,7 +95,7 @@ const SignInScreen = ({navigation}: Props) => {
           keyboardType="email-address"
         />
         {/* Password */}
-        <InputOldComponent
+        <InputAuth
           label="Password"
           control={control}
           name="password"
@@ -109,7 +104,7 @@ const SignInScreen = ({navigation}: Props) => {
           error={errors.password?.message}
         />
         {/* Forgot Password */}
-        <ButtonOldSecondaryComponent
+        <ButtonAuth
           onPress={handleForgotPassword}
           type="text"
           text="Forgot password?"
@@ -119,7 +114,7 @@ const SignInScreen = ({navigation}: Props) => {
           style={globalStyles.selfEnd}
         />
         {/* Sign In */}
-        <ButtonOldSecondaryComponent
+        <ButtonAuth
           disabled={loginMutation.isPending}
           style={spacingTop(SPACING.space_10 * 5)}
           onPress={onSubmit}
@@ -128,8 +123,8 @@ const SignInScreen = ({navigation}: Props) => {
           color={COLORS.primaryWhiteHex}
         />
         {/* Other */}
-        <RowComponent style={spacingTop(SPACING.space_10 * 5)}>
-          <SpaceComponent
+        <Row style={spacingTop(SPACING.space_10 * 5)}>
+          <SpaceAuth
             style={globalStyles.flexOne}
             height={1}
             backgroundColor={COLORS.primaryGreyHex}
@@ -138,15 +133,15 @@ const SignInScreen = ({navigation}: Props) => {
             fontFamily={FONT_FAMILY.montserrat_semibold}
             text="Or sign in with"
           />
-          <SpaceComponent
+          <SpaceAuth
             style={globalStyles.flexOne}
             height={1}
             backgroundColor={COLORS.primaryGreyHex}
           />
-        </RowComponent>
+        </Row>
         {/* Login with Google && Facebook */}
-        <RowComponent style={spacingTop(SPACING.space_10 * 3)}>
-          <ButtonOldSecondaryComponent
+        <Row style={spacingTop(SPACING.space_10 * 3)}>
+          <ButtonAuth
             icon="facebook"
             iconSize={SPACING.space_24}
             iconColor={COLORS.primaryWhiteHex}
@@ -154,8 +149,8 @@ const SignInScreen = ({navigation}: Props) => {
             color={COLORS.primaryWhiteHex}
             style={globalStyles.flexOne}
           />
-          <SpaceComponent width={SPACING.space_20} />
-          <ButtonOldSecondaryComponent
+          <SpaceAuth width={SPACING.space_20} />
+          <ButtonAuth
             icon="google"
             iconSize={SPACING.space_24}
             iconColor={COLORS.primaryWhiteHex}
@@ -163,22 +158,22 @@ const SignInScreen = ({navigation}: Props) => {
             color={COLORS.primaryWhiteHex}
             style={globalStyles.flexOne}
           />
-        </RowComponent>
-      </SectionOldComponent>
+        </Row>
+      </SectionAuth>
       {/* Footer */}
-      <SectionOldComponent>
-        <RowComponent style={globalStyles.jusCenter}>
+      <SectionAuth>
+        <Row style={globalStyles.jusCenter}>
           <TextComponent text="Don’t have an account? " />
-          <ButtonOldSecondaryComponent
+          <ButtonAuth
             onPress={handleSignUp}
             type="text"
             text="Sign Up"
             backgroundColor={'transparent'}
           />
-        </RowComponent>
-      </SectionOldComponent>
+        </Row>
+      </SectionAuth>
       <LoadingModal visible={loginMutation.isPending} />
-    </ContainerComponent>
+    </Container>
   );
 };
 

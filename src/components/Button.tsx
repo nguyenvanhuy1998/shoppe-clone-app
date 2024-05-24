@@ -20,7 +20,7 @@ interface Props extends TouchableOpacityProps {
   color?: string;
   fontFamily?: string;
 }
-const ButtonComponent = ({
+const Button = ({
   styleContainer,
   startIcon,
   text,
@@ -48,6 +48,6 @@ const ButtonComponent = ({
   );
 };
 
-export default ButtonComponent;
+export default Button;
 
 const styles = StyleSheet.create({});

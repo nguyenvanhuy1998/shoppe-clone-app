@@ -12,7 +12,7 @@ interface Props {
   dimension?: number;
   borderColor?: string;
 }
-const DotComponent = ({
+const Dot = ({
   styleContainer,
   text,
   dimension = SPACING.space_16,
@@ -43,4 +43,4 @@ const DotComponent = ({
   );
 };
 
-export default DotComponent;
+export default Dot;

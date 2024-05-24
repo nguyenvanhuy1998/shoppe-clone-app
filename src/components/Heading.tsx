@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../constants';
-import ButtonComponent from './ButtonComponent';
+import Button from './Button';
 import MaterialIcons from './MaterialIcons';
-import RowComponent from './RowComponent';
+import Row from './Row';
 import TextComponent from './TextComponent';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
   fontFamilyTitle?: string;
   textButton?: string;
 }
-const HeadingComponent = ({
+const Heading = ({
   text,
   textButton,
   sizeTitle = FONTSIZE.size_16,
@@ -23,7 +23,7 @@ const HeadingComponent = ({
   styleContainer,
 }: Props) => {
   return (
-    <RowComponent style={[styles.container, styleContainer]}>
+    <Row style={[styles.container, styleContainer]}>
       <TextComponent
         text={text}
         fontSize={sizeTitle}
@@ -31,7 +31,7 @@ const HeadingComponent = ({
         color={colorTitle}
       />
       {textButton && (
-        <ButtonComponent
+        <Button
           text={textButton}
           endIcon={
             <MaterialIcons
@@ -41,11 +41,11 @@ const HeadingComponent = ({
           }
         />
       )}
-    </RowComponent>
+    </Row>
   );
 };
 
-export default HeadingComponent;
+export default Heading;
 
 const styles = StyleSheet.create({
   container: {

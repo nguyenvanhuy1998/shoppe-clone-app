@@ -19,7 +19,7 @@ interface Props {
     | ((offsetProgress: number, absoluteProgress: number) => void)
     | SharedValue<number>;
 }
-const BannerListComponent = forwardRef<ICarouselInstance, Props>(
+const BannerList = forwardRef<ICarouselInstance, Props>(
   (
     {
       data,
@@ -67,4 +67,4 @@ const BannerListComponent = forwardRef<ICarouselInstance, Props>(
   },
 );
 
-export default BannerListComponent;
+export default BannerList;

@@ -6,7 +6,7 @@ interface Props {
   backgroundColor?: ColorValue;
   style?: StyleProp<ViewStyle>;
 }
-const SpaceComponent = ({width, height, backgroundColor, style}: Props) => {
+const SpaceAuth = ({width, height, backgroundColor, style}: Props) => {
   return (
     <View
       style={[
@@ -21,4 +21,4 @@ const SpaceComponent = ({width, height, backgroundColor, style}: Props) => {
   );
 };
 
-export default SpaceComponent;
+export default SpaceAuth;

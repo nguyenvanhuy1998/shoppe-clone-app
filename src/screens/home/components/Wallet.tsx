@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {
-  ButtonComponent,
-  IconTextComponent,
+  Button,
+  IconText,
   Ionicons,
-  LineComponent,
-  RowComponent,
+  Line,
+  Row,
   TextComponent,
 } from '../../../components';
 import {
@@ -18,19 +18,17 @@ import {
 
 const Wallet = () => {
   return (
-    <RowComponent style={styles.container}>
-      <ButtonComponent
-        startIcon={<Ionicons name="scan-outline" size="large" />}
-      />
-      <LineComponent width={1} height={'100%'} />
+    <Row style={styles.container}>
+      <Button startIcon={<Ionicons name="scan-outline" size="large" />} />
+      <Line width={1} height={'100%'} />
       <Item
         icon="wallet-outline"
         text="Ví ShopeePay"
         desc="Vourcher mua sắm giảm đến 40.000Đ"
       />
-      <LineComponent width={1} height={'100%'} />
+      <Line width={1} height={'100%'} />
       <Item icon="logo-bitcoin" text="0" desc="Nhấn để nhận Xu mỗi ngày" />
-    </RowComponent>
+    </Row>
   );
 };
 const Item = ({
@@ -45,7 +43,7 @@ const Item = ({
   desc: string;
 }) => (
   <TouchableOpacity style={styles.itemContainer}>
-    <IconTextComponent
+    <IconText
       icon={<Ionicons name={icon} color={color} />}
       text={text}
       fontSize={FONTSIZE.size_12}

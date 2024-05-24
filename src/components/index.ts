@@ -1,53 +1,37 @@
-import ContainerComponent from './ContainerComponent';
+import Container from './Container';
 import ImageComponent from './ImageComponent';
-import ButtonOldSecondaryComponent from './ButtonOldSecondaryComponent';
-import SectionOldComponent from './SectionOldComponent';
 import FocusAwareStatusBar from './FocusAwareStatusBar';
-import SpaceComponent from './SpaceComponent';
 import TextComponent from './TextComponent';
 import MaterialIcons from './MaterialIcons';
-import HeaderComponent from './HeaderComponent';
-import RowComponent from './RowComponent';
-import InputOldComponent from './InputOldComponent';
+import Row from './Row';
 import Ionicons from './Ionicons';
-import ButtonOldComponent from './ButtonOldComponent';
-import DotTextComponent from './DotTextComponent';
-import SectionComponent from './SectionComponent';
-import LineComponent from './LineComponent';
-import CarouselComponent from './CarouselComponent';
-import ButtonIconWithBadge from './ButtonIconWithBadge';
+import Section from './Section';
+import Line from './Line';
 import ProductComponent from './ProductComponent';
-import DiscountProductComponent from './DiscountProductComponent';
-import IconTextComponent from './IconTextComponent';
-import BannerListComponent from './BannerListComponent';
-import InputComponent from './InputComponent';
-import ButtonComponent from './ButtonComponent';
-import DotComponent from './DotComponent';
+import DiscountProduct from './DiscountProduct';
+import IconText from './IconText';
+import BannerList from './BannerList';
+import Input from './Input';
+import Button from './Button';
+import Dot from './Dot';
+import LoadingModal from './LoadingModal';
 
 export {
-  ContainerComponent,
+  Container,
   ImageComponent,
-  ButtonOldSecondaryComponent,
-  SectionOldComponent,
   FocusAwareStatusBar,
-  SpaceComponent,
   TextComponent,
   MaterialIcons,
-  HeaderComponent,
-  RowComponent,
-  InputOldComponent,
+  Row,
   Ionicons,
-  ButtonOldComponent,
-  DotTextComponent,
-  SectionComponent,
-  LineComponent,
-  CarouselComponent,
-  ButtonIconWithBadge,
+  Section,
+  Line,
   ProductComponent,
-  DiscountProductComponent,
-  IconTextComponent,
-  BannerListComponent,
-  InputComponent,
-  ButtonComponent,
-  DotComponent,
+  DiscountProduct,
+  IconText,
+  BannerList,
+  Input,
+  Button,
+  Dot,
+  LoadingModal,
 };

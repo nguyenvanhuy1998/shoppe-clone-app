@@ -1,10 +1,10 @@
 import React from 'react';
-import {COLORS, SPACING} from '../constants';
-import MaterialIcons from './MaterialIcons';
-import RowComponent from './RowComponent';
-import TextComponent from './TextComponent';
+import {COLORS, SPACING} from '../../../constants';
+import MaterialIcons from '../../../components/MaterialIcons';
+import Row from '../../../components/Row';
+import TextComponent from '../../../components/TextComponent';
 import {ColorValue, StyleSheet} from 'react-native';
-import SpaceComponent from './SpaceComponent';
+import SpaceAuth from './SpaceAuth';
 import {useNavigation} from '@react-navigation/native';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
   desc?: string;
   isHideIconLeft?: boolean;
 }
-const HeaderComponent = ({
+const HeaderAuth = ({
   text,
   fontSize,
   color,
@@ -29,7 +29,7 @@ const HeaderComponent = ({
   };
   return (
     <>
-      <RowComponent>
+      <Row>
         {!isHideIconLeft && (
           <MaterialIcons
             name="arrow-back"
@@ -38,14 +38,14 @@ const HeaderComponent = ({
             onPress={handleBack}
           />
         )}
-        {!isHideIconLeft && <SpaceComponent width={SPACING.space_8} />}
+        {!isHideIconLeft && <SpaceAuth width={SPACING.space_8} />}
         <TextComponent
           text={text}
           fontFamily={fontFamily}
           fontSize={fontSize}
           color={color}
         />
-      </RowComponent>
+      </Row>
       {desc && (
         <TextComponent
           style={styles.desc}
@@ -57,7 +57,7 @@ const HeaderComponent = ({
   );
 };
 
-export default HeaderComponent;
+export default HeaderAuth;
 const styles = StyleSheet.create({
   desc: {
     marginTop: SPACING.space_16,

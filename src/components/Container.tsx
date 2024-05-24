@@ -21,7 +21,7 @@ interface Props {
   barStyle?: StatusBarStyle;
   backgroundColorBarStyle?: ColorValue;
 }
-const ContainerComponent = ({
+const Container = ({
   children,
   style,
   type,
@@ -99,4 +99,4 @@ const ContainerComponent = ({
   return typeComponents[type || 'default']();
 };
 
-export default ContainerComponent;
+export default Container;

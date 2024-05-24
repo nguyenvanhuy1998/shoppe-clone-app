@@ -1,13 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {
-  ButtonComponent,
-  DotComponent,
-  InputComponent,
-  Ionicons,
-  RowComponent,
-} from '../../../components';
+import {Button, Dot, Input, Ionicons, Row} from '../../../components';
 import {COLORS, SPACING} from '../../../constants';
 import {gapNumber} from '../../../utils/spacing';
 import {globalStyles} from '../../../styles';
@@ -15,7 +9,7 @@ import {globalStyles} from '../../../styles';
 const SearchProduct = () => {
   const insets = useSafeAreaInsets();
   return (
-    <RowComponent
+    <Row
       style={[
         styles.inputContainer,
         gapNumber(SPACING.space_8),
@@ -23,17 +17,13 @@ const SearchProduct = () => {
           top: insets.top,
         },
       ]}>
-      <InputComponent
+      <Input
         placeholder="Search..."
         placeholderTextColor={COLORS.primaryOrangeHex}
-        leftIcon={
-          <ButtonComponent startIcon={<Ionicons name="search-outline" />} />
-        }
-        rightIcon={
-          <ButtonComponent startIcon={<Ionicons name="camera-outline" />} />
-        }
+        leftIcon={<Button startIcon={<Ionicons name="search-outline" />} />}
+        rightIcon={<Button startIcon={<Ionicons name="camera-outline" />} />}
       />
-      <ButtonComponent
+      <Button
         startIcon={
           <Ionicons
             name="cart-outline"
@@ -42,13 +32,13 @@ const SearchProduct = () => {
           />
         }
         endIcon={
-          <DotComponent
+          <Dot
             styleContainer={[styles.dotInputContainer, globalStyles.center]}
             text={99}
           />
         }
       />
-      <ButtonComponent
+      <Button
         startIcon={
           <Ionicons
             name="chatbox-ellipses-outline"
@@ -57,13 +47,13 @@ const SearchProduct = () => {
           />
         }
         endIcon={
-          <DotComponent
+          <Dot
             styleContainer={[styles.dotInputContainer, globalStyles.center]}
             text={99}
           />
         }
       />
-    </RowComponent>
+    </Row>
   );
 };
 

@@ -3,7 +3,7 @@ import {ColorValue, StyleProp, ViewStyle} from 'react-native';
 import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
 import {globalStyles} from '../styles';
 import MaterialIcons from './MaterialIcons';
-import RowComponent from './RowComponent';
+import Row from './Row';
 import TextComponent from './TextComponent';
 
 interface Props {
@@ -12,14 +12,14 @@ interface Props {
   backgroundColor?: ColorValue;
   style?: StyleProp<ViewStyle>;
 }
-const DiscountProductComponent = ({
+const DiscountProduct = ({
   text,
   icon,
   backgroundColor = COLORS.secondYellowHex,
   style,
 }: Props) => {
   return (
-    <RowComponent
+    <Row
       style={[
         globalStyles.center,
         {
@@ -34,8 +34,8 @@ const DiscountProductComponent = ({
         fontFamily={FONT_FAMILY.montserrat_medium}
         fontSize={FONTSIZE.size_12}
       />
-    </RowComponent>
+    </Row>
   );
 };
 
-export default DiscountProductComponent;
+export default DiscountProduct;

@@ -4,12 +4,12 @@ import React, {useState} from 'react';
 import {FlatList, RefreshControl, StyleSheet} from 'react-native';
 import {Pagination} from 'react-native-reanimated-carousel';
 import {
-  BannerListComponent,
-  ContainerComponent,
+  BannerList,
+  Container,
   ProductComponent,
-  SectionComponent,
+  Section,
 } from '../../components';
-import HeadingComponent from '../../components/HeadingComponent';
+import Heading from '../../components/Heading';
 import {COLORS, SPACING, WIDTH} from '../../constants';
 import {useCarousel} from '../../hooks';
 import {useInfiniteScroll} from '../../hooks/useInfiniteScroll';
@@ -39,7 +39,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <ContainerComponent type="noScrollView">
+    <Container type="noScrollView">
       <FlatList
         showsVerticalScrollIndicator={false}
         numColumns={2}
@@ -61,8 +61,8 @@ const HomeScreen = () => {
         }
         ListHeaderComponent={
           <>
-            <SectionComponent style={globalStyles.resetContainer}>
-              <BannerListComponent
+            <Section style={globalStyles.resetContainer}>
+              <BannerList
                 ref={refCarousel}
                 width={WIDTH}
                 height={WIDTH / 2}
@@ -82,19 +82,16 @@ const HomeScreen = () => {
                 containerStyle={[styles.paginationContainer]}
                 onPress={onPressPagination}
               />
-            </SectionComponent>
-            <SectionComponent style={styles.categoryContainer}>
+            </Section>
+            <Section style={styles.categoryContainer}>
               <Wallet />
               <CategoryList />
-            </SectionComponent>
-            <HeadingComponent
-              styleContainer={spacingBottom(8)}
-              text="GỢI Ý HÔM NAY"
-            />
+            </Section>
+            <Heading styleContainer={spacingBottom(8)} text="GỢI Ý HÔM NAY" />
           </>
         }
       />
-    </ContainerComponent>
+    </Container>
   );
 };
 

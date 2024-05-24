@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import {ColorValue, StyleProp, ViewStyle} from 'react-native';
-import RowComponent from './RowComponent';
+import Row from './Row';
 import TextComponent from './TextComponent';
 import {gapNumber} from '../utils/spacing';
 
@@ -12,16 +12,9 @@ interface Props {
   color?: ColorValue;
   style?: StyleProp<ViewStyle>;
 }
-const IconTextComponent = ({
-  icon,
-  text,
-  fontSize,
-  fontFamily,
-  color,
-  style,
-}: Props) => {
+const IconText = ({icon, text, fontSize, fontFamily, color, style}: Props) => {
   return (
-    <RowComponent style={[gapNumber(4), style]}>
+    <Row style={[gapNumber(4), style]}>
       {icon && icon}
       <TextComponent
         text={text}
@@ -29,8 +22,8 @@ const IconTextComponent = ({
         fontFamily={fontFamily}
         color={color}
       />
-    </RowComponent>
+    </Row>
   );
 };
 
-export default IconTextComponent;
+export default IconText;
