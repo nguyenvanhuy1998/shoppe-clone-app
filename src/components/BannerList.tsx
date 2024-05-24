@@ -1,9 +1,9 @@
-import React, {forwardRef, Ref} from 'react';
+import React, {forwardRef, memo, Ref} from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
 import {SharedValue} from 'react-native-reanimated';
 import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
-import {images} from '../constants';
 import ImageComponent from './ImageComponent';
+import {WIDTH} from '../constants';
 
 interface Props {
   ref?: Ref<ICarouselInstance>;
@@ -15,6 +15,7 @@ interface Props {
   autoPlayInterval?: number;
   data: string[];
   scrollAnimationDuration?: number;
+  onSnapToItem?: (index: number) => void;
   onProgressChange?:
     | ((offsetProgress: number, absoluteProgress: number) => void)
     | SharedValue<number>;
@@ -23,14 +24,15 @@ const BannerList = forwardRef<ICarouselInstance, Props>(
   (
     {
       data,
-      width,
-      height,
+      width = WIDTH,
+      height = WIDTH,
       style,
       loop,
       autoPlay,
       autoPlayInterval = 500,
       scrollAnimationDuration,
       onProgressChange,
+      onSnapToItem,
     },
     ref,
   ) => {
@@ -53,6 +55,7 @@ const BannerList = forwardRef<ICarouselInstance, Props>(
             gestureChain.activeOffsetX([-10, 10])
           }
           scrollAnimationDuration={scrollAnimationDuration}
+          onSnapToItem={onSnapToItem}
           onProgressChange={onProgressChange}
           renderItem={({item}) => (
             <ImageComponent
@@ -69,4 +72,4 @@ const BannerList = forwardRef<ICarouselInstance, Props>(
   },
 );
 
-export default BannerList;
+export default memo(BannerList);

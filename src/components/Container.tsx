@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {memo, ReactNode} from 'react';
 import {
   ColorValue,
   StatusBarStyle,
@@ -39,42 +39,50 @@ const Container = ({
     },
     style,
   ];
-  const renderBarStyle = () => (
-    <FocusAwareStatusBar
-      barStyle={barStyle}
-      backgroundColor={backgroundColorBarStyle}
-    />
-  );
-  const CommonScrollView = ({
-    children: scrollChildren,
-  }: {
-    children: ReactNode;
-  }) => (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={globalStyles.flexGrowOne}>
-      {scrollChildren}
-    </ScrollView>
-  );
-
-  const typeComponents = {
-    noScrollView: () => (
+  if (type === 'noSafeArea') {
+    return (
+      <View style={[globalStyles.flexOne, style]}>
+        <FocusAwareStatusBar
+          barStyle={barStyle}
+          backgroundColor={backgroundColorBarStyle}
+        />
+        <ScrollView contentContainerStyle={globalStyles.flexGrowOne}>
+          {children}
+        </ScrollView>
+      </View>
+    );
+  }
+  if (type === 'noScrollView') {
+    return (
       <View style={globalStyles.flexOne}>
-        {renderBarStyle()}
+        <FocusAwareStatusBar
+          barStyle={barStyle}
+          backgroundColor={backgroundColorBarStyle}
+        />
         {children}
       </View>
-    ),
-    linear: () => (
+    );
+  }
+  if (type === 'linear') {
+    return (
       <LinearGradient
         colors={[COLORS.secondaryOrangeHex, COLORS.primaryOrangeHex]}
         style={styleGeneral}>
-        {renderBarStyle()}
+        <FocusAwareStatusBar
+          barStyle={barStyle}
+          backgroundColor={backgroundColorBarStyle}
+        />
         {children}
       </LinearGradient>
-    ),
-    input: () => (
+    );
+  }
+  if (type === 'input') {
+    return (
       <View style={styleGeneral}>
-        {renderBarStyle()}
+        <FocusAwareStatusBar
+          barStyle={barStyle}
+          backgroundColor={backgroundColorBarStyle}
+        />
         <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
           alwaysBounceVertical={false}
@@ -82,21 +90,19 @@ const Container = ({
           {children}
         </KeyboardAwareScrollView>
       </View>
-    ),
-    noSafeArea: () => (
-      <View style={[globalStyles.flexOne, style]}>
-        {renderBarStyle()}
-        <CommonScrollView>{children}</CommonScrollView>
-      </View>
-    ),
-    default: () => (
-      <View style={styleGeneral}>
-        {renderBarStyle()}
-        <CommonScrollView>{children}</CommonScrollView>
-      </View>
-    ),
-  };
-  return typeComponents[type || 'default']();
+    );
+  }
+  return (
+    <View style={styleGeneral}>
+      <FocusAwareStatusBar
+        barStyle={barStyle}
+        backgroundColor={backgroundColorBarStyle}
+      />
+      <ScrollView contentContainerStyle={globalStyles.flexGrowOne}>
+        {children}
+      </ScrollView>
+    </View>
+  );
 };
 
 export default Container;
