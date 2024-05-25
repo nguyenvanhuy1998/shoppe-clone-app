@@ -1,4 +1,5 @@
 import HeaderProductDetail from './HeaderProductDetail';
 import CountImage from './CountImage';
-import ProductListAvailable from './ProductListAvailable';
-export {HeaderProductDetail, CountImage, ProductListAvailable};
+import InfoProductDetail from './InfoProductDetail';
+import ImageAvailable from './ImageAvailable';
+export {HeaderProductDetail, CountImage, InfoProductDetail, ImageAvailable};
