@@ -1,12 +1,17 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
 import React, {useCallback, useRef, useState} from 'react';
-import {ICarouselInstance, Pagination} from 'react-native-reanimated-carousel';
+import {ICarouselInstance} from 'react-native-reanimated-carousel';
 import productApi from '../../apis/product.api';
 import {BannerList, Container} from '../../components';
 import {WIDTH} from '../../constants';
 import {MainNavigatorParamList} from '../../navigator/MainNavigator';
-import {CountImage, HeaderProductDetail} from './components';
+import {
+  CountImage,
+  HeaderProductDetail,
+  ProductListAvailable,
+} from './components';
+import {FlatList} from 'react-native';
 
 type ProductDetailScreenNavigationProp = RouteProp<
   MainNavigatorParamList,
@@ -16,7 +21,9 @@ const ProductDetailScreen = () => {
   const route = useRoute<ProductDetailScreenNavigationProp>();
   const {id} = route.params;
   const refListImage = useRef<ICarouselInstance>(null);
-  const [currenIndexImage, setCurrenIndexImage] = useState(1);
+  const refListAvailable = useRef<FlatList>(null);
+  const [currenIndexImage, setCurrenIndexImage] = useState(0);
+  const [activeIndexImage, setActiveIndexImage] = useState(0);
   const {data} = useQuery({
     queryKey: ['product', id],
     queryFn: () => productApi.getProductDetail(id),
@@ -24,8 +31,17 @@ const ProductDetailScreen = () => {
   const product = data?.data.data;
 
   const handleSnapToItem = useCallback((index: number) => {
-    setCurrenIndexImage(index + 1);
+    setCurrenIndexImage(index);
+    setActiveIndexImage(index);
+    refListAvailable.current?.scrollToIndex({animated: true, index: index});
   }, []);
+  const handleActiveIndexImage = (index: number) => {
+    setActiveIndexImage(index);
+    refListImage.current?.scrollTo({
+      animated: true,
+      index,
+    });
+  };
 
   if (!product) {
     return null;
@@ -41,7 +57,14 @@ const ProductDetailScreen = () => {
         data={product.images}
       />
       <HeaderProductDetail />
-      <CountImage index={currenIndexImage} length={product.images.length} />
+      <CountImage index={currenIndexImage + 1} length={product.images.length} />
+      <ProductListAvailable
+        ref={refListAvailable}
+        images={product.images}
+        quantity={product.quantity}
+        activeIndexImage={activeIndexImage}
+        onPressActiveIndexImage={handleActiveIndexImage}
+      />
     </Container>
   );
 };
