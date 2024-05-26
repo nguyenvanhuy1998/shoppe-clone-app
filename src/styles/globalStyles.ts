@@ -138,6 +138,9 @@ export const globalStyles = StyleSheet.create({
     padding: 0,
     margin: 0,
   },
+  resetPadding: {
+    padding: 0,
+  },
   horizontalSpacing8: {
     paddingHorizontal: SPACING.space_8,
   },

@@ -1,19 +1,27 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
 import React, {useCallback, useRef, useState} from 'react';
+import {FlatList} from 'react-native';
 import {ICarouselInstance} from 'react-native-reanimated-carousel';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import productApi from '../../apis/product.api';
 import {BannerList, Container} from '../../components';
 import {WIDTH} from '../../constants';
 import {MainNavigatorParamList} from '../../navigator/MainNavigator';
-import {CountImage, HeaderProductDetail, InfoProductDetail} from './components';
-import {FlatList} from 'react-native';
+import {
+  BuyNow,
+  CountImage,
+  HeaderProductDetail,
+  InfoProductDetail,
+  ProductDesc,
+} from './components';
 
 type ProductDetailScreenNavigationProp = RouteProp<
   MainNavigatorParamList,
   'ProductDetail'
 >;
 const ProductDetailScreen = () => {
+  const insets = useSafeAreaInsets();
   const route = useRoute<ProductDetailScreenNavigationProp>();
   const {id} = route.params;
   const refListImage = useRef<ICarouselInstance>(null);
@@ -44,24 +52,35 @@ const ProductDetailScreen = () => {
     return null;
   }
   return (
-    <Container type="noSafeArea">
-      <BannerList
-        ref={refListImage}
-        loop={false}
-        width={WIDTH}
-        height={WIDTH}
-        onSnapToItem={handleSnapToItem}
-        data={product.images}
-      />
-      <HeaderProductDetail />
-      <CountImage index={currenIndexImage + 1} length={product.images.length} />
-      <InfoProductDetail
-        ref={refListAvailable}
-        product={product}
-        activeIndexImage={activeIndexImage}
-        onPressActiveIndexImage={handleActiveIndexImage}
-      />
-    </Container>
+    <>
+      <Container
+        type="noSafeArea"
+        style={{
+          paddingBottom: insets.bottom * 2,
+        }}>
+        <BannerList
+          ref={refListImage}
+          loop={false}
+          width={WIDTH}
+          height={WIDTH}
+          onSnapToItem={handleSnapToItem}
+          data={product.images}
+        />
+        <HeaderProductDetail />
+        <CountImage
+          index={currenIndexImage + 1}
+          length={product.images.length}
+        />
+        <InfoProductDetail
+          ref={refListAvailable}
+          product={product}
+          activeIndexImage={activeIndexImage}
+          onPressActiveIndexImage={handleActiveIndexImage}
+        />
+        <ProductDesc description={product.description} />
+      </Container>
+      <BuyNow />
+    </>
   );
 };
 

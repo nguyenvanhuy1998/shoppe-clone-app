@@ -7,6 +7,7 @@ import Toast from 'react-native-toast-message';
 import {AppProvider} from './src/contexts/AppContext';
 import {AppRouters} from './src/navigator';
 import {globalStyles} from './src/styles';
+import {COLORS} from './src/constants';
 
 const queryClient = new QueryClient({
   defaultOptions: {

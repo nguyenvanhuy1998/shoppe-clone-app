@@ -15,6 +15,7 @@ import Input from './Input';
 import Button from './Button';
 import Dot from './Dot';
 import LoadingModal from './LoadingModal';
+import Heading from './Heading';
 
 export {
   Container,
@@ -34,4 +35,5 @@ export {
   Button,
   Dot,
   LoadingModal,
+  Heading,
 };
