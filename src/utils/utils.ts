@@ -27,3 +27,5 @@ export function formatNumberToSocialStyle(num: number): string {
     return num.toString();
   }
 }
+export const rateSale = (original: number, sale: number) =>
+  Math.round(((original - sale) / original) * 100);

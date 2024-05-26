@@ -2,7 +2,9 @@ import {FlexAlignType} from 'react-native';
 import {BORDER_RADIUS} from '../constants';
 
 const createSpacing =
-  (direction: 'Top' | 'Right' | 'Bottom' | 'Left' | 'Horizontal') =>
+  (
+    direction: 'Top' | 'Right' | 'Bottom' | 'Left' | 'Horizontal' | 'Vertical',
+  ) =>
   (multiplier: number) => ({
     [`margin${direction}`]: multiplier,
   });
@@ -11,6 +13,7 @@ export const spacingRight = createSpacing('Right');
 export const spacingBottom = createSpacing('Bottom');
 export const spacingLeft = createSpacing('Left');
 export const spacingHorizontal = createSpacing('Horizontal');
+export const spacingVertical = createSpacing('Vertical');
 
 export const gapNumber = (gap: number) => ({
   gap,

@@ -13,6 +13,7 @@ export interface Product {
   sold: number;
   view: number;
   name: string;
+  description: string;
   category: Category;
   image: string;
   createdAt: string;

@@ -37,6 +37,7 @@ interface Color {
   primaryBlueHex: string;
   primaryWhitePinkHex: string;
   primaryYellowPastelHex: string;
+  secondYellowHex: string;
 }
 interface FontSize {
   size_8: number;
@@ -72,20 +73,21 @@ interface FontFamily {
 }
 export const COLORS: Color = {
   secondaryBlackHex: '#333333',
-  primaryYellowHex: '#FFC300',
-  primaryRedHex: '#dd1717',
+  primaryYellowHex: '#FCC200',
+  secondYellowHex: '#FAF0BE',
+  primaryRedHex: '#D10000',
   primaryGreenHex: '#2AAA8A',
   primaryWhiteHex: '#ffffff',
   secondaryWhiteHex: '#F7F8F9',
   primaryOrangeHex: '#FF5B2C',
   secondaryOrangeHex: '#ED4D2D',
-  primaryBlackHex: '#3E4958',
+  primaryBlackHex: '#131324',
   primaryGreyHex: '#D5DDE0',
   thirdGreyHex: '#808080',
   secondaryGreyHex: '#A9A9A9',
   primaryDangerousHex: '#ff0505',
   primaryModal: 'rgba(0, 0, 0, 0.5)',
-  primaryBlueHex: '#00FFFF',
+  primaryBlueHex: '#1E90FF',
   primaryGreenOpacity: '#EFE1C6CC',
   primaryWhitePinkHex: '#ffeaea',
   primaryYellowPastelHex: '#FFFDD1',

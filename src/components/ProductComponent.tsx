@@ -9,20 +9,19 @@ import {
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../constants';
 import {globalStyles} from '../styles';
 import {WIDTH_PRODUCT} from '../styles/globalStyles';
+import {Product} from '../types/product.type';
 import {
   formatNumberToSocialStyle,
   formatVND,
-  spacingLeft,
+  rateSale,
   spacingRight,
 } from '../utils';
-import {gapNumber} from '../utils/spacing';
-import DiscountProductComponent from './DiscountProductComponent';
+import DiscountProduct from './DiscountProduct';
+import IconText from './IconText';
 import ImageComponent from './ImageComponent';
-import LabelProductComponent from './LabelProductComponent';
 import MaterialIcons from './MaterialIcons';
-import RowComponent from './RowComponent';
+import Row from './Row';
 import TextComponent from './TextComponent';
-import {Product} from '../types/product.type';
 
 interface Props {
   product: Product;
@@ -39,49 +38,38 @@ const ProductComponent = ({onPress, style, product}: Props) => {
         width={WIDTH_PRODUCT}
         height={WIDTH_PRODUCT}
       />
-      <LabelProductComponent />
-      <DiscountProductComponent
+      <DiscountProduct
+        style={globalStyles.discount}
         backgroundColor={COLORS.primaryWhitePinkHex}
-        text={String(28)}
+        text={`${rateSale(product.price_before_discount, product.price)}`}
       />
-      <View
-        style={[
-          globalStyles.sectionSecondary,
-          globalStyles.flexOne,
-          gapNumber(8),
-        ]}>
-        <TextComponent
-          numberOfLines={2}
-          color={COLORS.primaryBlackHex}
-          text={product.name}
-          fontSize={FONTSIZE.size_12}
+      <View style={styles.infoContainer}>
+        <TextComponent numberOfLines={2} text={product.name} />
+        <IconText
+          style={styles.starContainer}
+          text={product.rating}
+          fontSize={FONTSIZE.size_10}
+          icon={
+            <MaterialIcons
+              name="star"
+              color={COLORS.primaryYellowHex}
+              size="small"
+            />
+          }
         />
-        <RowComponent style={[styles.starContainer, globalStyles.jusCenter]}>
-          <MaterialIcons
-            name="star"
-            color={COLORS.primaryYellowHex}
-            size="small"
-          />
-          <TextComponent
-            style={spacingLeft(2)}
-            text="4.9"
-            fontSize={FONTSIZE.size_10}
-            color={COLORS.primaryBlackHex}
-          />
-        </RowComponent>
-        <RowComponent style={[globalStyles.jusBetween]}>
+        <Row style={[globalStyles.jusBetween]}>
           <TextComponent
             style={[globalStyles.flexOne, spacingRight(4)]}
             text={`₫ ${formatVND(product.price)}`}
             color={COLORS.primaryOrangeHex}
-            fontSize={FONTSIZE.size_12}
+            fontSize={FONTSIZE.size_14}
             fontFamily={FONT_FAMILY.montserrat_medium}
           />
           <TextComponent
             text={`Đã bán ${formatNumberToSocialStyle(product.sold)}`}
             fontSize={FONTSIZE.size_10}
           />
-        </RowComponent>
+        </Row>
       </View>
     </TouchableOpacity>
   );
@@ -96,5 +84,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primaryYellowPastelHex,
     alignSelf: 'flex-start',
     paddingHorizontal: SPACING.space_2,
+  },
+  infoContainer: {
+    padding: SPACING.space_8,
+    gap: SPACING.space_8,
   },
 });

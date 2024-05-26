@@ -1,45 +1,39 @@
-import ContainerComponent from './ContainerComponent';
+import Container from './Container';
 import ImageComponent from './ImageComponent';
-import ButtonComponent from './ButtonComponent';
-import SectionComponent from './SectionComponent';
 import FocusAwareStatusBar from './FocusAwareStatusBar';
-import SpaceComponent from './SpaceComponent';
 import TextComponent from './TextComponent';
 import MaterialIcons from './MaterialIcons';
-import HeaderComponent from './HeaderComponent';
-import RowComponent from './RowComponent';
-import InputComponent from './InputComponent';
+import Row from './Row';
 import Ionicons from './Ionicons';
-import ButtonSecondaryComponent from './ButtonSecondaryComponent';
-import DotTextComponent from './DotTextComponent';
-import SectionSecondaryComponent from './SectionSecondaryComponent';
-import LineVerticalComponent from './LineVerticalComponent';
-import CarouselComponent from './CarouselComponent';
-import ButtonIconWithBadge from './ButtonIconWithBadge';
+import Section from './Section';
+import Line from './Line';
 import ProductComponent from './ProductComponent';
-import LabelProductComponent from './LabelProductComponent';
-import DiscountProductComponent from './DiscountProductComponent';
+import DiscountProduct from './DiscountProduct';
+import IconText from './IconText';
+import BannerList from './BannerList';
+import Input from './Input';
+import Button from './Button';
+import Dot from './Dot';
+import LoadingModal from './LoadingModal';
+import Heading from './Heading';
 
 export {
-  ContainerComponent,
+  Container,
   ImageComponent,
-  ButtonComponent,
-  SectionComponent,
   FocusAwareStatusBar,
-  SpaceComponent,
   TextComponent,
   MaterialIcons,
-  HeaderComponent,
-  RowComponent,
-  InputComponent,
+  Row,
   Ionicons,
-  ButtonSecondaryComponent,
-  DotTextComponent,
-  SectionSecondaryComponent,
-  LineVerticalComponent,
-  CarouselComponent,
-  ButtonIconWithBadge,
+  Section,
+  Line,
   ProductComponent,
-  LabelProductComponent,
-  DiscountProductComponent,
+  DiscountProduct,
+  IconText,
+  BannerList,
+  Input,
+  Button,
+  Dot,
+  LoadingModal,
+  Heading,
 };

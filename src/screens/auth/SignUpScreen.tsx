@@ -2,16 +2,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
-import {
-  ButtonComponent,
-  ContainerComponent,
-  HeaderComponent,
-  InputComponent,
-  RowComponent,
-  SectionComponent,
-  SpaceComponent,
-  TextComponent,
-} from '../../components';
+import {Container, LoadingModal, Row, TextComponent} from '../../components';
 import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../constants';
 import {globalStyles} from '../../styles';
 import {spacingTop, isAxiosUnprocessableEntityError} from '../../utils';
@@ -22,7 +13,13 @@ import authApi from '../../apis/auth.api';
 import {omit} from 'lodash';
 import {ErrorResponse} from '../../types/utils.type';
 import {AppContext} from '../../contexts/AppContext';
-import {LoadingModal} from '../../modals';
+import {
+  ButtonAuth,
+  HeaderAuth,
+  InputAuth,
+  SectionAuth,
+  SpaceAuth,
+} from './components';
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignUp'>;
 type FormData = AuthSchema;
@@ -80,21 +77,19 @@ const SignUpScreen = ({navigation}: Props) => {
     navigation.navigate('SignIn');
   };
   return (
-    <ContainerComponent
-      type="input"
-      backgroundColorBarStyle={COLORS.primaryWhiteHex}>
+    <Container type="input" backgroundColorBarStyle={COLORS.primaryWhiteHex}>
       {/* Header */}
-      <SectionComponent>
-        <HeaderComponent
+      <SectionAuth>
+        <HeaderAuth
           text="Sign Up"
           fontSize={FONTSIZE.size_26}
           fontFamily={FONT_FAMILY.montserrat_semibold}
         />
-      </SectionComponent>
+      </SectionAuth>
       {/* Body */}
-      <SectionComponent style={globalStyles.flexOne}>
+      <SectionAuth style={globalStyles.flexOne}>
         {/* Email */}
-        <InputComponent
+        <InputAuth
           label="Email"
           control={control}
           name="email"
@@ -104,7 +99,7 @@ const SignUpScreen = ({navigation}: Props) => {
           keyboardType="email-address"
         />
         {/* Password */}
-        <InputComponent
+        <InputAuth
           label="Password"
           control={control}
           name="password"
@@ -113,7 +108,7 @@ const SignUpScreen = ({navigation}: Props) => {
           error={errors.password?.message}
         />
         {/* Confirm Password */}
-        <InputComponent
+        <InputAuth
           label="Confirm password"
           control={control}
           name="confirmPassword"
@@ -122,7 +117,7 @@ const SignUpScreen = ({navigation}: Props) => {
           error={errors.confirmPassword?.message}
         />
         {/* SignUp */}
-        <ButtonComponent
+        <ButtonAuth
           style={spacingTop(SPACING.space_20)}
           onPress={onSubmit}
           text="Sign Up"
@@ -130,8 +125,8 @@ const SignUpScreen = ({navigation}: Props) => {
           color={COLORS.primaryWhiteHex}
         />
         {/* Other */}
-        <RowComponent style={spacingTop(SPACING.space_10 * 5)}>
-          <SpaceComponent
+        <Row style={spacingTop(SPACING.space_10 * 5)}>
+          <SpaceAuth
             style={globalStyles.flexOne}
             height={1}
             backgroundColor={COLORS.primaryGreyHex}
@@ -140,15 +135,15 @@ const SignUpScreen = ({navigation}: Props) => {
             fontFamily={FONT_FAMILY.montserrat_semibold}
             text="Or sign up with"
           />
-          <SpaceComponent
+          <SpaceAuth
             style={globalStyles.flexOne}
             height={1}
             backgroundColor={COLORS.primaryGreyHex}
           />
-        </RowComponent>
+        </Row>
         {/* Login with Google && Facebook */}
-        <RowComponent style={spacingTop(SPACING.space_30)}>
-          <ButtonComponent
+        <Row style={spacingTop(SPACING.space_30)}>
+          <ButtonAuth
             icon="facebook"
             iconSize={SPACING.space_24}
             iconColor={COLORS.primaryWhiteHex}
@@ -156,8 +151,8 @@ const SignUpScreen = ({navigation}: Props) => {
             color={COLORS.primaryWhiteHex}
             style={globalStyles.flexOne}
           />
-          <SpaceComponent width={SPACING.space_20} />
-          <ButtonComponent
+          <SpaceAuth width={SPACING.space_20} />
+          <ButtonAuth
             icon="google"
             iconSize={SPACING.space_24}
             iconColor={COLORS.primaryWhiteHex}
@@ -165,22 +160,22 @@ const SignUpScreen = ({navigation}: Props) => {
             color={COLORS.primaryWhiteHex}
             style={globalStyles.flexOne}
           />
-        </RowComponent>
-      </SectionComponent>
+        </Row>
+      </SectionAuth>
       {/* Footer */}
-      <SectionComponent>
-        <RowComponent style={globalStyles.jusCenter}>
+      <SectionAuth>
+        <Row style={globalStyles.jusCenter}>
           <TextComponent text="Already have an account? " />
-          <ButtonComponent
+          <ButtonAuth
             onPress={handleSignIn}
             type="text"
             text="Sign In"
             backgroundColor={'transparent'}
           />
-        </RowComponent>
-      </SectionComponent>
+        </Row>
+      </SectionAuth>
       <LoadingModal visible={registerAccountMutation.isPending} />
-    </ContainerComponent>
+    </Container>
   );
 };
 

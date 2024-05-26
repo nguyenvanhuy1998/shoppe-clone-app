@@ -6,7 +6,7 @@ const URL = 'products';
 const productApi = {
   getProducts({
     page,
-    limit = 10,
+    limit,
     filters,
   }: {
     page: number;

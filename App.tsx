@@ -5,8 +5,9 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
 import {AppProvider} from './src/contexts/AppContext';
-import {RootNavigator} from './src/navigator';
+import {AppRouters} from './src/navigator';
 import {globalStyles} from './src/styles';
+import {COLORS} from './src/constants';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,7 +25,7 @@ const App = () => {
         <NavigationContainer>
           <QueryClientProvider client={queryClient}>
             <AppProvider>
-              <RootNavigator />
+              <AppRouters />
             </AppProvider>
             {/* <DevToolsBubble /> */}
           </QueryClientProvider>

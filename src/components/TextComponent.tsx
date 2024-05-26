@@ -1,9 +1,10 @@
 import React from 'react';
 import {ColorValue, StyleProp, Text, TextStyle} from 'react-native';
 import {COLORS, FONT_FAMILY, FONTSIZE} from '../constants';
+import {TextProps} from 'react-native';
 
-interface Props {
-  text?: string;
+interface Props extends TextProps {
+  text?: string | number;
   color?: ColorValue;
   style?: StyleProp<TextStyle>;
   fontSize?: number;
@@ -16,15 +17,15 @@ const TextComponent = ({
   text = '',
   color = COLORS.primaryBlackHex,
   style,
-  fontSize = FONTSIZE.size_14,
+  fontSize = FONTSIZE.size_12,
   fontFamily = FONT_FAMILY.montserrat_regular,
   lineHeight,
-  numberOfLines,
   textAlign,
+  ...rest
 }: Props) => {
   return (
     <Text
-      numberOfLines={numberOfLines}
+      {...rest}
       style={[
         {
           color,

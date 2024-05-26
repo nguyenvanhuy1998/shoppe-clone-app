@@ -1,16 +1,12 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {COLORS} from '../constants';
-import {
-  FeedScreen,
-  HomeScreen,
-  NotificationsScreen,
-  ProfileScreen,
-} from '../screens';
-import LiveScreen from '../screens/LiveScreen';
+import {FeedScreen, NotificationsScreen, ProfileScreen} from '../screens';
+import LiveScreen from '../screens/live/LiveScreen';
 import {Ionicons} from '../components';
+import HomeNavigator from './HomeNavigator';
 export type TabNavigatorParamList = {
-  Home: undefined;
+  HomeNavigator: undefined;
   Feed: undefined;
   Live: undefined;
   Notifications: undefined;
@@ -35,15 +31,15 @@ const TabBarIcon = (focusedIcon: string, unfocusedIcon: string) => {
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: COLORS.primaryOrangeHex,
       }}>
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="HomeNavigator"
+        component={HomeNavigator}
         options={{
+          title: 'Home',
           tabBarIcon: TabBarIcon('home', 'home-outline'),
         }}
       />

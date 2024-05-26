@@ -1,5 +1,7 @@
 import AuthNavigator from './AuthNavigator';
-import RootNavigator from './RootNavigator';
+import AppRouters from './AppRouters';
 import TabNavigator from './TabNavigator';
+import MainNavigator from './MainNavigator';
+import HomeNavigator from './HomeNavigator';
 
-export {RootNavigator, AuthNavigator, TabNavigator};
+export {AppRouters, AuthNavigator, TabNavigator, MainNavigator, HomeNavigator};

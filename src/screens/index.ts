@@ -1,10 +1,11 @@
-import SplashScreen from './SplashScreen';
+import SplashScreen from './splash/SplashScreen';
 import SignInScreen from './auth/SignInScreen';
 import SignUpScreen from './auth/SignUpScreen';
 import HomeScreen from './home/HomeScreen';
-import ProfileScreen from './ProfileScreen';
-import FeedScreen from './FeedScreen';
-import NotificationsScreen from './NotificationsScreen';
+import ProfileScreen from './profile/ProfileScreen';
+import FeedScreen from './feed/FeedScreen';
+import NotificationsScreen from './notifications/NotificationsScreen';
+import ProductDetailScreen from './productDetail/ProductDetailScreen';
 
 export {
   SplashScreen,
@@ -14,4 +15,5 @@ export {
   ProfileScreen,
   FeedScreen,
   NotificationsScreen,
+  ProductDetailScreen,
 };

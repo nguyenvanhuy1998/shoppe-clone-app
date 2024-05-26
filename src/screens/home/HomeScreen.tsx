@@ -1,269 +1,54 @@
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
+import {FlatList, RefreshControl, StyleSheet} from 'react-native';
+import {Pagination} from 'react-native-reanimated-carousel';
 import {
-  FlatList,
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
-import CountDown from 'react-native-countdown-component';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Scan} from '../../assets/svg';
-import {
-  ButtonIconWithBadge,
-  ButtonSecondaryComponent,
-  CarouselComponent,
-  FocusAwareStatusBar,
-  Ionicons,
-  LineVerticalComponent,
+  BannerList,
+  Container,
   ProductComponent,
-  RowComponent,
-  SectionSecondaryComponent,
-  TextComponent,
+  Section,
 } from '../../components';
-import {
-  BORDER_RADIUS,
-  COLORS,
-  images,
-  OS,
-  SHADOW,
-  SPACING,
-  WIDTH,
-} from '../../constants';
+import Heading from '../../components/Heading';
+import {COLORS, SPACING, WIDTH} from '../../constants';
 import {useCarousel} from '../../hooks';
 import {useInfiniteScroll} from '../../hooks/useInfiniteScroll';
+import {MainNavigatorParamList} from '../../navigator/MainNavigator';
 import {globalStyles} from '../../styles';
-import {
-  gapNumber,
-  spacingBottom,
-  spacingLeft,
-  spacingTop,
-} from '../../utils/spacing';
-import {
-  FlashSaleItem,
-  HomeTitle,
-  LiveItem,
-  MarketItem,
-  OutStanding,
-  ServiceItem,
-  TypePay,
-} from './components';
-import {bannerData, bannerServices} from './data/banner';
-import {dataFlashSale} from './data/flashsale';
-import {liveData} from './data/live';
-import {marketData} from './data/market';
-import {services} from './data/services';
+import {Product} from '../../types/product.type';
+import {spacingBottom} from '../../utils';
+import {CategoryList, SearchProduct, Wallet} from './components';
+import {dummyBanner} from './data/banner';
 
+type HomeScreenNavigationProp = NativeStackNavigationProp<
+  MainNavigatorParamList,
+  'Home'
+>;
 const HomeScreen = () => {
-  const insets = useSafeAreaInsets();
-  const time = 7200;
-  const {
-    refCarousel: refCarouselBanner,
-    progress: progressBanner,
-    onPressPagination: onPressPaginationBanner,
-  } = useCarousel();
-  const {
-    refCarousel: refCarouselServices,
-    progress: progressServices,
-    onPressPagination: onPressPaginationServices,
-  } = useCarousel();
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+  const {refCarousel, progress, onPressPagination} = useCarousel();
   const {data, isRefreshing, onRefresh, onEndReached} = useInfiniteScroll({
     key: 'products',
-    limit: 10,
-    filters: {},
   });
-  const renderHeaderList = () => {
-    return (
-      <>
-        {/* Header */}
-        <CarouselComponent
-          ref={refCarouselBanner}
-          data={bannerData}
-          width={WIDTH}
-          height={WIDTH / 2}
-          progress={progressBanner}
-          onPressPagination={onPressPaginationBanner}
-          children={
-            <RowComponent
-              style={[
-                styles.searchHeaderContainer,
-                {
-                  top: OS.isIOS ? insets.top : SPACING.space_32,
-                },
-              ]}>
-              <RowComponent style={styles.inputContainer}>
-                <Ionicons
-                  name="search-outline"
-                  color={COLORS.secondaryGreyHex}
-                  onPress={() => {}}
-                />
-                <TextComponent
-                  text="Search..."
-                  color={COLORS.primaryOrangeHex}
-                  style={[globalStyles.flexOne, spacingLeft(SPACING.space_8)]}
-                />
-                <Ionicons
-                  name="camera-outline"
-                  color={COLORS.secondaryGreyHex}
-                  onPress={() => {}}
-                />
-              </RowComponent>
-              <ButtonIconWithBadge
-                iconName="cart-outline"
-                badgeText="1"
-                onPress={() => {}}
-              />
-              <ButtonIconWithBadge
-                iconName="chatbubbles-outline"
-                badgeText="22"
-                styleContainer={spacingLeft(SPACING.space_8)}
-                onPress={() => {}}
-              />
-            </RowComponent>
-          }
-        />
-        {/* Market Shopee */}
-        <SectionSecondaryComponent style={[globalStyles.resetContainer]}>
-          <RowComponent
-            style={[globalStyles.sectionSecondary, styles.typePageContainer]}>
-            <ButtonSecondaryComponent
-              type="icon"
-              childrenIcon={
-                <Scan width={SPACING.space_32} height={SPACING.space_32} />
-              }
-            />
-            <LineVerticalComponent />
-            <TypePay
-              onPress={() => {}}
-              icon="wallet-outline"
-              title="Ví ShopeePay"
-              colorIcon={COLORS.primaryOrangeHex}
-              desc="Vourcher mua sắm giảm đến 40.000Đ"
-            />
-            <LineVerticalComponent />
-            <TypePay
-              onPress={() => {}}
-              icon="list-circle-outline"
-              title="1500"
-              colorIcon={COLORS.primaryYellowHex}
-              desc="Nhấn để nhận Xu mỗi ngày"
-            />
-          </RowComponent>
-          <ScrollView
-            horizontal={true}
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.contentMarketList}>
-            <FlatList
-              contentContainerStyle={gapNumber(8)}
-              data={marketData}
-              renderItem={({item}) => (
-                <MarketItem item={item} onPress={() => {}} />
-              )}
-              numColumns={Math.ceil(marketData.length / 2)}
-              scrollEnabled={false}
-            />
-          </ScrollView>
-          <View style={styles.lineListContainer}>
-            <View style={styles.contentLineList} />
-          </View>
-          <RowComponent style={styles.outStandingContainer}>
-            <OutStanding onPress={() => {}} image={images.banner06} />
-            <OutStanding style={globalStyles.flexOne} image={images.banner07} />
-            <OutStanding image={images.banner08} />
-          </RowComponent>
-        </SectionSecondaryComponent>
-        {/* Shopee live siêu rẻ */}
-        <SectionSecondaryComponent
-          style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
-          <HomeTitle title="SHOPEE LIVE SIÊU RẺ" textButton="Xem thêm" />
-          <FlatList
-            alwaysBounceHorizontal={false}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={[
-              globalStyles.horizontalSpacing8,
-              gapNumber(8),
-            ]}
-            horizontal
-            data={liveData}
-            renderItem={({item}) => <LiveItem item={item} />}
-          />
-        </SectionSecondaryComponent>
-        {/* FLASH SALE */}
-        <SectionSecondaryComponent
-          style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
-          <HomeTitle
-            title="FLASH SALE"
-            textButton="Xem tất cả"
-            countdown={
-              <CountDown
-                size={10}
-                until={time}
-                digitStyle={globalStyles.digitContainer}
-                digitTxtStyle={globalStyles.digitText}
-                timeToShow={['H', 'M', 'S']}
-                timeLabels={{h: '', m: '', s: ''}}
-                showSeparator
-              />
-            }
-          />
-          <FlatList
-            alwaysBounceHorizontal={false}
-            showsHorizontalScrollIndicator={false}
-            horizontal
-            data={dataFlashSale}
-            contentContainerStyle={[
-              globalStyles.horizontalSpacing8,
-              gapNumber(8),
-            ]}
-            renderItem={({item}) => <FlashSaleItem item={item} />}
-          />
-        </SectionSecondaryComponent>
-        {/* SERVICES */}
-        <SectionSecondaryComponent
-          style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
-          <HomeTitle title="NẠP THẺ & DỊCH VỤ" textButton="Xem thêm" />
-          <CarouselComponent
-            ref={refCarouselServices}
-            styleContainer={[styles.serviceBannerCarousel, spacingBottom(8)]}
-            data={bannerServices}
-            height={(WIDTH - SPACING.space_16) / 4}
-            width={WIDTH - SPACING.space_16}
-            progress={progressServices}
-            onPressPagination={onPressPaginationServices}
-          />
-          <FlatList
-            alwaysBounceHorizontal={false}
-            showsHorizontalScrollIndicator={false}
-            horizontal
-            data={services}
-            contentContainerStyle={[
-              globalStyles.horizontalSpacing8,
-              gapNumber(8),
-            ]}
-            renderItem={({item}) => <ServiceItem item={item} />}
-          />
-        </SectionSecondaryComponent>
-        {/* SUGGEST */}
-        <SectionSecondaryComponent
-          style={[globalStyles.resetContainer, spacingTop(SPACING.space_16)]}>
-          <HomeTitle title="GỢI Ý HÔM NAY" />
-        </SectionSecondaryComponent>
-      </>
-    );
+  const handleChangeProductDetailScreen = (product: Product) => {
+    navigation.navigate('ProductDetail', {
+      id: product._id,
+    });
   };
+
   return (
-    <>
-      <FocusAwareStatusBar
-        barStyle={'dark-content'}
-        backgroundColor={COLORS.primaryWhiteHex}
-      />
+    <Container type="noScrollView">
       <FlatList
         showsVerticalScrollIndicator={false}
         numColumns={2}
         initialNumToRender={10}
         data={data}
-        renderItem={({item}) => <ProductComponent product={item} />}
+        renderItem={({item}) => (
+          <ProductComponent
+            product={item}
+            onPress={() => handleChangeProductDetailScreen(item)}
+          />
+        )}
         onEndReached={onEndReached}
         refreshControl={
           <RefreshControl
@@ -272,70 +57,53 @@ const HomeScreen = () => {
             tintColor={COLORS.primaryOrangeHex}
           />
         }
-        ListHeaderComponent={renderHeaderList}
+        ListHeaderComponent={
+          <>
+            <Section style={globalStyles.resetContainer}>
+              <BannerList
+                ref={refCarousel}
+                width={WIDTH}
+                height={WIDTH / 2}
+                autoPlay
+                loop
+                autoPlayInterval={3000}
+                scrollAnimationDuration={1000}
+                onProgressChange={progress}
+                data={dummyBanner}
+              />
+              <SearchProduct />
+              <Pagination.Basic
+                progress={progress}
+                data={dummyBanner}
+                dotStyle={globalStyles.dot}
+                activeDotStyle={globalStyles.activeDot}
+                containerStyle={[styles.paginationContainer]}
+                onPress={onPressPagination}
+              />
+            </Section>
+            <Section style={styles.categoryContainer}>
+              <Wallet />
+              <CategoryList />
+            </Section>
+            <Heading styleContainer={spacingBottom(8)} text="GỢI Ý HÔM NAY" />
+          </>
+        }
       />
-    </>
+    </Container>
   );
 };
 
 export default HomeScreen;
 const styles = StyleSheet.create({
-  searchHeaderContainer: {
-    position: 'absolute',
-    left: SPACING.space_8,
-    right: SPACING.space_8,
-  },
-  inputContainer: {
-    marginRight: SPACING.space_8,
-    ...globalStyles.flexOne,
-    ...globalStyles.inputSecondContainer,
-  },
-  typePageContainer: {
-    backgroundColor: COLORS.primaryWhiteHex,
-    borderRadius: BORDER_RADIUS.radius_8,
-    minHeight: SPACING.space_56,
-    marginTop: -SPACING.space_16,
-    marginBottom: SPACING.space_16,
-    marginHorizontal: SPACING.space_8,
-    ...SHADOW.primary,
-  },
-  contentMarketList: {
-    paddingLeft: SPACING.space_8,
-    paddingRight: -SPACING.space_16,
-  },
-
-  lineListContainer: {
-    borderRadius: BORDER_RADIUS.radius_4,
-    height: SPACING.space_4,
-    width: SPACING.space_32,
-    backgroundColor: COLORS.primaryGreyHex,
-    alignSelf: 'center',
-  },
-  contentLineList: {
-    borderRadius: BORDER_RADIUS.radius_4,
-    height: '100%',
-    width: '30%',
-    backgroundColor: COLORS.primaryOrangeHex,
-  },
-  outStandingContainer: {
-    marginTop: SPACING.space_24,
+  paginationContainer: {
     gap: SPACING.space_8,
-    paddingHorizontal: SPACING.space_8,
+    position: 'absolute',
+    bottom: SPACING.space_24,
   },
-  serviceBannerCarousel: {
-    paddingHorizontal: SPACING.space_8,
-    alignSelf: 'center',
-  },
-  listEmptyComponent: {
-    flexDirection: 'row',
-  },
-
-  item: {
-    height: 100,
-    width: '100%',
-  },
-  contentContainerStyle: {
-    marginTop: 10,
-    padding: 10,
+  categoryContainer: {
+    ...globalStyles.resetContainer,
+    gap: SPACING.space_16,
+    paddingBottom: SPACING.space_16,
+    marginBottom: SPACING.space_8,
   },
 });
