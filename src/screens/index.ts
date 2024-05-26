@@ -6,6 +6,7 @@ import ProfileScreen from './profile/ProfileScreen';
 import FeedScreen from './feed/FeedScreen';
 import NotificationsScreen from './notifications/NotificationsScreen';
 import ProductDetailScreen from './productDetail/ProductDetailScreen';
+import SearchScreen from './search/SearchScreen';
 
 export {
   SplashScreen,
@@ -16,4 +17,5 @@ export {
   FeedScreen,
   NotificationsScreen,
   ProductDetailScreen,
+  SearchScreen,
 };

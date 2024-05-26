@@ -129,9 +129,4 @@ export const categories: CategoryProps[] = [
     title: 'Đời Sống Giảm Đến 50%',
     colorIcon: COLORS.primaryOrangeHex,
   },
-  {
-    id: '21',
-    image: 'wallet',
-    title: 'Săn 100.000 xU',
-  },
 ];

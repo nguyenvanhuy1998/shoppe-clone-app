@@ -1,10 +1,10 @@
 import React, {ReactNode} from 'react';
 import {
   StyleProp,
-  StyleSheet,
   TextInput,
   TextInputProps,
   TextStyle,
+  TouchableOpacity,
   ViewStyle,
 } from 'react-native';
 import {globalStyles} from '../styles';
@@ -15,23 +15,25 @@ interface Props extends TextInputProps {
   leftIcon?: ReactNode;
   styleInput?: StyleProp<TextStyle>;
   rightIcon?: ReactNode;
+  onPress?: () => void;
 }
 const Input = ({
   leftIcon,
   rightIcon,
   styleContainer,
   styleInput,
+  onPress,
   ...rest
 }: Props) => {
   return (
     <Row style={[globalStyles.inputContainer, styleContainer]}>
       {leftIcon && leftIcon}
-      <TextInput style={[globalStyles.input, styleInput]} {...rest} />
+      <TouchableOpacity onPress={onPress} style={globalStyles.flexOne}>
+        <TextInput style={[globalStyles.input, styleInput]} {...rest} />
+      </TouchableOpacity>
       {rightIcon && rightIcon}
     </Row>
   );
 };
 
 export default Input;
-
-const styles = StyleSheet.create({});

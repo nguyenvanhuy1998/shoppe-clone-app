@@ -6,7 +6,10 @@ import {COLORS, SPACING} from '../../../constants';
 import {gapNumber} from '../../../utils/spacing';
 import {globalStyles} from '../../../styles';
 
-const SearchProduct = () => {
+interface Props {
+  onPress?: () => void;
+}
+const SearchProduct = ({onPress}: Props) => {
   const insets = useSafeAreaInsets();
   return (
     <Row
@@ -18,7 +21,10 @@ const SearchProduct = () => {
         },
       ]}>
       <Input
+        onPress={onPress}
         placeholder="Search..."
+        editable={false}
+        pointerEvents="none"
         placeholderTextColor={COLORS.primaryOrangeHex}
         leftIcon={<Button startIcon={<Ionicons name="search-outline" />} />}
         rightIcon={<Button startIcon={<Ionicons name="camera-outline" />} />}

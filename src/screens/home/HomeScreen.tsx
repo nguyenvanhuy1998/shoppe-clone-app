@@ -1,12 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {FlatList, RefreshControl, StyleSheet} from 'react-native';
 import {Pagination} from 'react-native-reanimated-carousel';
 import {
   BannerList,
   Container,
   ProductComponent,
+  SearchModal,
   Section,
 } from '../../components';
 import Heading from '../../components/Heading';
@@ -19,6 +20,7 @@ import {Product} from '../../types/product.type';
 import {spacingBottom} from '../../utils';
 import {CategoryList, SearchProduct, Wallet} from './components';
 import {dummyBanner} from './data/banner';
+import {histories} from './data/histories';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   MainNavigatorParamList,
@@ -27,12 +29,26 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const {refCarousel, progress, onPressPagination} = useCarousel();
+  const [visible, setVisible] = useState(false);
+  const [search, setSearch] = useState('');
   const {data, isRefreshing, onRefresh, onEndReached} = useInfiniteScroll({
     key: 'products',
   });
   const handleChangeProductDetailScreen = (product: Product) => {
     navigation.navigate('ProductDetail', {
       id: product._id,
+    });
+  };
+  const handleVisibleSearchModal = () => {
+    setVisible(!visible);
+  };
+  const handleChangeTextSearch = (text: string) => {
+    setSearch(text);
+  };
+  const handleNavigationSearch = () => {
+    setVisible(!visible);
+    navigation.navigate('Search', {
+      searchText: search,
     });
   };
 
@@ -71,7 +87,7 @@ const HomeScreen = () => {
                 onProgressChange={progress}
                 data={dummyBanner}
               />
-              <SearchProduct />
+              <SearchProduct onPress={handleVisibleSearchModal} />
               <Pagination.Basic
                 progress={progress}
                 data={dummyBanner}
@@ -88,6 +104,14 @@ const HomeScreen = () => {
             <Heading styleContainer={spacingBottom(8)} text="GỢI Ý HÔM NAY" />
           </>
         }
+      />
+      <SearchModal
+        onNavigationSearch={handleNavigationSearch}
+        search={search}
+        onChangeTextSearch={handleChangeTextSearch}
+        histories={histories}
+        visible={visible}
+        onPressClose={handleVisibleSearchModal}
       />
     </Container>
   );
