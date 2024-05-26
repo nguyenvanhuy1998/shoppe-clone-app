@@ -1,4 +1,4 @@
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
 import React, {useCallback, useRef, useState} from 'react';
 import {FlatList} from 'react-native';
@@ -23,6 +23,7 @@ type ProductDetailScreenNavigationProp = RouteProp<
 const ProductDetailScreen = () => {
   const insets = useSafeAreaInsets();
   const route = useRoute<ProductDetailScreenNavigationProp>();
+  const navigation = useNavigation();
   const {id} = route.params;
   const refListImage = useRef<ICarouselInstance>(null);
   const refListAvailable = useRef<FlatList>(null);
@@ -47,6 +48,9 @@ const ProductDetailScreen = () => {
       index,
     });
   };
+  const handleBack = () => {
+    navigation.goBack();
+  };
 
   if (!product) {
     return null;
@@ -66,7 +70,7 @@ const ProductDetailScreen = () => {
           onSnapToItem={handleSnapToItem}
           data={product.images}
         />
-        <HeaderProductDetail />
+        <HeaderProductDetail onPressBack={handleBack} />
         <CountImage
           index={currenIndexImage + 1}
           length={product.images.length}
