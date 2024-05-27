@@ -22,7 +22,10 @@ const SearchHeader = ({searchText, setSearchText}: Props) => {
     navigation.goBack();
   };
   const handleChangeNavigationProduct = () => {
-    navigation.navigate('Product', {
+    if (searchText.length === 0) {
+      return;
+    }
+    navigation.navigate('ProductList', {
       searchText,
     });
   };

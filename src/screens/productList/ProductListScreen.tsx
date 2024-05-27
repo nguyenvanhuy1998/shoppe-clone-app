@@ -1,13 +1,13 @@
 import React from 'react';
 import {Container} from '../../components';
-import {ProductHeader} from './components';
+import {HeaderProductList} from './components';
 
-const ProductScreen = () => {
+const ProductListScreen = () => {
   return (
     <Container type="noScrollView">
-      <ProductHeader />
+      <HeaderProductList />
     </Container>
   );
 };
 
-export default ProductScreen;
+export default ProductListScreen;

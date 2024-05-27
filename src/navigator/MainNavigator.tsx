@@ -1,11 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {
-  ProductDetailScreen,
-  ProductScreen,
-  SearchOldScreen,
-  SearchScreen,
-} from '../screens';
+import {ProductDetailScreen, ProductListScreen, SearchScreen} from '../screens';
 import TabNavigator from './TabNavigator';
 export type MainNavigatorParamList = {
   Main: undefined;
@@ -14,7 +9,7 @@ export type MainNavigatorParamList = {
     id: string;
   };
   Search: undefined;
-  Product: {
+  ProductList: {
     searchText: string;
   };
 };
@@ -34,7 +29,7 @@ const MainNavigator = () => {
           animation: 'fade',
         }}
       />
-      <Stack.Screen name="Product" component={ProductScreen} />
+      <Stack.Screen name="ProductList" component={ProductListScreen} />
     </Stack.Navigator>
   );
 };
