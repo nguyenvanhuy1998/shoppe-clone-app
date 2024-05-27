@@ -17,10 +17,10 @@ import Row from './Row';
 import TextComponent from './TextComponent';
 interface Props {
   visible: boolean;
-  onPressClose: () => void;
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  searchText: string;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
   histories: History[];
-  search: string;
-  onChangeTextSearch: (text: string) => void;
   onNavigationSearch: () => void;
 }
 const ItemHistory = ({item}: {item: History}) => (
@@ -30,13 +30,19 @@ const ItemHistory = ({item}: {item: History}) => (
 );
 const SearchModal = ({
   visible,
-  onPressClose,
+  setVisible,
   histories,
-  search,
-  onChangeTextSearch,
+  searchText,
+  setSearchText,
   onNavigationSearch,
 }: Props) => {
   const insets = useSafeAreaInsets();
+  const handleSetVisible = () => {
+    setVisible(prev => !prev);
+  };
+  const handleChangeSearchText = (text: string) => {
+    setSearchText(text);
+  };
   return (
     <Modal animationType="fade" visible={visible} style={globalStyles.flexOne}>
       <View
@@ -55,7 +61,7 @@ const SearchModal = ({
             },
           ]}>
           <Button
-            onPress={onPressClose}
+            onPress={handleSetVisible}
             startIcon={
               <Ionicons
                 name="arrow-back"
@@ -66,8 +72,8 @@ const SearchModal = ({
           />
           <Input
             onBlur={onNavigationSearch}
-            value={search}
-            onChangeText={onChangeTextSearch}
+            value={searchText}
+            onChangeText={handleChangeSearchText}
             autoFocus
             styleContainer={styles.inputContainer}
             rightIcon={

@@ -29,6 +29,8 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const {refCarousel, progress, onPressPagination} = useCarousel();
+  const [visibleSearchModal, setVisibleSearchModal] = useState(false);
+  const [searchText, setSearchText] = useState('');
   const {data, isRefreshing, onRefresh, onEndReached} = useInfiniteScroll({
     key: 'products',
   });
@@ -36,6 +38,15 @@ const HomeScreen = () => {
     navigation.navigate('ProductDetail', {
       id: product._id,
     });
+  };
+  const handleNavigationSearchScreen = () => {
+    setVisibleSearchModal(prev => !prev);
+    navigation.navigate('Search', {
+      searchText,
+    });
+  };
+  const handleVisibleSearchModal = () => {
+    setVisibleSearchModal(prev => !prev);
   };
 
   return (
@@ -73,7 +84,7 @@ const HomeScreen = () => {
                 onProgressChange={progress}
                 data={dummyBanner}
               />
-              <SearchProduct />
+              <SearchProduct onPress={handleVisibleSearchModal} />
               <Pagination.Basic
                 progress={progress}
                 data={dummyBanner}
@@ -90,6 +101,14 @@ const HomeScreen = () => {
             <Heading styleContainer={spacingBottom(8)} text="GỢI Ý HÔM NAY" />
           </>
         }
+      />
+      <SearchModal
+        histories={histories}
+        onNavigationSearch={handleNavigationSearchScreen}
+        searchText={searchText}
+        setSearchText={setSearchText}
+        visible={visibleSearchModal}
+        setVisible={setVisibleSearchModal}
       />
     </Container>
   );
