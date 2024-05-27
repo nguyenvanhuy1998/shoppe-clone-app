@@ -7,7 +7,6 @@ import {
   BannerList,
   Container,
   ProductComponent,
-  SearchModal,
   Section,
 } from '../../components';
 import Heading from '../../components/Heading';
@@ -20,7 +19,6 @@ import {Product} from '../../types/product.type';
 import {spacingBottom} from '../../utils';
 import {CategoryList, SearchProduct, Wallet} from './components';
 import {dummyBanner} from './data/banner';
-import {histories} from './data/histories';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   MainNavigatorParamList,
@@ -29,8 +27,6 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const {refCarousel, progress, onPressPagination} = useCarousel();
-  const [visibleSearchModal, setVisibleSearchModal] = useState(false);
-  const [searchText, setSearchText] = useState('');
   const {data, isRefreshing, onRefresh, onEndReached} = useInfiniteScroll({
     key: 'products',
   });
@@ -40,13 +36,7 @@ const HomeScreen = () => {
     });
   };
   const handleNavigationSearchScreen = () => {
-    setVisibleSearchModal(prev => !prev);
-    navigation.navigate('Search', {
-      searchText,
-    });
-  };
-  const handleVisibleSearchModal = () => {
-    setVisibleSearchModal(prev => !prev);
+    navigation.navigate('Search');
   };
 
   return (
@@ -84,7 +74,7 @@ const HomeScreen = () => {
                 onProgressChange={progress}
                 data={dummyBanner}
               />
-              <SearchProduct onPress={handleVisibleSearchModal} />
+              <SearchProduct onPress={handleNavigationSearchScreen} />
               <Pagination.Basic
                 progress={progress}
                 data={dummyBanner}
@@ -101,14 +91,6 @@ const HomeScreen = () => {
             <Heading styleContainer={spacingBottom(8)} text="GỢI Ý HÔM NAY" />
           </>
         }
-      />
-      <SearchModal
-        histories={histories}
-        onNavigationSearch={handleNavigationSearchScreen}
-        searchText={searchText}
-        setSearchText={setSearchText}
-        visible={visibleSearchModal}
-        setVisible={setVisibleSearchModal}
       />
     </Container>
   );

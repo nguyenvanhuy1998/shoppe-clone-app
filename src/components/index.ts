@@ -16,7 +16,6 @@ import Button from './Button';
 import Dot from './Dot';
 import LoadingModal from './LoadingModal';
 import Heading from './Heading';
-import SearchModal from './SearchModal';
 
 export {
   Container,
@@ -37,5 +36,4 @@ export {
   Dot,
   LoadingModal,
   Heading,
-  SearchModal,
 };
