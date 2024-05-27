@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {COLORS, SPACING} from '../../../constants';
+import {COLORS} from '../../../constants';
 import SearchProductList from './SearchProductList';
 import SortProductList from './SortProductList';
 
@@ -26,6 +26,5 @@ export default HeaderProductList;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.primaryWhiteHex,
-    paddingBottom: SPACING.space_8,
   },
 });
