@@ -22,7 +22,7 @@ const SearchProduct = ({onPress}: Props) => {
       ]}>
       <Input
         onPress={onPress}
-        placeholder="Search..."
+        placeholder="Tìm sản phẩm, shop và hơn thế nữa..."
         editable={false}
         pointerEvents="none"
         placeholderTextColor={COLORS.primaryOrangeHex}

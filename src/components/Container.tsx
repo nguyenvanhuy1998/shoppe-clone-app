@@ -54,7 +54,7 @@ const Container = ({
   }
   if (type === 'noScrollView') {
     return (
-      <View style={globalStyles.flexOne}>
+      <View style={[globalStyles.flexOne, style]}>
         <FocusAwareStatusBar
           barStyle={barStyle}
           backgroundColor={backgroundColorBarStyle}
