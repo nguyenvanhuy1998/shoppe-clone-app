@@ -1,22 +1,30 @@
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Button, Ionicons, Row, TextComponent} from '../../../components';
 import {BORDER_RADIUS, COLORS, SPACING} from '../../../constants';
-import {MainNavigatorParamList} from '../../../navigator/MainNavigator';
+import {DrawerNavigatorParamList} from '../../../navigator/DrawerNavigator';
 import {gapNumber} from '../../../utils/spacing';
 
 type ProductListScreenRouteProps = RouteProp<
-  MainNavigatorParamList,
+  DrawerNavigatorParamList,
+  'ProductList'
+>;
+type ProductListScreenNavigationProps = DrawerNavigationProp<
+  DrawerNavigatorParamList,
   'ProductList'
 >;
 
 const SearchProductList = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ProductListScreenNavigationProps>();
   const route = useRoute<ProductListScreenRouteProps>();
   const {searchText} = route.params;
   const handleBack = () => {
     navigation.goBack();
+  };
+  const handleOpenDrawer = () => {
+    navigation.toggleDrawer();
   };
   return (
     <Row style={styles.HeaderProductListContainer}>
@@ -38,7 +46,7 @@ const SearchProductList = () => {
           size="large"
         />
       </Row>
-      <Row style={gapNumber(SPACING.space_4)} onPress={() => {}}>
+      <Row style={gapNumber(SPACING.space_4)} onPress={handleOpenDrawer}>
         <Ionicons name="filter" color={COLORS.primaryOrangeHex} size="large" />
         <TextComponent text={'Lọc'} color={COLORS.primaryOrangeHex} />
       </Row>

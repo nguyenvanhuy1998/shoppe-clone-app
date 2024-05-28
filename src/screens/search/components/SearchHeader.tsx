@@ -13,7 +13,7 @@ interface Props {
 }
 type SearchScreenNavigationProp = NativeStackNavigationProp<
   MainNavigatorParamList,
-  'Search'
+  'Drawer'
 >;
 const SearchHeader = ({searchText, setSearchText}: Props) => {
   const insets = useSafeAreaInsets();
@@ -25,8 +25,11 @@ const SearchHeader = ({searchText, setSearchText}: Props) => {
     if (searchText.length === 0) {
       return;
     }
-    navigation.navigate('ProductList', {
-      searchText,
+    navigation.navigate('Drawer', {
+      screen: 'ProductList',
+      params: {
+        searchText,
+      },
     });
   };
   const handleChangeSearchText = (text: string) => {
