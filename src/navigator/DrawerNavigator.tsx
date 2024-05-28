@@ -1,7 +1,8 @@
+/* eslint-disable react/no-unstable-nested-components */
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import React from 'react';
 import {ProductListScreen} from '../screens';
-import {DrawerCustom} from '../components';
+import {AsideFilter} from '../screens/productList/components';
 
 export type DrawerNavigatorParamList = {
   ProductList: {
@@ -18,7 +19,7 @@ const DrawerNavigator = () => {
         headerShown: false,
         drawerPosition: 'right',
       }}
-      drawerContent={DrawerCustom}>
+      drawerContent={() => <AsideFilter />}>
       <Drawer.Screen name="ProductList" component={ProductListScreen} />
     </Drawer.Navigator>
   );

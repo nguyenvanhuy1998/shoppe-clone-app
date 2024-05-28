@@ -1,21 +1,19 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useState} from 'react';
-import {FlatList, RefreshControl, StyleSheet} from 'react-native';
+import React from 'react';
+import {StyleSheet} from 'react-native';
 import {Pagination} from 'react-native-reanimated-carousel';
 import {
   BannerList,
   Container,
-  ProductComponent,
+  ProductListComponent,
   Section,
 } from '../../components';
 import Heading from '../../components/Heading';
-import {COLORS, SPACING, WIDTH} from '../../constants';
+import {SPACING, WIDTH} from '../../constants';
 import {useCarousel} from '../../hooks';
-import {useInfiniteScroll} from '../../hooks/useInfiniteScroll';
 import {MainNavigatorParamList} from '../../navigator/MainNavigator';
 import {globalStyles} from '../../styles';
-import {Product} from '../../types/product.type';
 import {spacingBottom} from '../../utils';
 import {CategoryList, SearchProduct, Wallet} from './components';
 import {dummyBanner} from './data/banner';
@@ -27,39 +25,14 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const {refCarousel, progress, onPressPagination} = useCarousel();
-  const {data, isRefreshing, onRefresh, onEndReached} = useInfiniteScroll({
-    key: 'products',
-  });
-  const handleChangeProductDetailScreen = (product: Product) => {
-    navigation.navigate('ProductDetail', {
-      id: product._id,
-    });
-  };
+
   const handleNavigationSearchScreen = () => {
     navigation.navigate('Search');
   };
 
   return (
     <Container type="noScrollView">
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-        initialNumToRender={10}
-        data={data}
-        renderItem={({item}) => (
-          <ProductComponent
-            product={item}
-            onPress={() => handleChangeProductDetailScreen(item)}
-          />
-        )}
-        onEndReached={onEndReached}
-        refreshControl={
-          <RefreshControl
-            refreshing={isRefreshing}
-            onRefresh={onRefresh}
-            tintColor={COLORS.primaryOrangeHex}
-          />
-        }
+      <ProductListComponent
         ListHeaderComponent={
           <>
             <Section style={globalStyles.resetContainer}>

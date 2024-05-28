@@ -1,4 +1,5 @@
 import HeaderProductList from './HeaderProductList';
 import SearchProductList from './SearchProductList';
 import SortProductList from './SortProductList';
-export {HeaderProductList, SearchProductList, SortProductList};
+import AsideFilter from './AsideFilter';
+export {HeaderProductList, SearchProductList, SortProductList, AsideFilter};

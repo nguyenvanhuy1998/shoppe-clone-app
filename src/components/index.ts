@@ -16,7 +16,7 @@ import Button from './Button';
 import Dot from './Dot';
 import LoadingModal from './LoadingModal';
 import Heading from './Heading';
-import DrawerCustom from './DrawerCustom';
+import ProductListComponent from './ProductListComponent';
 
 export {
   Container,
@@ -37,5 +37,5 @@ export {
   Dot,
   LoadingModal,
   Heading,
-  DrawerCustom,
+  ProductListComponent,
 };
