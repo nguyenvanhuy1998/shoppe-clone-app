@@ -1,5 +1,6 @@
 import React, {ReactNode} from 'react';
 import {
+  ColorValue,
   StyleProp,
   StyleSheet,
   TouchableOpacity,
@@ -8,6 +9,7 @@ import {
 } from 'react-native';
 import {globalStyles} from '../styles';
 import TextComponent from './TextComponent';
+import {COLORS} from '../constants';
 
 interface Props extends TouchableOpacityProps {
   styleContainer?: StyleProp<ViewStyle>;
@@ -19,6 +21,7 @@ interface Props extends TouchableOpacityProps {
   fontSize?: number;
   color?: string;
   fontFamily?: string;
+  backgroundColor?: ColorValue;
 }
 const Button = ({
   styleContainer,
@@ -28,12 +31,19 @@ const Button = ({
   fontSize,
   color,
   fontFamily,
+  backgroundColor,
   ...rest
 }: Props) => {
   return (
     <TouchableOpacity
       {...rest}
-      style={[globalStyles.buttonContainer, styleContainer]}>
+      style={[
+        globalStyles.buttonContainer,
+        {
+          backgroundColor: backgroundColor,
+        },
+        styleContainer,
+      ]}>
       {startIcon && startIcon}
       {text && (
         <TextComponent

@@ -3,11 +3,12 @@ import {StyleSheet, View} from 'react-native';
 import {SPACING} from '../../../constants';
 import {Category} from '../data/categories';
 import ItemAsideFilter from './ItemAsideFilter';
+import {RatingStar} from '../data/ratingStars';
 
 interface Props {
-  data: Category[];
+  data: Category[] | RatingStar[];
 }
-const AllCategories = ({data}: Props) => {
+const ChildrenSection = ({data}: Props) => {
   return (
     <View style={styles.container}>
       {data.map(item => {
@@ -17,7 +18,7 @@ const AllCategories = ({data}: Props) => {
   );
 };
 
-export default AllCategories;
+export default ChildrenSection;
 
 const styles = StyleSheet.create({
   container: {

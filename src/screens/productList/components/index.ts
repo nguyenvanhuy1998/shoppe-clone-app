@@ -4,9 +4,10 @@ import SortProductList from './SortProductList';
 import AsideFilter from './AsideFilter';
 import HeadingAsideFilter from './HeadingAsideFilter';
 import SectionAsideFilter from './SectionAsideFilter';
-import AllCategories from './AllCategories';
+import ChildrenSection from './ChildrenSection';
 import PriceRange from './PriceRange';
 import ItemAsideFilter from './ItemAsideFilter';
+import ActionAsideFilter from './ActionAsideFilter';
 
 export {
   HeaderProductList,
@@ -15,7 +16,8 @@ export {
   AsideFilter,
   HeadingAsideFilter,
   SectionAsideFilter,
-  AllCategories,
+  ChildrenSection,
   PriceRange,
   ItemAsideFilter,
+  ActionAsideFilter,
 };
