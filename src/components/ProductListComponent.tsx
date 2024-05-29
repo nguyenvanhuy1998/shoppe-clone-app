@@ -11,6 +11,7 @@ import ProductComponent from './ProductComponent';
 interface Props {
   filters?: ProductListConfig;
   ListHeaderComponent?: ReactElement;
+  setFilters?: React.Dispatch<React.SetStateAction<ProductListConfig>>;
 }
 type ProductListComponentNavigationProp = NativeStackNavigationProp<
   MainNavigatorParamList,

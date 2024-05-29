@@ -4,8 +4,13 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {COLORS, SPACING} from '../../../constants';
 import SearchProductList from './SearchProductList';
 import SortProductList from './SortProductList';
+import {ProductListConfig} from '../../../types/product.type';
 
-const HeaderProductList = () => {
+interface Props {
+  filters: ProductListConfig;
+  setFilters: React.Dispatch<React.SetStateAction<ProductListConfig>>;
+}
+const HeaderProductList = ({filters, setFilters}: Props) => {
   const insets = useSafeAreaInsets();
   return (
     <View
@@ -16,7 +21,7 @@ const HeaderProductList = () => {
         },
       ]}>
       <SearchProductList />
-      <SortProductList />
+      <SortProductList filters={filters} setFilters={setFilters} />
     </View>
   );
 };
