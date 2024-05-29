@@ -21,6 +21,7 @@ const ProductListComponent = ({filters, ListHeaderComponent}: Props) => {
   const navigation = useNavigation<ProductListComponentNavigationProp>();
   const {data, isRefreshing, onRefresh, onEndReached} = useInfiniteScroll({
     key: 'products',
+    limit: 20,
     filters,
   });
   const handleChangeProductDetailScreen = (product: Product) => {

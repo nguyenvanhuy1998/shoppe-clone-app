@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Button, Ionicons, Line, Row} from '../../../components';
 import {COLORS, SPACING} from '../../../constants';
-import {order, sortBy} from '../../../constants/product';
+import {order as orderConstant, sortBy} from '../../../constants/product';
 import {ProductListConfig} from '../../../types/product.type';
 
 interface Props {
@@ -12,11 +12,13 @@ interface Props {
 }
 
 const SortProductList = ({filters, setFilters}: Props) => {
+  const {sort_by, order} = filters;
   const isActiveSortBy = (
     sortByValue: Exclude<ProductListConfig['sort_by'], undefined>,
   ) => {
-    return filters.sort_by === sortByValue;
+    return sort_by === sortByValue;
   };
+
   const handleSort = (
     sortByValue: Exclude<ProductListConfig['sort_by'], undefined>,
   ) => {
@@ -30,13 +32,12 @@ const SortProductList = ({filters, setFilters}: Props) => {
       );
     });
   };
-  const handleChangeCurrentOrder = (
-    sortByValue: Exclude<ProductListConfig['sort_by'], undefined>,
+  const handlePriceOrder = (
     orderValue: Exclude<ProductListConfig['order'], undefined>,
   ) => {
     setFilters(prev => ({
       ...prev,
-      sort_by: sortByValue,
+      sort_by: sortBy.price,
       order: orderValue,
     }));
   };
@@ -102,7 +103,7 @@ const SortProductList = ({filters, setFilters}: Props) => {
           <Ionicons
             name={
               isActiveSortBy(sortBy.price)
-                ? filters.order === order.asc
+                ? order === orderConstant.asc
                   ? 'arrow-up-outline'
                   : 'arrow-down-outline'
                 : 'chevron-expand-outline'
@@ -115,10 +116,10 @@ const SortProductList = ({filters, setFilters}: Props) => {
           />
         }
         onPress={() => {
-          if (filters.order === order.asc) {
-            handleChangeCurrentOrder(sortBy.price, order.desc);
+          if (order === orderConstant.asc) {
+            handlePriceOrder(orderConstant.desc);
           } else {
-            handleChangeCurrentOrder(sortBy.price, order.asc);
+            handlePriceOrder(orderConstant.asc);
           }
         }}
       />

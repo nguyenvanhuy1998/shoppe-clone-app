@@ -5,7 +5,7 @@ import {ProductListConfig} from '../../types/product.type';
 
 const ProductListScreen = () => {
   const [filters, setFilters] = useState<ProductListConfig>({
-    sort_by: 'view',
+    sort_by: 'createdAt',
   });
   return (
     <Container type="noScrollView">
