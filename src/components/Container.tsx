@@ -17,9 +17,10 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 interface Props {
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
-  type?: 'linear' | 'input' | 'noSafeArea' | 'noScrollView';
+  type?: 'linear' | 'input' | 'noSafeArea' | 'noScrollView' | 'onlyScrollView';
   barStyle?: StatusBarStyle;
   backgroundColorBarStyle?: ColorValue;
+  nestedScrollEnabled?: boolean;
 }
 const Container = ({
   children,
@@ -27,6 +28,7 @@ const Container = ({
   type,
   barStyle = 'dark-content',
   backgroundColorBarStyle = COLORS.primaryWhiteHex,
+  nestedScrollEnabled,
 }: Props) => {
   const insets = useSafeAreaInsets();
   const styleGeneral = [
@@ -90,6 +92,15 @@ const Container = ({
           {children}
         </KeyboardAwareScrollView>
       </View>
+    );
+  }
+  if (type === 'onlyScrollView') {
+    return (
+      <ScrollView
+        nestedScrollEnabled={nestedScrollEnabled}
+        contentContainerStyle={globalStyles.flexGrowOne}>
+        {children}
+      </ScrollView>
     );
   }
   return (

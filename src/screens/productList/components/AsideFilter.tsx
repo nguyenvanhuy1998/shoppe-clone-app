@@ -1,39 +1,26 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {TextComponent} from '../../../components';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {COLORS, FONT_FAMILY, FONTSIZE, SPACING} from '../../../constants';
+import {View} from 'react-native';
+import {Container} from '../../../components';
+import {globalStyles} from '../../../styles';
+import {categories} from '../data/categories';
+import AllCategories from './AllCategories';
+import HeadingAsideFilter from './HeadingAsideFilter';
+import PriceRange from './PriceRange';
+import SectionAsideFilter from './SectionAsideFilter';
 
 const AsideFilter = () => {
-  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
-      <View
-        style={[
-          styles.headerContainer,
-          {
-            paddingTop: insets.top + SPACING.space_16,
-          },
-        ]}>
-        <TextComponent
-          text={'Bộ lọc tìm kiếm'}
-          fontSize={FONTSIZE.size_14}
-          fontFamily={FONT_FAMILY.montserrat_medium}
+    <View style={globalStyles.flexOne}>
+      <HeadingAsideFilter />
+      <Container type="onlyScrollView">
+        <SectionAsideFilter
+          title="Tất cả danh mục"
+          children={<AllCategories data={categories} />}
         />
-      </View>
+        <SectionAsideFilter title="Khoảng giá (đ)" children={<PriceRange />} />
+      </Container>
     </View>
   );
 };
 
 export default AsideFilter;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  headerContainer: {
-    paddingHorizontal: SPACING.space_8,
-    paddingBottom: SPACING.space_8,
-    backgroundColor: COLORS.primaryGreyHex,
-  },
-});

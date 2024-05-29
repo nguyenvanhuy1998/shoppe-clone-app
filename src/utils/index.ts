@@ -12,6 +12,7 @@ import {
   formatVND,
   formatNumberToSocialStyle,
   rateSale,
+  formatDataNumcolumns,
 } from './utils';
 export {
   createButtonStyle,
@@ -25,4 +26,5 @@ export {
   formatVND,
   formatNumberToSocialStyle,
   rateSale,
+  formatDataNumcolumns,
 };

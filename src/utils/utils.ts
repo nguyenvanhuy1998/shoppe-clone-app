@@ -29,3 +29,16 @@ export function formatNumberToSocialStyle(num: number): string {
 }
 export const rateSale = (original: number, sale: number) =>
   Math.round(((original - sale) / original) * 100);
+
+export const formatDataNumcolumns = (data: any, numColumns: number) => {
+  const numberOfFullRows = Math.floor(data.length / numColumns);
+  let numberOfElementsLastRow = data.length - numberOfFullRows * numColumns;
+  while (
+    numberOfElementsLastRow !== numColumns &&
+    numberOfElementsLastRow !== 0
+  ) {
+    data.push({id: `blank-${numberOfElementsLastRow}`, empty: true});
+    numberOfElementsLastRow++;
+  }
+  return data;
+};
