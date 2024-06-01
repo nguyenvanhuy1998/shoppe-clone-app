@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SPACING} from '../../../constants';
-import {Category} from '../data/categories';
 import ItemAsideFilter from './ItemAsideFilter';
 import {RatingStar} from '../data/ratingStars';
+import {Category} from '../../../types/category.type';
 
 interface Props {
   data: Category[] | RatingStar[];
@@ -12,7 +12,7 @@ const ChildrenSection = ({data}: Props) => {
   return (
     <View style={styles.container}>
       {data.map(item => {
-        return <ItemAsideFilter key={item.id} item={item} />;
+        return <ItemAsideFilter key={item._id} item={item} />;
       })}
     </View>
   );

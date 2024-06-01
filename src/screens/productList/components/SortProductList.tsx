@@ -1,18 +1,15 @@
-import {omit} from 'lodash';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Button, Ionicons, Line, Row} from '../../../components';
 import {COLORS, SPACING} from '../../../constants';
 import {order as orderConstant, sortBy} from '../../../constants/product';
+import {useAppDispatch, useAppSelector} from '../../../redux/store';
 import {ProductListConfig} from '../../../types/product.type';
+import {sortFilterChange, sortPriceOrder} from '../filtersSlice';
 
-interface Props {
-  filters: ProductListConfig;
-  setFilters: React.Dispatch<React.SetStateAction<ProductListConfig>>;
-}
-
-const SortProductList = ({filters, setFilters}: Props) => {
-  const {sort_by, order} = filters;
+const SortProductList = () => {
+  const dispatch = useAppDispatch();
+  const {sort_by, order} = useAppSelector(state => state.filters);
   const isActiveSortBy = (
     sortByValue: Exclude<ProductListConfig['sort_by'], undefined>,
   ) => {
@@ -22,26 +19,13 @@ const SortProductList = ({filters, setFilters}: Props) => {
   const handleSort = (
     sortByValue: Exclude<ProductListConfig['sort_by'], undefined>,
   ) => {
-    setFilters(prev => {
-      return omit(
-        {
-          ...prev,
-          sort_by: sortByValue,
-        },
-        ['order'],
-      );
-    });
+    dispatch(sortFilterChange(sortByValue));
   };
   const handlePriceOrder = (
     orderValue: Exclude<ProductListConfig['order'], undefined>,
   ) => {
-    setFilters(prev => ({
-      ...prev,
-      sort_by: sortBy.price,
-      order: orderValue,
-    }));
+    dispatch(sortPriceOrder(orderValue));
   };
-  console.log(filters);
 
   return (
     <Row style={styles.container}>

@@ -1,3 +1,5 @@
+import {Category} from './category.type';
+
 export interface ProductList {
   products: Product[];
   pagination: Pagination;
@@ -19,10 +21,6 @@ export interface Product {
   createdAt: string;
   updatedAt: string;
 }
-export interface Category {
-  _id: string;
-  name: string;
-}
 
 export interface Pagination {
   page: number;
@@ -38,4 +36,5 @@ export interface ProductListConfig {
   price_max?: number | string;
   price_min?: number | string;
   name?: string;
+  category?: string;
 }

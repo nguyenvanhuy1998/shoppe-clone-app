@@ -7,13 +7,12 @@ import Toast from 'react-native-toast-message';
 import {AppProvider} from './src/contexts/AppContext';
 import {AppRouters} from './src/navigator';
 import {globalStyles} from './src/styles';
-import {COLORS} from './src/constants';
+import {Provider} from 'react-redux';
+import {store} from './src/redux/store';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // staleTime: 300000, // 5 minutes
-      // retry: 2,
       refetchOnWindowFocus: false,
     },
   },
@@ -22,14 +21,15 @@ const App = () => {
   return (
     <GestureHandlerRootView style={globalStyles.flexOne}>
       <SafeAreaProvider>
-        <NavigationContainer>
-          <QueryClientProvider client={queryClient}>
-            <AppProvider>
-              <AppRouters />
-            </AppProvider>
-            {/* <DevToolsBubble /> */}
-          </QueryClientProvider>
-        </NavigationContainer>
+        <Provider store={store}>
+          <NavigationContainer>
+            <QueryClientProvider client={queryClient}>
+              <AppProvider>
+                <AppRouters />
+              </AppProvider>
+            </QueryClientProvider>
+          </NavigationContainer>
+        </Provider>
         <Toast />
       </SafeAreaProvider>
     </GestureHandlerRootView>

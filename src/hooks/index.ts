@@ -1,2 +1,3 @@
 import useCarousel from './useCarousel';
-export {useCarousel};
+import {useInfiniteScroll} from './useInfiniteScroll';
+export {useCarousel, useInfiniteScroll};

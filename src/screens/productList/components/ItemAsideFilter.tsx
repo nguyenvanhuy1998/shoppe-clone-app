@@ -3,8 +3,8 @@ import {StyleProp, StyleSheet, TouchableOpacity, ViewStyle} from 'react-native';
 import {TextComponent} from '../../../components';
 import {COLORS, SPACING} from '../../../constants';
 import {WIDTH_DRAWER} from '../../../navigator/DrawerNavigator';
-import {Category} from '../data/categories';
 import {PriceRange} from '../data/priceRanges';
+import {Category} from '../../../types/category.type';
 
 interface Props {
   item: Category | PriceRange;

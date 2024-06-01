@@ -5,23 +5,23 @@ import {FlatList, RefreshControl} from 'react-native';
 import {COLORS} from '../constants';
 import {useInfiniteScroll} from '../hooks/useInfiniteScroll';
 import {MainNavigatorParamList} from '../navigator/MainNavigator';
-import {Product, ProductListConfig} from '../types/product.type';
+import {Product} from '../types/product.type';
 import ProductComponent from './ProductComponent';
+import {useAppSelector} from '../redux/store';
 
 interface Props {
-  filters?: ProductListConfig;
   ListHeaderComponent?: ReactElement;
-  setFilters?: React.Dispatch<React.SetStateAction<ProductListConfig>>;
 }
 type ProductListComponentNavigationProp = NativeStackNavigationProp<
   MainNavigatorParamList,
   'ProductDetail'
 >;
-const ProductListComponent = ({filters, ListHeaderComponent}: Props) => {
+const ProductListComponent = ({ListHeaderComponent}: Props) => {
   const navigation = useNavigation<ProductListComponentNavigationProp>();
+  const filters = useAppSelector(state => state.filters);
   const {data, isRefreshing, onRefresh, onEndReached} = useInfiniteScroll({
     key: 'products',
-    limit: 20,
+    limit: 10,
     filters,
   });
   const handleChangeProductDetailScreen = (product: Product) => {
