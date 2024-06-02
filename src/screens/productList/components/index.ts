@@ -4,9 +4,8 @@ import SortProductList from './SortProductList';
 import AsideFilter from './AsideFilter';
 import HeadingAsideFilter from './HeadingAsideFilter';
 import SectionAsideFilter from './SectionAsideFilter';
-import ChildrenSection from './ChildrenSection';
+import CategoryItem from './CategoryItem';
 import PriceRange from './PriceRange';
-import ItemAsideFilter from './ItemAsideFilter';
 import ActionAsideFilter from './ActionAsideFilter';
 
 export {
@@ -16,8 +15,7 @@ export {
   AsideFilter,
   HeadingAsideFilter,
   SectionAsideFilter,
-  ChildrenSection,
+  CategoryItem,
   PriceRange,
-  ItemAsideFilter,
   ActionAsideFilter,
 };

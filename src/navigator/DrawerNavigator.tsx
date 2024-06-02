@@ -2,7 +2,10 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import React from 'react';
 import {ProductListScreen} from '../screens';
-import {AsideFilter} from '../screens/productList/components';
+import {
+  ActionAsideFilter,
+  AsideFilter,
+} from '../screens/productList/components';
 import {SPACING, WIDTH} from '../constants';
 
 export const WIDTH_DRAWER = WIDTH - SPACING.space_32;
@@ -24,7 +27,7 @@ const DrawerNavigator = () => {
           width: WIDTH_DRAWER,
         },
       }}
-      drawerContent={() => <AsideFilter />}>
+      drawerContent={props => <AsideFilter {...props} />}>
       <Drawer.Screen name="ProductList" component={ProductListScreen} />
     </Drawer.Navigator>
   );

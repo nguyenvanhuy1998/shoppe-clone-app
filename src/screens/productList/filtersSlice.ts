@@ -29,7 +29,11 @@ const filtersSlice = createSlice({
       state.sort_by = sortBy.price;
       state.order = action.payload;
     },
+    categoryFilterChange: (state, action) => {
+      state.category = action.payload;
+    },
   },
 });
-export const {sortFilterChange, sortPriceOrder} = filtersSlice.actions;
+export const {sortFilterChange, sortPriceOrder, categoryFilterChange} =
+  filtersSlice.actions;
 export const filtersReducer = filtersSlice.reducer;

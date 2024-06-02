@@ -4,7 +4,6 @@ import {Input, Line, Row} from '../../../components';
 import {COLORS, SPACING} from '../../../constants';
 import {globalStyles} from '../../../styles';
 import {priceRanges} from '../data/priceRanges';
-import ItemAsideFilter from './ItemAsideFilter';
 
 const PriceRange = () => {
   return (
@@ -22,15 +21,15 @@ const PriceRange = () => {
         />
         <Input placeholder="TỐI ĐA" textAlign="center" keyboardType="numeric" />
       </Row>
-      <Row style={styles.optionPriceRangeContainer}>
+      {/* <Row style={styles.optionPriceRangeContainer}>
         {priceRanges.map(item => (
           <ItemAsideFilter
             style={globalStyles.flexOne}
-            key={item.id}
+            key={item._id}
             item={item}
           />
         ))}
-      </Row>
+      </Row> */}
     </View>
   );
 };
