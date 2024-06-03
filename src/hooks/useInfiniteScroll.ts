@@ -16,7 +16,7 @@ export const useInfiniteScroll = ({key, limit = 10, filters}: Params) => {
     key,
     ..._.values<string | string[]>(_.omitBy(filters || {}, _.isEmpty)),
   ].filter(c => Boolean(c) && !_.isEmpty(c));
-
+  console.log('queryKey', queryKey);
   const queryFn = async ({pageParam = 1}) => {
     const {data} = await productApi.getProducts({
       page: pageParam,

@@ -1,16 +1,25 @@
 import React, {ReactNode} from 'react';
-import {StyleSheet} from 'react-native';
-import {Section, TextComponent} from '../../../components';
+import {ColorValue, StyleSheet} from 'react-native';
+import {IconText, Section} from '../../../components';
 import {COLORS, FONT_FAMILY, SPACING} from '../../../constants';
 
 interface Props {
   title: string;
   children?: ReactNode;
+  icon?: ReactNode;
+  onPress?: () => void;
+  color?: ColorValue;
 }
-const SectionAsideFilter = ({title, children}: Props) => {
+const SectionAsideFilter = ({title, children, icon, onPress, color}: Props) => {
   return (
     <Section style={styles.container}>
-      <TextComponent text={title} fontFamily={FONT_FAMILY.montserrat_medium} />
+      <IconText
+        onPress={onPress}
+        text={title}
+        fontFamily={FONT_FAMILY.montserrat_medium}
+        color={color}
+        icon={icon}
+      />
       {children}
     </Section>
   );
