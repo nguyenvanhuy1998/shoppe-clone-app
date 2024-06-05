@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {ProductListConfig} from '../../types/product.type';
 import {omit} from 'lodash';
 import {sortBy} from '../../constants/product';
+import {FormPriceRange} from './components/AsideFilter';
 
 const initialState: ProductListConfig = {
   sort_by: 'view',
@@ -29,11 +30,14 @@ const filtersSlice = createSlice({
       state.sort_by = sortBy.price;
       state.order = action.payload;
     },
-    categoryFilterChange: (state, action) => {
-      state.category = action.payload;
+    asideFilterChange: (state, action: PayloadAction<ProductListConfig>) => {
+      const {category, price_min, price_max} = action.payload;
+      state.category = category;
+      state.price_min = price_min;
+      state.price_max = price_max;
     },
   },
 });
-export const {sortFilterChange, sortPriceOrder, categoryFilterChange} =
+export const {sortFilterChange, sortPriceOrder, asideFilterChange} =
   filtersSlice.actions;
 export const filtersReducer = filtersSlice.reducer;

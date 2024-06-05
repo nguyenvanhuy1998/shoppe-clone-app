@@ -6,32 +6,26 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {COLORS, SPACING} from '../../../constants';
-import {Category} from '../../../types/category.type';
 import {TextComponent} from '../../../components';
+import {COLORS, SPACING} from '../../../constants';
 import {WIDTH_DRAWER} from '../../../navigator/DrawerNavigator';
-import {AsideFilterProps} from './AsideFilter';
+import {Category} from '../../../types/category.type';
 
 interface Props {
   data: Category[];
   style?: StyleProp<ViewStyle>;
-  asideFilters: AsideFilterProps;
-  setAsideFilter: React.Dispatch<React.SetStateAction<AsideFilterProps>>;
+  category?: string;
+  setCategory: React.Dispatch<React.SetStateAction<undefined | string>>;
 }
 
-const CategoryItem = ({data, asideFilters, setAsideFilter, style}: Props) => {
+const CategoryItem = ({data, category, setCategory, style}: Props) => {
   const handleSelectedCategoryItem = (id: string) => {
-    setAsideFilter(prev => {
-      return {
-        ...prev,
-        category: id,
-      };
-    });
+    setCategory(id);
   };
   return (
     <View style={styles.container}>
       {data.map(item => {
-        const isActive = asideFilters.category === item._id;
+        const isActive = category === item._id;
         return (
           <TouchableOpacity
             onPress={() => handleSelectedCategoryItem(item._id)}

@@ -12,3 +12,8 @@ export interface ErrorResponse<Data> {
 export type IconSizeProps = {
   iconSizes: keyof typeof IconSizes;
 };
+
+// Cú pháp `-?` sẽ loại bỏ undefined của key optional
+export type NoUndefinedFiled<T> = {
+  [P in keyof T]-?: NoUndefinedFiled<NonNullable<T[P]>>;
+};

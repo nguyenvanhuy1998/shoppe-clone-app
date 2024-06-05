@@ -22,7 +22,8 @@ import {
 } from './components';
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignUp'>;
-type FormData = AuthSchema;
+type FormData = Pick<AuthSchema, 'email' | 'password' | 'confirmPassword'>;
+const registerSchema = schema.pick(['email', 'password', 'confirmPassword']);
 const SignUpScreen = ({navigation}: Props) => {
   const {setIsAuthenticated, setProfile} = useContext(AppContext);
 
@@ -37,7 +38,7 @@ const SignUpScreen = ({navigation}: Props) => {
       password: '',
       confirmPassword: '',
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registerSchema),
   });
 
   const registerAccountMutation = useMutation({

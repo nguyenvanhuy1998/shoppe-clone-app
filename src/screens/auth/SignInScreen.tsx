@@ -22,8 +22,8 @@ import {
 
 type Props = NativeStackScreenProps<AuthNavigatorParamList, 'SignIn'>;
 
-type FormData = Omit<AuthSchema, 'confirmPassword'>;
-const loginSchema = schema.omit(['confirmPassword']);
+type FormData = Pick<AuthSchema, 'email' | 'password'>;
+const loginSchema = schema.pick(['email', 'password']);
 const SignInScreen = ({navigation}: Props) => {
   const {setIsAuthenticated, setProfile} = useContext(AppContext);
   const {

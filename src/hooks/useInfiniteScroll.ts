@@ -11,7 +11,6 @@ type Params = {
 };
 export const useInfiniteScroll = ({key, limit = 10, filters}: Params) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
-
   const queryKey = [
     key,
     ..._.values<string | string[]>(_.omitBy(filters || {}, _.isEmpty)),
