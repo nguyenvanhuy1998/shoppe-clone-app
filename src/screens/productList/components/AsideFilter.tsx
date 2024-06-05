@@ -11,19 +11,21 @@ import {useAppDispatch} from '../../../redux/store';
 import {globalStyles} from '../../../styles';
 import {schema} from '../../../utils';
 import ActionAsideFilter from './ActionAsideFilter';
-import CategoryItem from './CategoryItem';
 import HeadingAsideFilter from './HeadingAsideFilter';
 import PriceRange from './PriceRange';
 import SectionAsideFilter from './SectionAsideFilter';
 import {asideFilterChange} from '../filtersSlice';
 import {Alert} from 'react-native';
 import {AuthSchema} from '../../../utils/rules';
+import AsideFilterItem from './AsideFilterItem';
+import {ratingStars} from '../data/ratingStars';
 
 export type FormPriceRange = Pick<AuthSchema, 'price_min' | 'price_max'>;
 const priceSchema = schema.pick(['price_min', 'price_max']);
 
 const AsideFilter = ({navigation}: DrawerContentComponentProps) => {
   const [category, setCategory] = useState<undefined | string>();
+  const [star, setStar] = useState<undefined | string>();
   const dispatch = useAppDispatch();
   const {control, handleSubmit, trigger} = useForm<FormPriceRange>({
     defaultValues: {
@@ -47,8 +49,9 @@ const AsideFilter = ({navigation}: DrawerContentComponentProps) => {
       dispatch(
         asideFilterChange({
           category,
-          price_min: price_min === '' ? '0' : price_min,
+          price_min,
           price_max,
+          rating_filter: star,
         }),
       );
       navigation.closeDrawer();
@@ -57,6 +60,7 @@ const AsideFilter = ({navigation}: DrawerContentComponentProps) => {
       dispatch(
         asideFilterChange({
           category,
+          rating_filter: star,
         }),
       );
       navigation.closeDrawer();
@@ -80,9 +84,9 @@ const AsideFilter = ({navigation}: DrawerContentComponentProps) => {
             />
           }
           children={
-            <CategoryItem
-              category={category}
-              setCategory={setCategory}
+            <AsideFilterItem
+              asideFilter={category}
+              setAsideFilter={setCategory}
               data={data?.data.data || []}
             />
           }
@@ -90,6 +94,17 @@ const AsideFilter = ({navigation}: DrawerContentComponentProps) => {
         <SectionAsideFilter
           title="Khoảng Giá (đ)"
           children={<PriceRange control={control} trigger={trigger} />}
+        />
+        <SectionAsideFilter
+          title="Đánh Giá"
+          color={COLORS.primaryBlackHex}
+          children={
+            <AsideFilterItem
+              asideFilter={star}
+              setAsideFilter={setStar}
+              data={ratingStars || []}
+            />
+          }
         />
       </Container>
       <ActionAsideFilter onSubmit={onSubmit} />

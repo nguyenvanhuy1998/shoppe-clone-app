@@ -14,21 +14,21 @@ import {Category} from '../../../types/category.type';
 interface Props {
   data: Category[];
   style?: StyleProp<ViewStyle>;
-  category?: string;
-  setCategory: React.Dispatch<React.SetStateAction<undefined | string>>;
+  asideFilter?: string;
+  setAsideFilter: React.Dispatch<React.SetStateAction<undefined | string>>;
 }
 
-const CategoryItem = ({data, category, setCategory, style}: Props) => {
-  const handleSelectedCategoryItem = (id: string) => {
-    setCategory(id);
+const AsideFilterItem = ({data, asideFilter, setAsideFilter, style}: Props) => {
+  const handleSelectedAsideFilterItem = (id: string) => {
+    setAsideFilter(id);
   };
   return (
     <View style={styles.container}>
       {data.map(item => {
-        const isActive = category === item._id;
+        const isActive = asideFilter === item._id;
         return (
           <TouchableOpacity
-            onPress={() => handleSelectedCategoryItem(item._id)}
+            onPress={() => handleSelectedAsideFilterItem(item._id)}
             key={item._id}
             style={[
               styles.itemContainer,
@@ -50,7 +50,7 @@ const CategoryItem = ({data, category, setCategory, style}: Props) => {
   );
 };
 
-export default CategoryItem;
+export default AsideFilterItem;
 
 const styles = StyleSheet.create({
   container: {
