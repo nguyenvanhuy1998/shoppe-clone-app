@@ -19,28 +19,15 @@ import {Alert} from 'react-native';
 import {AuthSchema} from '../../../utils/rules';
 import AsideFilterItem from './AsideFilterItem';
 import {ratingStars} from '../data/ratingStars';
+import {useCategories, usePriceRangeForm} from '../../../hooks';
 
 export type FormPriceRange = Pick<AuthSchema, 'price_min' | 'price_max'>;
-const priceSchema = schema.pick(['price_min', 'price_max']);
-
 const AsideFilter = ({navigation}: DrawerContentComponentProps) => {
   const [category, setCategory] = useState<undefined | string>();
   const [star, setStar] = useState<undefined | string>();
   const dispatch = useAppDispatch();
-  const {control, handleSubmit, trigger, resetField} = useForm<FormPriceRange>({
-    defaultValues: {
-      price_min: '',
-      price_max: '',
-    },
-    resolver: yupResolver(priceSchema),
-    shouldFocusError: false,
-  });
-  const {data} = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => {
-      return categoryApi.getCategories();
-    },
-  });
+  const {control, handleSubmit, trigger, resetField} = usePriceRangeForm();
+  const {data} = useCategories();
   const handleActiveAllCategory = () => {
     setCategory(undefined);
   };
