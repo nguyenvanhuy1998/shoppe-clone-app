@@ -17,6 +17,7 @@ import Dot from './Dot';
 import LoadingModal from './LoadingModal';
 import Heading from './Heading';
 import ProductListComponent from './ProductListComponent';
+import CustomBottomSheetModal from './CustomBottomSheetModal';
 
 export {
   Container,
@@ -38,4 +39,5 @@ export {
   LoadingModal,
   Heading,
   ProductListComponent,
+  CustomBottomSheetModal,
 };

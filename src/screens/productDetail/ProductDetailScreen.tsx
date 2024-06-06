@@ -5,7 +5,7 @@ import {FlatList} from 'react-native';
 import {ICarouselInstance} from 'react-native-reanimated-carousel';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import productApi from '../../apis/product.api';
-import {BannerList, Container} from '../../components';
+import {BannerList, Container, CustomBottomSheetModal} from '../../components';
 import {WIDTH} from '../../constants';
 import {MainNavigatorParamList} from '../../navigator/MainNavigator';
 import {
@@ -15,6 +15,7 @@ import {
   InfoProductDetail,
   ProductDesc,
 } from './components';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
 type ProductDetailScreenNavigationProp = RouteProp<
   MainNavigatorParamList,
@@ -27,6 +28,7 @@ const ProductDetailScreen = () => {
   const {id} = route.params;
   const refListImage = useRef<ICarouselInstance>(null);
   const refListAvailable = useRef<FlatList>(null);
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const [currenIndexImage, setCurrenIndexImage] = useState(0);
   const [activeIndexImage, setActiveIndexImage] = useState(0);
 
@@ -51,6 +53,9 @@ const ProductDetailScreen = () => {
   const handleBack = () => {
     navigation.goBack();
   };
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
 
   if (!product) {
     return null;
@@ -83,7 +88,8 @@ const ProductDetailScreen = () => {
         />
         <ProductDesc description={product.description} />
       </Container>
-      <BuyNow />
+      <BuyNow onPressBuyNow={handlePresentModalPress} />
+      <CustomBottomSheetModal ref={bottomSheetModalRef} />
     </>
   );
 };

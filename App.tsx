@@ -9,6 +9,7 @@ import {AppRouters} from './src/navigator';
 import {globalStyles} from './src/styles';
 import {Provider} from 'react-redux';
 import {store} from './src/redux/store';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,11 +24,13 @@ const App = () => {
       <SafeAreaProvider>
         <Provider store={store}>
           <NavigationContainer>
-            <QueryClientProvider client={queryClient}>
-              <AppProvider>
-                <AppRouters />
-              </AppProvider>
-            </QueryClientProvider>
+            <BottomSheetModalProvider>
+              <QueryClientProvider client={queryClient}>
+                <AppProvider>
+                  <AppRouters />
+                </AppProvider>
+              </QueryClientProvider>
+            </BottomSheetModalProvider>
           </NavigationContainer>
         </Provider>
         <Toast />
