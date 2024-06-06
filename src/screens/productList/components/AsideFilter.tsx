@@ -27,7 +27,7 @@ const AsideFilter = ({navigation}: DrawerContentComponentProps) => {
   const [category, setCategory] = useState<undefined | string>();
   const [star, setStar] = useState<undefined | string>();
   const dispatch = useAppDispatch();
-  const {control, handleSubmit, trigger} = useForm<FormPriceRange>({
+  const {control, handleSubmit, trigger, resetField} = useForm<FormPriceRange>({
     defaultValues: {
       price_min: '',
       price_max: '',
@@ -67,6 +67,21 @@ const AsideFilter = ({navigation}: DrawerContentComponentProps) => {
       Alert.alert('Thông báo', err.price_min?.message);
     },
   );
+  const handleRemoveAll = () => {
+    setCategory(undefined);
+    setStar(undefined);
+    resetField('price_min');
+    resetField('price_max');
+    dispatch(
+      asideFilterChange({
+        category: undefined,
+        rating_filter: undefined,
+        price_min: undefined,
+        price_max: undefined,
+      }),
+    );
+    navigation.toggleDrawer();
+  };
   return (
     <View style={globalStyles.flexOne}>
       <HeadingAsideFilter />
@@ -107,7 +122,7 @@ const AsideFilter = ({navigation}: DrawerContentComponentProps) => {
           }
         />
       </Container>
-      <ActionAsideFilter onSubmit={onSubmit} />
+      <ActionAsideFilter onRemoveAll={handleRemoveAll} onSubmit={onSubmit} />
     </View>
   );
 };

@@ -6,8 +6,9 @@ import {BORDER_RADIUS, COLORS, FONT_FAMILY, SPACING} from '../../../constants';
 
 interface Props {
   onSubmit: () => void;
+  onRemoveAll: () => void;
 }
-const ActionAsideFilter = ({onSubmit}: Props) => {
+const ActionAsideFilter = ({onSubmit, onRemoveAll}: Props) => {
   const insets = useSafeAreaInsets();
   return (
     <Row
@@ -29,6 +30,7 @@ const ActionAsideFilter = ({onSubmit}: Props) => {
         color={COLORS.primaryOrangeHex}
         fontFamily={FONT_FAMILY.montserrat_medium}
         text="Thiết lập lại"
+        onPress={onRemoveAll}
       />
       <Button
         onPress={onSubmit}
